@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Flame } from "lucide-react"
 
-type PlanType = "SUPER" | "ON" | "ECONÔMICO"
+type PlanType = "HERO" | "ON" | "ECONÔMICO"
 
 interface PlanRates {
   debito: string
@@ -30,7 +30,7 @@ export default function PricingPlans() {
   const [seeMore, setSeeMore] = useState(false)
 
   const planRates: Record<PlanType, PlanRates> = {
-    SUPER: {
+    HERO: {
       debito: "1,39%",
       creditoAVista: "3,20%",
       credito12x: "11,11%",
@@ -175,7 +175,7 @@ export default function PricingPlans() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card className="border-2 hover:border-yellow-400 transition-all">
           <CardHeader className="text-center">
-            <CardTitle className="inline-block bg-yellow-400 px-6 py-1 rounded-full text-xl">SUPER</CardTitle>
+            <CardTitle className="inline-block bg-yellow-400 px-6 py-1 rounded-full text-xl">HERO</CardTitle>
             <p className="text-sm mt-2">
               Venda mais com as <span className="font-bold">menores taxas!</span>
             </p>
@@ -184,24 +184,24 @@ export default function PricingPlans() {
             <div className="grid grid-cols-3 gap-2 text-center">
               <div>
                 <p className="text-xs uppercase">DÉBITO</p>
-                <p className="text-2xl font-bold">{planRates.SUPER.debito}</p>
+                <p className="text-2xl font-bold">{planRates.HERO.debito}</p>
               </div>
               <div>
                 <p className="text-xs uppercase">CRÉDITO À VISTA</p>
-                <p className="text-2xl font-bold">{planRates.SUPER.creditoAVista}</p>
+                <p className="text-2xl font-bold">{planRates.HERO.creditoAVista}</p>
               </div>
               <div>
                 <p className="text-xs uppercase">CRÉDITO 12x</p>
-                <p className="text-2xl font-bold">{planRates.SUPER.credito12x}</p>
+                <p className="text-2xl font-bold">{planRates.HERO.credito12x}</p>
               </div>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
             <Button
               className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-              onClick={() => handlePlanSelection("SUPER")}
+              onClick={() => handlePlanSelection("HERO")}
             >
-              Quero Plano Super
+              Quero Plano HERO
             </Button>
             {renderPaymentRatesByPlan('visa', 'basic')}
           </CardFooter>
@@ -267,7 +267,7 @@ export default function PricingPlans() {
           <CardFooter className="flex flex-col gap-4">
             <Button
               className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-              onClick={() => handlePlanSelection("SUPER")}
+              onClick={() => handlePlanSelection("HERO")}
             >
               Quero Plano ECONÔMICO
             </Button>

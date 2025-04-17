@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-type PaymentPlan = 'HERO' | 'BASIC' | 'FLASH'
+type PaymentPlan = 'HERO' | 'ECONOMICO' | 'ON'
 type PaymentTiming = 'NO DIA SEGUINTE' | 'NA HORA'
 
 interface InstallmentOption {
@@ -11,16 +11,16 @@ interface InstallmentOption {
     label: string
     taxa: {
         HERO: number
-        BASIC: number
-        FLASH: number
+        ECONOMICO: number
+        ON: number
     }
 }
 
 const installmentOptions: InstallmentOption[] = [
-    { value: 1, label: 'À vista', taxa: { HERO: 2.96, BASIC: 3.29, FLASH: 3.49 } },
-    { value: 2, label: 'Parcelado em 2x', taxa: { HERO: 3.92, BASIC: 4.07, FLASH: 4.27 } },
+    { value: 1, label: 'À vista', taxa: { HERO: 2.96, ECONOMICO: 3.29, ON: 3.49 } },
+    { value: 2, label: 'Parcelado em 2x', taxa: { HERO: 3.92, ECONOMICO: 4.07, ON: 4.27 } },
     // Add more installment options...
-    { value: 12, label: 'Parcelado em 12x', taxa: { HERO: 9.28, BASIC: 9.48, FLASH: 9.68 } },
+    { value: 12, label: 'Parcelado em 12x', taxa: { HERO: 9.28, ECONOMICO: 9.48, ON: 9.68 } },
 ]
 
 export default function SalesCalculator() {
@@ -73,7 +73,7 @@ export default function SalesCalculator() {
     const results = calculateResults()
 
     return (
-        <div className="bg-white p-8 rounded-2xl HERO-w-4xl mx-auto">
+        <div className="bg-white p-8 rounded-2xl HERO-w-4xl mx-auto" id='simulador'>
             <div className="mb-8">
                 <p className="text-black text-center mb-4">Selecione seu plano de recebimento:</p>
                 {/* <div className="flex justify-center gap-4 mb-4">
@@ -93,7 +93,7 @@ export default function SalesCalculator() {
                 </div> */}
 
                 <div className="flex-column md:flex justify-center gap-4">
-                    {(['HERO', 'BASIC', 'FLASH'] as const).map((plan) => (
+                    {(['HERO', 'ECONOMICO', 'ON'] as const).map((plan) => (
                         <button
                             key={plan}
                             onClick={() => setSelectedPlan(plan)}

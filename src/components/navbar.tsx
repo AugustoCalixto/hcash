@@ -7,10 +7,10 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 
 const navItems = [
-    { name: 'Maquininhas', href: '#maquininhas' },
-    { name: 'Planos', href: '#planos' },
-    // { name: 'Taxas', href: '#taxas' },
-    { name: 'Sobre nós', href: '#sobre' },
+    { name: 'Maquininhas', href: '/#maquininhas' },
+    { name: 'Planos', href: '/#planos' },
+    { name: 'Simulador', href: '/#simulador' },
+    { name: 'Sobre nós', href: '/sobre' },
 ]
 
 export function Navbar() {
@@ -44,9 +44,11 @@ export function Navbar() {
                                 {item.name}
                             </Link>
                         ))}
-                        <Button variant="outline" className="text-black border-white bg-yellow-400 hover:bg-yellow-600 hover:text-gray-900">
-                            Area do cliente
-                        </Button>
+                        <Link href="https://cliente.herocashbrasil.com.br/">
+                            <Button variant="outline" className="text-black border-white bg-yellow-400 hover:bg-yellow-600 hover:text-gray-900">
+                                Area do cliente
+                            </Button>
+                        </Link>
                     </div>
 
                     {/* Mobile menu button */}

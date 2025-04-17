@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="bg-white pt-16 pb-8 border-t">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Coluna 1 - Logo e Descrição */}
           <div className="md:col-span-1">
             <div className="mb-4">
@@ -50,46 +50,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Coluna 3 - Parcerias */}
-          <div className="md:col-span-1">
-            {/* <h3 className="font-semibold text-lg mb-4">Parcerias</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#afiliado" className="text-gray-600 hover:text-yellow-500 text-sm">
-                  Seja um Afiliado
-                </Link>
-              </li>
-              <li>
-                <Link href="#business" className="text-gray-600 hover:text-yellow-500 text-sm">
-                  Yelly Business
-                </Link>
-              </li>
-            </ul> */}
-          </div>
-
-          {/* Coluna 4 - Institucional */}
-          <div className="md:col-span-1">
-            {/* <h3 className="font-semibold text-lg mb-4">Institucional</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#ajuda" className="text-gray-600 hover:text-yellow-500 text-sm">
-                  Central de Ajuda
-                </Link>
-              </li>
-              <li>
-                <Link href="#portal" className="text-gray-600 hover:text-yellow-500 text-sm">
-                  Portal Yelly
-                </Link>
-              </li>
-              <li>
-                <Link href="#blog" className="text-gray-600 hover:text-yellow-500 text-sm">
-                  Blog
-                </Link>
-              </li>
-            </ul> */}
-          </div>
-
-          {/* Coluna 5 - Transparência */}
+          {/* Coluna 3 - Transparência */}
           <div className="md:col-span-1">
             <h3 className="font-semibold text-lg mb-4">Transparência</h3>
             <ul className="space-y-2">
@@ -103,47 +64,20 @@ export default function Footer() {
                   Termos de Uso
                 </Link>
               </li>
-              {/* <li>
-                <Link href="#troca" className="text-gray-600 hover:text-yellow-500 text-sm">
-                  Troca e devolução
-                </Link>
-              </li> */}
             </ul>
-
-            <div className="mt-6 flex flex-col space-y-2">
-              {/* <div className="flex space-x-2">
-                <Image
-                  src="/placeholder.svg?height=60&width=60"
-                  alt="Selo RA1000"
-                  width={60}
-                  height={60}
-                  className="object-contain"
-                />
-                <Image
-                  src="/placeholder.svg?height=60&width=60"
-                  alt="Selo Reclame Aqui 2024"
-                  width={60}
-                  height={60}
-                  className="object-contain"
-                />
-              </div> */}
-            </div>
           </div>
         </div>
 
         {/* Redes Sociais e App Stores */}
         <div className="flex flex-col md:flex-row justify-between items-center border-t border-b py-6 mb-6">
           <div className="flex space-x-4 mb-4 md:mb-0">
-            <Link href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <Link href="https://instagram.com/herocashbrasil" target="_blank" aria-label="Instagram">
               <Instagram className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
             </Link>
-            <Link href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <Link href="https://facebook.com/herocashbrasil" target="_blank" aria-label="Facebook">
               <Facebook className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
             </Link>
-            <Link href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-              <Linkedin className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
-            </Link>
-            <Link href="https://youtube.com" target="_blank" aria-label="YouTube">
+            <Link href="https://youtube.com/channel/UCSnCTXQMJGTQ3SobY0kcsxA" target="_blank" aria-label="YouTube">
               <Youtube className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
             </Link>
           </div>
@@ -151,7 +85,7 @@ export default function Footer() {
           <div className="flex space-x-4">
             <Link href="https://apps.apple.com" target="_blank">
               <Image
-                src="/placeholder.svg?height=40&width=120"
+                src="/images/download/app-store.png"
                 alt="Download na App Store"
                 width={120}
                 height={40}
@@ -160,7 +94,7 @@ export default function Footer() {
             </Link>
             <Link href="https://play.google.com" target="_blank">
               <Image
-                src="/placeholder.svg?height=40&width=120"
+                src="/images/download/google-play.png"
                 alt="Download no Google Play"
                 width={120}
                 height={40}
