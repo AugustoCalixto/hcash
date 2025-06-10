@@ -41,7 +41,7 @@ export default function FeaturesSection() {
 
   const handleAcquire = () => {
     console.log("Botão de aquisição clicado")
-    window.open("#comprar", "_self")
+
   }
 
   return (

@@ -8,7 +8,10 @@ export default function AboutContentSection() {
         const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
         const message = "Olá, gostaria de retirar uma dúvida sobre os planos da Hero Cash!"
         const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-        window.open(url, "_blank")
+        if (typeof window !== 'undefined') {
+            window.open(url, "_blank")
+        }
+
     }
     return (
         <section className="w-full py-12 md:py-16 lg:py-20 bg-amber-300 rounded-lg">

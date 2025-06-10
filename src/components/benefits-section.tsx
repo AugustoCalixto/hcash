@@ -9,7 +9,9 @@ export default function BenefitsSection() {
     const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
     const message = "Olá, gostaria de saber mais sobre a maquininha Hero Cash!"
     const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    window.open(url, "_blank")
+    if (typeof window !== 'undefined') {
+      window.open(url, "_blank")
+    }
   }
 
   return (

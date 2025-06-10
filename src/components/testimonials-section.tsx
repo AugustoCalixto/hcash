@@ -14,6 +14,7 @@ interface Testimonial {
 }
 
 export default function TestimonialsSection() {
+
   const testimonials: Testimonial[] = [
     {
       id: 1,
@@ -50,7 +51,8 @@ export default function TestimonialsSection() {
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
-  const itemsPerPage = window.innerWidth >= 768 ? 3 : 1
+
+  const itemsPerPage = 3
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? Math.max(0, testimonials.length - itemsPerPage) : Math.max(0, prev - 1)))

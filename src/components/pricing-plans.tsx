@@ -32,7 +32,10 @@ export default function PricingPlans() {
     const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
     const message = `Olá, gostaria de saber mais sobre o plano ${plan}!`
     const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    window.open(url, "_blank")
+    if (typeof window !== 'undefined') {
+      window.open(url, "_blank")
+    }
+
   }
   const planRates: Record<PlanType, PlanRates> = {
     HERO: {
@@ -144,13 +147,6 @@ export default function PricingPlans() {
         </Card>
       )
     )
-  }
-
-  const handlePlanSelection = (plan: PlanType) => {
-    console.log(`Plano selecionado: ${plan}`)
-    // Aqui você pode implementar a lógica para redirecionar para a página de checkout
-    // ou abrir um modal com mais detalhes do plano
-    window.open(`#plano-${plan.toLowerCase()}`, "_self")
   }
 
   const handleViewAllRates = () => {
