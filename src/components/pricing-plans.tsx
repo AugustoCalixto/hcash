@@ -37,23 +37,7 @@ export default function PricingPlans() {
     }
 
   }
-  const planRates: Record<PlanType, PlanRates> = {
-    HERO: {
-      debito: "1,39%",
-      creditoAVista: "3,20%",
-      credito12x: "11,11%",
-    },
-    ON: {
-      debito: "1,39%",
-      creditoAVista: "2,96%",
-      credito12x: "10,38%",
-    },
-    ECONÔMICO: {
-      debito: "1,15%",
-      creditoAVista: "2,40%",
-      credito12x: "3,25%",
-    },
-  }
+
 
   const paymentRates: Record<CardId, PaymentRate[]> = {
     visa: [
@@ -124,6 +108,24 @@ export default function PricingPlans() {
     ],
   }
 
+  const planRates: Record<PlanType, PlanRates> = {
+    HERO: {
+      debito: "1,39%",
+      creditoAVista: "3,15%",
+      credito12x: "12,21%",
+    },
+    ON: {
+      debito: "1,39%",
+      creditoAVista: "2,91%",
+      credito12x: "11,51%",
+    },
+    ECONÔMICO: {
+      debito: "1,15%",
+      creditoAVista: "2,40%",
+      credito12x: "3,25%",
+    },
+  }
+
 
   const renderPaymentRatesByPlan = (plan: CardId, rateType: 'hero' | 'on' | 'economico') => {
     return (
@@ -161,11 +163,11 @@ export default function PricingPlans() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gray-800 p-2 rounded-lg md:col-span-2 text-center mb-4 hidden md:block">
-          <h3 className="text-lg font-bold text-white">Taxas para 30 dias</h3>
+        <div className="bg-gray-800 p-2 rounded-lg md:col-span-2 text-center mb-4">
+          <h3 className="text-lg font-bold text-white">Recebimento no dia seguinte</h3>
         </div>
-        <div className="bg-gray-800 p-2 rounded-lg md:col-span-1 text-center mb-4">
-          <h3 className="text-lg font-bold text-white">Taxas para 30 dias</h3>
+        <div className="bg-gray-800 p-2 rounded-lg md:col-span-1 text-center mb-4 hidden md:block">
+          <h3 className="text-lg font-bold text-white">Recebimento conforme parcelas</h3>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

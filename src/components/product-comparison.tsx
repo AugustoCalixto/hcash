@@ -190,7 +190,7 @@ export default function ProductComparison() {
           return (
             <Card
               key={product.id}
-              className={`bg-black border border-gray-800 ${product.id === "PRO" ? "border-yellow-400 border-2" : ""}`}
+              className={`bg-black border border-gray-800`}
             >
               <CardHeader className="text-center">
                 <h3 className="text-2xl font-bold text-yellow-400">{product.name}</h3>
@@ -240,7 +240,7 @@ export default function ProductComparison() {
                   className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
                   onClick={() => handleOrderProduct(product.id)}
                 >
-                  Pedir {product.name.split(" ")[1]} Hero
+                  Pedir {product.name.split(" ")[1]} {selectedPlan === "HERO" ? "HERO" : selectedPlan}
                 </Button>
               </CardFooter>
             </Card>

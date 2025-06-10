@@ -77,9 +77,9 @@ export default function Footer() {
             <Link href="https://facebook.com/herocashbrasil" target="_blank" aria-label="Facebook">
               <Facebook className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
             </Link>
-            <Link href="https://youtube.com/channel/UCSnCTXQMJGTQ3SobY0kcsxA" target="_blank" aria-label="YouTube">
+            {/* <Link href="https://youtube.com/channel/UCSnCTXQMJGTQ3SobY0kcsxA" target="_blank" aria-label="YouTube">
               <Youtube className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
-            </Link>
+            </Link> */}
           </div>
 
           <div className="flex space-x-4">
@@ -107,7 +107,7 @@ export default function Footer() {
         {/* Copyright e Informações Legais */}
         <div className="text-center text-sm text-gray-600">
           <p>© Herocash Brasil. Todos os direitos reservados.</p>
-          <p className="mt-2">Telefone: (88) 99640-3238 | E-mail: contato@herocash.com.br</p>
+          <p className="mt-2">Telefone: (88) 99640-3238 | E-mail: contato@herocashbrasil.com</p>
         </div>
       </div>
     </footer>
