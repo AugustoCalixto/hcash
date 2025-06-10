@@ -65,7 +65,7 @@ export default function ProductShowcase() {
       name: "PRO Hero",
       title: "Máquina de pagamento completa",
       description:
-        "Impulsione suas vendas com agilidade e economia! Este modelo de maquininha oferece o melhor custo-benefício do mercado, bateria de longa duração e taxas exclusivas da Yelly para potencializar seus lucros.",
+        "Impulsione suas vendas com agilidade e economia! Este modelo de maquininha oferece o melhor custo-benefício do mercado, bateria de longa duração e um plano exclusivas da Herocash para potencializar seus lucros.",
       image: "",
       features: [
         {

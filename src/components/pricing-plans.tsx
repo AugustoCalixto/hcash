@@ -19,16 +19,21 @@ type CardId = 'visa' | 'elo' | 'hiper'
 interface PaymentRate {
   modalidade: string
   taxa: {
-    basic: number
-    pro: number
-    hyper: number
+    hero: number
+    on: number
+    economico: number
   }
 }
 
 export default function PricingPlans() {
   const [deliveryOption, setDeliveryOption] = useState<"next-day" | "30-days">("next-day")
   const [seeMore, setSeeMore] = useState(false)
-
+  function openWhatsapp(plan: string) {
+    const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
+    const message = `Olá, gostaria de saber mais sobre o plano ${plan}!`
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
+    window.open(url, "_blank")
+  }
   const planRates: Record<PlanType, PlanRates> = {
     HERO: {
       debito: "1,39%",
@@ -49,77 +54,78 @@ export default function PricingPlans() {
 
   const paymentRates: Record<CardId, PaymentRate[]> = {
     visa: [
-      { modalidade: 'Débito', taxa: { basic: 1.39, pro: 1.29, hyper: 1.19 } },
-      { modalidade: 'Crédito à vista', taxa: { basic: 2.96, pro: 2.86, hyper: 2.76 } },
-      { modalidade: 'Parcelado 2x', taxa: { basic: 3.92, pro: 3.82, hyper: 3.72 } },
-      { modalidade: 'Parcelado 3x', taxa: { basic: 4.47, pro: 4.37, hyper: 4.27 } },
-      { modalidade: 'Parcelado 4x', taxa: { basic: 5.01, pro: 4.91, hyper: 4.81 } },
-      { modalidade: 'Parcelado 5x', taxa: { basic: 5.56, pro: 5.46, hyper: 5.36 } },
-      { modalidade: 'Parcelado 6x', taxa: { basic: 6.09, pro: 5.99, hyper: 5.89 } },
-      { modalidade: 'Parcelado 7x', taxa: { basic: 6.67, pro: 6.57, hyper: 6.47 } },
-      { modalidade: 'Parcelado 8x', taxa: { basic: 7.20, pro: 7.10, hyper: 7.00 } },
-      { modalidade: 'Parcelado 9x', taxa: { basic: 7.72, pro: 7.62, hyper: 7.52 } },
-      { modalidade: 'Parcelado 10x', taxa: { basic: 8.24, pro: 8.14, hyper: 8.04 } },
-      { modalidade: 'Parcelado 11x', taxa: { basic: 8.76, pro: 8.66, hyper: 8.56 } },
-      { modalidade: 'Parcelado 12x', taxa: { basic: 9.28, pro: 9.18, hyper: 9.08 } },
-      { modalidade: 'Parcelado 13x', taxa: { basic: 9.78, pro: 9.68, hyper: 9.58 } },
-      { modalidade: 'Parcelado 14x', taxa: { basic: 10.29, pro: 10.19, hyper: 10.09 } },
-      { modalidade: 'Parcelado 15x', taxa: { basic: 10.79, pro: 10.69, hyper: 10.59 } },
-      { modalidade: 'Parcelado 16x', taxa: { basic: 11.28, pro: 11.18, hyper: 11.08 } },
-      { modalidade: 'Parcelado 17x', taxa: { basic: 11.78, pro: 11.68, hyper: 11.58 } },
-      { modalidade: 'Parcelado 18x', taxa: { basic: 12.27, pro: 12.17, hyper: 12.07 } },
+      { modalidade: 'PIX', taxa: { hero: 0.50, on: 0.50, economico: 0.50 } },
+      { modalidade: 'Débito', taxa: { hero: 1.39, on: 1.39, economico: 1.15 } },
+      { modalidade: 'Crédito à vista', taxa: { hero: 3.15, on: 2.91, economico: 2.40 } },
+      { modalidade: 'Parcelado 2x', taxa: { hero: 5.05, on: 4.49, economico: 3.00 } },
+      { modalidade: 'Parcelado 3x', taxa: { hero: 5.74, on: 5.22, economico: 3.00 } },
+      { modalidade: 'Parcelado 4x', taxa: { hero: 6.42, on: 5.94, economico: 3.00 } },
+      { modalidade: 'Parcelado 5x', taxa: { hero: 7.10, on: 6.66, economico: 3.00 } },
+      { modalidade: 'Parcelado 6x', taxa: { hero: 7.77, on: 7.36, economico: 3.00 } },
+      { modalidade: 'Parcelado 7x', taxa: { hero: 8.98, on: 8.11, economico: 3.25 } },
+      { modalidade: 'Parcelado 8x', taxa: { hero: 9.64, on: 8.81, economico: 3.25 } },
+      { modalidade: 'Parcelado 9x', taxa: { hero: 10.29, on: 9.49, economico: 3.25 } },
+      { modalidade: 'Parcelado 10x', taxa: { hero: 10.93, on: 10.18, economico: 3.25 } },
+      { modalidade: 'Parcelado 11x', taxa: { hero: 11.57, on: 10.85, economico: 3.25 } },
+      { modalidade: 'Parcelado 12x', taxa: { hero: 12.21, on: 11.51, economico: 3.25 } },
+      { modalidade: 'Parcelado 13x', taxa: { hero: 12.83, on: 12.18, economico: 3.25 } },
+      { modalidade: 'Parcelado 14x', taxa: { hero: 13.45, on: 12.83, economico: 3.25 } },
+      { modalidade: 'Parcelado 15x', taxa: { hero: 14.07, on: 13.48, economico: 3.25 } },
+      { modalidade: 'Parcelado 16x', taxa: { hero: 14.68, on: 14.12, economico: 3.25 } },
+      { modalidade: 'Parcelado 17x', taxa: { hero: 15.29, on: 14.76, economico: 3.25 } },
+      { modalidade: 'Parcelado 18x', taxa: { hero: 15.88, on: 15.39, economico: 3.25 } },
     ],
     elo: [
-      // Similar structure for Elo rates...
-      { modalidade: 'Débito', taxa: { basic: 1.45, pro: 1.35, hyper: 1.25 } },
-      { modalidade: 'Crédito à vista', taxa: { basic: 3.29, pro: 3.19, hyper: 3.09 } },
-      { modalidade: 'Parcelado 2x', taxa: { basic: 3.92, pro: 3.82, hyper: 3.72 } },
-      { modalidade: 'Parcelado 3x', taxa: { basic: 4.47, pro: 4.37, hyper: 4.27 } },
-      { modalidade: 'Parcelado 4x', taxa: { basic: 5.01, pro: 4.91, hyper: 4.81 } },
-      { modalidade: 'Parcelado 5x', taxa: { basic: 5.56, pro: 5.46, hyper: 5.36 } },
-      { modalidade: 'Parcelado 6x', taxa: { basic: 6.09, pro: 5.99, hyper: 5.89 } },
-      { modalidade: 'Parcelado 7x', taxa: { basic: 6.67, pro: 6.57, hyper: 6.47 } },
-      { modalidade: 'Parcelado 8x', taxa: { basic: 7.20, pro: 7.10, hyper: 7.00 } },
-      { modalidade: 'Parcelado 9x', taxa: { basic: 7.72, pro: 7.62, hyper: 7.52 } },
-      { modalidade: 'Parcelado 10x', taxa: { basic: 8.24, pro: 8.14, hyper: 8.04 } },
-      { modalidade: 'Parcelado 11x', taxa: { basic: 8.76, pro: 8.66, hyper: 8.56 } },
-      { modalidade: 'Parcelado 12x', taxa: { basic: 9.28, pro: 9.18, hyper: 9.08 } },
-      { modalidade: 'Parcelado 13x', taxa: { basic: 9.78, pro: 9.68, hyper: 9.58 } },
-      { modalidade: 'Parcelado 14x', taxa: { basic: 10.29, pro: 10.19, hyper: 10.09 } },
-      { modalidade: 'Parcelado 15x', taxa: { basic: 10.79, pro: 10.69, hyper: 10.59 } },
-      { modalidade: 'Parcelado 16x', taxa: { basic: 11.28, pro: 11.18, hyper: 11.08 } },
-      { modalidade: 'Parcelado 17x', taxa: { basic: 11.78, pro: 11.68, hyper: 11.58 } },
-      { modalidade: 'Parcelado 18x', taxa: { basic: 12.27, pro: 12.17, hyper: 12.07 } }
+      { modalidade: 'PIX', taxa: { hero: 0.50, on: 0.50, economico: 0.50 } },
+      { modalidade: 'Débito', taxa: { hero: 1.45, on: 1.45, economico: 1.15 } },
+      { modalidade: 'Crédito à vista', taxa: { hero: 3.44, on: 3.24, economico: 2.40 } },
+      { modalidade: 'Parcelado 2x', taxa: { hero: 5.20, on: 4.64, economico: 3.00 } },
+      { modalidade: 'Parcelado 3x', taxa: { hero: 5.89, on: 5.37, economico: 3.00 } },
+      { modalidade: 'Parcelado 4x', taxa: { hero: 6.57, on: 6.09, economico: 3.00 } },
+      { modalidade: 'Parcelado 5x', taxa: { hero: 7.25, on: 6.81, economico: 3.00 } },
+      { modalidade: 'Parcelado 6x', taxa: { hero: 7.92, on: 7.51, economico: 3.00 } },
+      { modalidade: 'Parcelado 7x', taxa: { hero: 9.28, on: 8.31, economico: 3.25 } },
+      { modalidade: 'Parcelado 8x', taxa: { hero: 9.94, on: 9.01, economico: 3.25 } },
+      { modalidade: 'Parcelado 9x', taxa: { hero: 10.59, on: 9.69, economico: 3.25 } },
+      { modalidade: 'Parcelado 10x', taxa: { hero: 11.23, on: 10.38, economico: 3.25 } },
+      { modalidade: 'Parcelado 11x', taxa: { hero: 11.87, on: 11.05, economico: 3.25 } },
+      { modalidade: 'Parcelado 12x', taxa: { hero: 12.51, on: 11.71, economico: 3.25 } },
+      { modalidade: 'Parcelado 13x', taxa: { hero: 13.13, on: 12.38, economico: 3.25 } },
+      { modalidade: 'Parcelado 14x', taxa: { hero: 13.75, on: 13.03, economico: 3.25 } },
+      { modalidade: 'Parcelado 15x', taxa: { hero: 14.37, on: 13.68, economico: 3.25 } },
+      { modalidade: 'Parcelado 16x', taxa: { hero: 14.98, on: 14.32, economico: 3.25 } },
+      { modalidade: 'Parcelado 17x', taxa: { hero: 15.59, on: 14.96, economico: 3.25 } },
+      { modalidade: 'Parcelado 18x', taxa: { hero: 16.18, on: 15.59, economico: 3.25 } }
     ],
     hiper: [
       // Similar structure for Hipercard rates...
-      { modalidade: 'Débito', taxa: { basic: 1.79, pro: 1.69, hyper: 1.59 } },
-      { modalidade: 'Crédito à vista', taxa: { basic: 3.29, pro: 3.19, hyper: 3.09 } },
-      { modalidade: 'Parcelado 2x', taxa: { basic: 3.92, pro: 3.82, hyper: 3.72 } },
-      { modalidade: 'Parcelado 3x', taxa: { basic: 4.47, pro: 4.37, hyper: 4.27 } },
-      { modalidade: 'Parcelado 4x', taxa: { basic: 5.01, pro: 4.91, hyper: 4.81 } },
-      { modalidade: 'Parcelado 5x', taxa: { basic: 5.56, pro: 5.46, hyper: 5.36 } },
-      { modalidade: 'Parcelado 6x', taxa: { basic: 6.09, pro: 5.99, hyper: 5.89 } },
-      { modalidade: 'Parcelado 7x', taxa: { basic: 6.67, pro: 6.57, hyper: 6.47 } },
-      { modalidade: 'Parcelado 8x', taxa: { basic: 7.20, pro: 7.10, hyper: 7.00 } },
-      { modalidade: 'Parcelado 9x', taxa: { basic: 7.72, pro: 7.62, hyper: 7.52 } },
-      { modalidade: 'Parcelado 10x', taxa: { basic: 8.24, pro: 8.14, hyper: 8.04 } },
-      { modalidade: 'Parcelado 11x', taxa: { basic: 8.76, pro: 8.66, hyper: 8.56 } },
-      { modalidade: 'Parcelado 12x', taxa: { basic: 9.28, pro: 9.18, hyper: 9.08 } },
-      { modalidade: 'Parcelado 13x', taxa: { basic: 9.78, pro: 9.68, hyper: 9.58 } },
-      { modalidade: 'Parcelado 14x', taxa: { basic: 10.29, pro: 10.19, hyper: 10.09 } },
-      { modalidade: 'Parcelado 15x', taxa: { basic: 10.79, pro: 10.69, hyper: 10.59 } },
-      { modalidade: 'Parcelado 16x', taxa: { basic: 11.28, pro: 11.18, hyper: 11.08 } },
-      { modalidade: 'Parcelado 17x', taxa: { basic: 11.78, pro: 11.68, hyper: 11.58 } },
-      { modalidade: 'Parcelado 18x', taxa: { basic: 12.27, pro: 12.17, hyper: 12.07 } }
+      { modalidade: 'Débito', taxa: { hero: 1.79, on: 1.69, economico: 1.59 } },
+      { modalidade: 'Crédito à vista', taxa: { hero: 3.29, on: 3.19, economico: 3.09 } },
+      { modalidade: 'Parcelado 2x', taxa: { hero: 3.92, on: 3.82, economico: 3.72 } },
+      { modalidade: 'Parcelado 3x', taxa: { hero: 4.47, on: 4.37, economico: 4.27 } },
+      { modalidade: 'Parcelado 4x', taxa: { hero: 5.01, on: 4.91, economico: 4.81 } },
+      { modalidade: 'Parcelado 5x', taxa: { hero: 5.56, on: 5.46, economico: 5.36 } },
+      { modalidade: 'Parcelado 6x', taxa: { hero: 6.09, on: 5.99, economico: 5.89 } },
+      { modalidade: 'Parcelado 7x', taxa: { hero: 6.67, on: 6.57, economico: 6.47 } },
+      { modalidade: 'Parcelado 8x', taxa: { hero: 7.20, on: 7.10, economico: 7.00 } },
+      { modalidade: 'Parcelado 9x', taxa: { hero: 7.72, on: 7.62, economico: 7.52 } },
+      { modalidade: 'Parcelado 10x', taxa: { hero: 8.24, on: 8.14, economico: 8.04 } },
+      { modalidade: 'Parcelado 11x', taxa: { hero: 8.76, on: 8.66, economico: 8.56 } },
+      { modalidade: 'Parcelado 12x', taxa: { hero: 9.28, on: 9.18, economico: 9.08 } },
+      { modalidade: 'Parcelado 13x', taxa: { hero: 9.78, on: 9.68, economico: 9.58 } },
+      { modalidade: 'Parcelado 14x', taxa: { hero: 10.29, on: 10.19, economico: 10.09 } },
+      { modalidade: 'Parcelado 15x', taxa: { hero: 10.79, on: 10.69, economico: 10.59 } },
+      { modalidade: 'Parcelado 16x', taxa: { hero: 11.28, on: 11.18, economico: 11.08 } },
+      { modalidade: 'Parcelado 17x', taxa: { hero: 11.78, on: 11.68, economico: 11.58 } },
+      { modalidade: 'Parcelado 18x', taxa: { hero: 12.27, on: 12.17, economico: 12.07 } }
     ],
   }
 
 
-  const renderPaymentRatesByPlan = (plan: CardId, rateType: 'basic' | 'pro' | 'hyper') => {
+  const renderPaymentRatesByPlan = (plan: CardId, rateType: 'hero' | 'on' | 'economico') => {
     return (
       seeMore && (
-        <Card className={`border-2 hover:border-blue-400 transition-all w-full`} key={plan}>
+        <Card className={`border-2 transition-all w-full`} key={plan}>
           <CardHeader className="text-center">
             {/* <CardTitle className="inline-block bg-blue-400 px-6 py-1 rounded-full text-xl">{plan.toUpperCase()}</CardTitle> */}
           </CardHeader>
@@ -134,12 +140,6 @@ export default function PricingPlans() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button
-              className="w-full bg-blue-400 hover:bg-blue-500 text-black"
-              onClick={() => handlePlanSelection(plan)}
-            >
-              Quero Plano {rateType.toUpperCase()}
-            </Button>
           </CardFooter>
         </Card>
       )
@@ -158,14 +158,14 @@ export default function PricingPlans() {
   }
 
   return (
-    <section className="py-16" id="planos">
+    <section className="py-16 " id="planos">
       <div className="text-center mb-10 space-y-4">
-        <h2 className="text-3xl font-bold">Conheça as melhores taxas do Brasil!</h2>
+        <h2 className="text-3xl font-bold">ANALISAR OS PLANOS!</h2>
         <p className="text-lg">Você deseja receber:</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gray-800 p-2 rounded-lg md:col-span-2 text-center mb-4">
+        <div className="bg-gray-800 p-2 rounded-lg md:col-span-2 text-center mb-4 hidden md:block">
           <h3 className="text-lg font-bold text-white">Taxas para 30 dias</h3>
         </div>
         <div className="bg-gray-800 p-2 rounded-lg md:col-span-1 text-center mb-4">
@@ -199,15 +199,15 @@ export default function PricingPlans() {
           <CardFooter className="flex flex-col gap-4">
             <Button
               className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-              onClick={() => handlePlanSelection("HERO")}
+              onClick={() => openWhatsapp("HERO")}
             >
-              Quero Plano HERO
+              Quero o plano HERO
             </Button>
-            {renderPaymentRatesByPlan('visa', 'basic')}
+            {renderPaymentRatesByPlan('visa', 'hero')}
           </CardFooter>
         </Card>
 
-        <Card className="border-2 hover:border-green-400 transition-all">
+        <Card className="border-2 hover:border-yellow-400 transition-all">
           <CardHeader className="text-center">
             <CardTitle className="inline-block bg-green-400 px-6 py-1 rounded-full text-xl">ON</CardTitle>
             <p className="text-sm mt-2">
@@ -233,15 +233,15 @@ export default function PricingPlans() {
           <CardFooter className="flex flex-col gap-4">
             <Button
               className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-              onClick={() => handlePlanSelection("ON")}
+              onClick={() => openWhatsapp("ON")}
             >
-              Quero Plano ON
+              Quero o plano ON
             </Button>
-            {renderPaymentRatesByPlan('visa', 'hyper')}
+            {renderPaymentRatesByPlan('visa', 'on')}
           </CardFooter>
         </Card>
 
-        <Card className="border-2 hover:border-purple-400 transition-all">
+        <Card className="border-2 hover:border-yellow-400 transition-all">
           <CardHeader className="text-center">
             <CardTitle className="inline-block bg-purple-400 px-6 py-1 rounded-full text-xl">ECONÔMICO</CardTitle>
             <p className="text-sm mt-2">
@@ -267,11 +267,11 @@ export default function PricingPlans() {
           <CardFooter className="flex flex-col gap-4">
             <Button
               className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-              onClick={() => handlePlanSelection("HERO")}
+              onClick={() => openWhatsapp("econômico")}
             >
-              Quero Plano ECONÔMICO
+              Quero o plano ECONÔMICO
             </Button>
-            {renderPaymentRatesByPlan('visa', 'basic')}
+            {renderPaymentRatesByPlan('visa', 'economico')}
           </CardFooter>
         </Card>
       </div>

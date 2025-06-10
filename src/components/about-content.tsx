@@ -4,12 +4,18 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 export default function AboutContentSection() {
+    function openWhatsapp() {
+        const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
+        const message = "Olá, gostaria de retirar uma dúvida sobre os planos da Hero Cash!"
+        const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
+        window.open(url, "_blank")
+    }
     return (
         <section className="w-full py-12 md:py-16 lg:py-20 bg-amber-300 rounded-lg">
             <div className="container px-4 md:px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     {/* Imagens lado esquerdo */}
-                    <div className="relative grid grid-cols-2 gap-3 max-w-xl mx-auto md:mx-0">
+                    <div className="relative hidden md:grid grid-cols-2 gap-3 max-w-xl mx-auto md:mx-0">
                         {/* Imagem grande central */}
                         <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden aspect-[4/3]  border-white">
                             <Image
@@ -56,7 +62,9 @@ export default function AboutContentSection() {
                             </p>
                         </div>
 
-                        <Button className="bg-green-500 hover:bg-green-600 text-white rounded-full w-fit px-6 py-2 h-auto">
+                        <Button className="bg-green-500 hover:bg-green-600 text-white rounded-full w-fit px-6 py-2 h-auto"
+                            onClick={() => openWhatsapp()}
+                        >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
                                 <path
                                     fillRule="evenodd"

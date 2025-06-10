@@ -8,13 +8,29 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Check } from "lucide-react"
 
-type ProductType = "PLUS" | "PRO" | "SMART"
-type PlanType = "SUPER" | "ON" | "ECONOMICO"
+type PlanType = "HERO" | "ON" | "ECONOMICO"
+
+interface Product {
+  id: string
+  name: string
+  description: string
+  image: string
+  features: string[]
+  originalPrice: string
+  prices: {
+    [key in PlanType]: {
+      price: string
+      cents: string
+      installments: string
+      discount: string
+    }
+  }
+}
 
 export default function ProductComparison() {
-  const [selectedPlan, setSelectedPlan] = useState<PlanType>("SUPER")
+  const [selectedPlan, setSelectedPlan] = useState<PlanType>("HERO")
 
-  const products = [
+  const products: Product[] = [
     {
       id: "PLUS",
       name: "HERO PLUS",
@@ -27,9 +43,26 @@ export default function ProductComparison() {
         "Chip 2G Grátis + WiFi",
       ],
       originalPrice: "R$ 499,00",
-      price: "R$ 397",
-      cents: ",80",
-      installments: "12x de R$ 33,15",
+      prices: {
+        HERO: {
+          price: "235",
+          cents: ",80",
+          installments: "10x de R$ 23,58",
+          discount: "53% OFF",
+        },
+        ON: {
+          price: "299",
+          cents: ",80",
+          installments: "10x de R$ 29,98",
+          discount: "39% OFF",
+        },
+        ECONOMICO: {
+          price: "235",
+          cents: ",80",
+          installments: "10x de R$ 23,58",
+          discount: "53% OFF",
+        },
+      },
     },
     {
       id: "PRO",
@@ -44,9 +77,26 @@ export default function ProductComparison() {
         "Chip 4G Grátis + WiFi",
       ],
       originalPrice: "R$ 699,00",
-      price: "R$ 497",
-      cents: ",60",
-      installments: "12x de R$ 41,48",
+      prices: {
+        HERO: {
+          price: "335",
+          cents: ",80",
+          installments: "10x de R$ 33,58",
+          discount: "51% OFF",
+        },
+        ON: {
+          price: "399",
+          cents: ",80",
+          installments: "10x de R$ 39,98",
+          discount: "42% OFF",
+        },
+        ECONOMICO: {
+          price: "335",
+          cents: ",80",
+          installments: "10x de R$ 33,58",
+          discount: "51% OFF",
+        },
+      },
     },
     {
       id: "SMART",
@@ -62,9 +112,26 @@ export default function ProductComparison() {
         "Chip 4G Grátis + WiFi",
       ],
       originalPrice: "R$ 799,00",
-      price: "R$ 597",
-      cents: ",60",
-      installments: "12x de R$ 49,81",
+      prices: {
+        HERO: {
+          price: "492",
+          cents: ",80",
+          installments: "10x de R$ 49,28",
+          discount: "38% OFF",
+        },
+        ON: {
+          price: "492",
+          cents: ",80",
+          installments: "10x de R$ 49,28",
+          discount: "38% OFF",
+        },
+        ECONOMICO: {
+          price: "492",
+          cents: ",80",
+          installments: "10x de R$ 49,28",
+          discount: "38% OFF",
+        },
+      },
     },
   ]
 
@@ -72,9 +139,8 @@ export default function ProductComparison() {
     setSelectedPlan(value)
   }
 
-  const handleOrderProduct = (productId: ProductType) => {
+  const handleOrderProduct = (productId: string) => {
     console.log(`Pedido do produto ${productId} com plano ${selectedPlan}`)
-    // Implementar lógica para redirecionar para a página de checkout
     window.open(`#comprar-${productId.toLowerCase()}-${selectedPlan.toLowerCase()}`, "_self")
   }
 
@@ -86,17 +152,17 @@ export default function ProductComparison() {
         <div className="mt-6">
           <p className="mb-2">Selecione seu plano:</p>
           <RadioGroup
-            defaultValue="SUPER"
+            defaultValue="HERO"
             className="flex flex-wrap justify-center gap-4"
             onValueChange={(value) => handlePlanChange(value as PlanType)}
           >
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="SUPER" id="plan-super" className="text-yellow-400" />
+              <RadioGroupItem value="HERO" id="plan-hero" className="text-yellow-400" />
               <Label
-                htmlFor="plan-super"
+                htmlFor="plan-hero"
                 className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
               >
-                SUPER
+                HERO
               </Label>
             </div>
             <div className="flex items-center space-x-2">
@@ -119,82 +185,68 @@ export default function ProductComparison() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <Card
-            key={product.id}
-            className={`bg-black border border-gray-800 ${product.id === "PRO" ? "border-yellow-400 border-2" : ""}`}
-          >
-            <CardHeader className="text-center">
-              <h3 className="text-2xl font-bold text-yellow-400">{product.name}</h3>
-              <p className="text-sm">{product.description}</p>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="relative w-full h-[250px]">
-                <Image
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-lg"
-                />
-              </div>
+        {products.map((product) => {
+          const { price, cents, installments, discount } = product.prices[selectedPlan]
+          return (
+            <Card
+              key={product.id}
+              className={`bg-black border border-gray-800 ${product.id === "PRO" ? "border-yellow-400 border-2" : ""}`}
+            >
+              <CardHeader className="text-center">
+                <h3 className="text-2xl font-bold text-yellow-400">{product.name}</h3>
+                <p className="text-sm">{product.description}</p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="relative w-full h-[250px]">
+                  <Image
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-lg"
+                  />
+                </div>
 
-              <div>
-                <p className="text-sm mb-1">Taxas a partir de:</p>
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div>
-                    <p className="text-xs uppercase">Débito</p>
-                    <p className="text-xl font-bold text-yellow-400">1,39%</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase">1x</p>
-                    <p className="text-xl font-bold text-yellow-400">3,20%</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase">12x</p>
-                    <p className="text-xl font-bold text-yellow-400">11,11%</p>
+                <div>
+                  <p className="text-sm mb-1">Planos a partir de:</p>
+                  <div className="text-center">
+                    <p className="text-sm line-through text-gray-400">de: {product.originalPrice} por</p>
+                    <div className="flex items-baseline justify-center">
+                      <span className="text-sm">R$</span>
+                      <span className="text-3xl font-bold text-yellow-400">{price}</span>
+                      <span className="text-sm text-yellow-400">{cents}</span>
+                      <span className="text-xs ml-1">à vista</span>
+                    </div>
+                    <p className="text-sm">
+                      <span className="text-yellow-400 font-bold">{installments.split(" ")[0]}</span>
+                      <span> de </span>
+                      <span className="text-yellow-400 font-bold">R$ {installments.split("R$ ")[1]}</span>
+                    </p>
+                    <p className="text-sm text-yellow-400">{discount}</p>
                   </div>
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                {product.features.map((feature, index) => (
-                  <div key={index} className="flex items-center text-sm">
-                    <Check className="h-4 w-4 mr-2 text-yellow-400" />
-                    <span className="text-white">{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="text-center space-y-1 pt-4">
-                <div className="flex items-center justify-center">
-                  <p className="text-sm line-through text-gray-400">de: {product.originalPrice} por</p>
+                <div className="space-y-2">
+                  {product.features.map((feature, index) => (
+                    <div key={index} className="flex items-center text-sm">
+                      <Check className="h-4 w-4 mr-2 text-yellow-400" />
+                      <span className="text-white">{feature}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex items-baseline justify-center">
-                  <span className="text-sm">R$</span>
-                  <span className="text-3xl font-bold text-yellow-400">{product.price.split("R$ ")[1]}</span>
-                  <span className="text-sm text-yellow-400">{product.cents}</span>
-                  <span className="text-xs ml-1">à vista</span>
-                </div>
-                <p className="text-sm">
-                  <span className="text-yellow-400 font-bold">{product.installments.split(" ")[0]}</span>
-                  <span> de </span>
-                  <span className="text-yellow-400 font-bold">R$ {product.installments.split("R$ ")[1]}</span>
-                </p>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button
-                className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-                onClick={() => handleOrderProduct(product.id as ProductType)}
-              >
-                Pedir {product.name.split(" ")[1]} Hero
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
+              </CardContent>
+              <CardFooter>
+                <Button
+                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
+                  onClick={() => handleOrderProduct(product.id)}
+                >
+                  Pedir {product.name.split(" ")[1]} Hero
+                </Button>
+              </CardFooter>
+            </Card>
+          )
+        })}
       </div>
     </section>
   )
 }
-

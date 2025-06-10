@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Clock, Building2, Receipt, Percent } from "lucide-react"
 
 export default function BenefitsSection() {
+  function openWhatsapp() {
+    const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
+    const message = "Olá, gostaria de saber mais sobre a maquininha Hero Cash!"
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
+    window.open(url, "_blank")
+  }
+
   return (
     <section className="py-16">
       <div className="text-center mb-10">
@@ -64,7 +71,7 @@ export default function BenefitsSection() {
                   <h3 className="text-xl font-semibold">
                     Sem taxas surpresa
                   </h3>
-                  <p className="text-base">Não usamos taxas promocionais nem exigimos valor mínimo de vendas.</p>
+                  <p className="text-base">Sem taxas promocionais e sem valor mínimo de vendas</p>
                 </div>
               </div>
             </div>
@@ -86,7 +93,7 @@ export default function BenefitsSection() {
 
           <Button
             className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-8"
-            onClick={() => window.open("#comprar", "_self")}
+            onClick={() => openWhatsapp()}
           >
             Adquira e aproveite!
           </Button>

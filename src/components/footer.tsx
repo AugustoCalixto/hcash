@@ -92,7 +92,7 @@ export default function Footer() {
                 className="object-contain"
               />
             </Link>
-            <Link href="https://play.google.com" target="_blank">
+            <Link href="https://play.google.com/store/apps/details?id=app.herocash.rndlrsrt" target="_blank">
               <Image
                 src="/images/download/google-play.png"
                 alt="Download no Google Play"
@@ -106,8 +106,8 @@ export default function Footer() {
 
         {/* Copyright e Informações Legais */}
         <div className="text-center text-sm text-gray-600">
-          <p>© Yelly Fintech CNPJ: 42.928.123/0001-37. Todos os direitos reservados.</p>
-          <p className="mt-2">WhatsApp: (27) 99607-5780 | E-mail: contato@yelly.com.br</p>
+          <p>© Herocash Brasil. Todos os direitos reservados.</p>
+          <p className="mt-2">Telefone: (88) 99640-3238 | E-mail: contato@herocash.com.br</p>
         </div>
       </div>
     </footer>

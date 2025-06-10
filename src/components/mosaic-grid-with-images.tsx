@@ -103,11 +103,11 @@ export default function MosaicGridWithImages() {
             size="medium"
             title="A máquina mais moderna do mercado!"
             subtitle="ALTA PERFORMANCE"
-            description="Conheça o Yelly Smart"
+            description="Conheça o Herocash Smart"
             ctaText="Saiba mais"
             ctaLink="#smart"
             imageSrc=" "
-            imageAlt="Maquininha Yelly Smart"
+            imageAlt="Maquininha Herocash Smart"
             highlightColor="text-yellow-400"
           />
 
@@ -127,11 +127,11 @@ export default function MosaicGridWithImages() {
           {/* Item Pequeno - Centro */}
           <MosaicItem
             size="small"
-            title="Siga a Yelly no Instagram e fique por dentro das novidades!"
+            title="Siga a Herocash Brasil no Instagram e fique por dentro das novidades!"
             subtitle="REDES SOCIAIS"
-            description="@SigaYelly"
+            description="@herocashbrasil"
             ctaText="Seguir"
-            ctaLink="https://instagram.com"
+            ctaLink="https://instagram.com/herocashbrasil"
             imageSrc=" "
             imageAlt="Logo Instagram"
             bgColor="bg-gradient-to-br from-purple-600 to-pink-500"

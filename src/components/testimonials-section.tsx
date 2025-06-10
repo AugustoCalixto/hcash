@@ -17,7 +17,7 @@ export default function TestimonialsSection() {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      name: "Cliente 01",
+      name: "Gleiciane",
       username: "@cliente01",
       avatar: "/images/testimonials/avatar-01.jpg",
       content:
@@ -25,7 +25,7 @@ export default function TestimonialsSection() {
     },
     {
       id: 2,
-      name: "Cliente 02",
+      name: "Filipe",
       username: "@cliente02",
       avatar: "/images/testimonials/avatar-02.jpg",
       content:
@@ -33,7 +33,7 @@ export default function TestimonialsSection() {
     },
     {
       id: 3,
-      name: "Cliente 03",
+      name: "Erilania",
       username: "@cliente03",
       avatar: "/images/testimonials/avatar-03.jpg",
       content:
@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
     },
     {
       id: 4,
-      name: "Cliente 04",
+      name: "Arte Verde",
       username: "@cliente04",
       avatar: "/images/testimonials/avatar-04.jpg",
       content:
@@ -68,7 +68,7 @@ export default function TestimonialsSection() {
         <div className="text-center mb-12 space-y-2">
           <h2 className="text-3xl font-bold">Opinião e recomendação dos clientes</h2>
           <p className="text-lg text-muted-foreground">
-            Veja por que os clientes da Hero Cash Brasil confiam em nossas soluções financeiras
+            Veja como os clientes da Hero Cash Brasil tornam nossas soluções financeiras ainda mais ágeis e eficientesClientes
           </p>
         </div>
 

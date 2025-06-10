@@ -84,7 +84,7 @@ export default function MosaicGrid() {
           <MosaicItem
             size="large"
             title="Taxas imbatíveis para CPF e CNPJ"
-            subtitle="TAXAS ESPECIAIS PARA TODOS."
+            subtitle="Planos especiais para todos."
             description="Poupe com as taxas mais baixas do mercado!"
             ctaText="Saiba mais"
             ctaLink="#planos"
@@ -115,7 +115,7 @@ export default function MosaicGrid() {
             ctaText="Saiba mais"
             ctaLink="#smart"
             imageSrc="/images/mosaic/table-pro.png"
-            imageAlt="Maquininha Yelly Smart"
+            imageAlt="Maquininha Hero Smart"
             highlightColor="text-yellow-400"
           />
 
