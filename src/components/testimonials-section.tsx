@@ -18,36 +18,76 @@ export default function TestimonialsSection() {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      name: "Gleiciane",
-      username: "@cliente01",
-      avatar: "/images/testimonials/avatar-01.jpg",
+      name: "Maris Lima",
+      username: "@marislimamakeup",
+      avatar: "/images/testimonials/marislimamakeup.jpg",
       content:
-        "No começo, fiquei com receio pelo preço, mas a máquina é incrível! Taxas super acessíveis e o atendimento é excelente. Em menos de dois meses, já vi o retorno. Vale muito a pena!",
+        "Atendimento simplesmente IMPECÁVEL! 😍 Humanizado de verdade, resolvem meus problemas em tempo recorde! Além disso, os planos são top demais e astaxas de pagamento no cartão? As MELHORES que já vi! 👏👏 Mas o que mais me ganhou foi o atendimento mesmo… que experiência maravilhosa! 🧡 Recomendo de olhos fechados!",
     },
     {
       id: 2,
-      name: "Filipe",
-      username: "@cliente02",
-      avatar: "/images/testimonials/avatar-02.jpg",
+      name: "KP Acessórios",
+      username: "@kp_acessorio",
+      avatar: "/images/testimonials/kp_acessorio.jpg",
       content:
-        "A melhor decisão que tomei! A maquininha é super eficiente, e as taxas continuam caindo. Em poucas semanas, já cobre o custo da máquina. Totalmente recomendada!",
+        "Olá, passando aqui para expressar minha vivência com a aquisição da minha maquineta. Através dela, pude expandir as vendas e sem contar com o apoio do suporte dessa equipe maravilhosa da HeroCash!",
     },
     {
       id: 3,
-      name: "Erilania",
-      username: "@cliente03",
-      avatar: "/images/testimonials/avatar-03.jpg",
+      name: "Alessandra Lima Verde",
+      username: "@alessandramatiaslimaverde",
+      avatar: "/images/testimonials/alessandramatiaslimaverde.jpg",
       content:
-        "Fui surpreendido! Achei que o valor inicial era alto, mas em pouco tempo, as taxas baixaram e os pagamentos estão super rápidos e sem erro. Compensa demais, e com certeza indico para outros empreendedores.",
+        "Vender maquineta é fácil... mas vender maquineta NO NÍVEL HERO nunca vi! Agilidade, atendimento de excelência e suporte! Aí sim! 👏👏👏👏",
     },
     {
       id: 4,
-      name: "Arte Verde",
-      username: "@cliente04",
-      avatar: "/images/testimonials/avatar-04.jpg",
+      name: "Felipe Moreira",
+      username: "@felipemoreira.ce",
+      avatar: "/images/testimonials/felipemoreira.jpg",
       content:
-        "Estou usando a Hero Cash há 6 meses e não me arrependo. O suporte é rápido, as taxas são justas e a máquina nunca me deixou na mão. Recomendo para todos os pequenos negócios!",
-    }
+        "⭐⭐⭐⭐⭐ Empresa referência em maquininhas! Atendimento humanizado, suporte nota 10 e soluções inovadoras como a conversão de limite do cartão em Pix. Confiança, agilidade e parceria de verdade para o seu negócio vender mais!",
+    },
+    {
+      id: 5,
+      name: "Arte Verde Artesanato",
+      username: "@arteverdeartesanato",
+      avatar: "/images/testimonials/arteverdeartesanato.jpg",
+      content:
+        "Tem muita gente vendendo maquineta no mercado... mas fazer o que vocês fazem, dando segurança para o cliente, esclarecendo tudo, tirando dúvidas e PRINCIPALMENTE fazendo o acompanhamento pós venda... NÃO CONHEÇO QUEM FAÇA COMO VOCÊS! Me sinto segura pq sei que o que precisar, posso contar com a equipe de vocês! Obrigada e parabéns! 👏👏👏👏👏👏",
+    },
+    {
+      id: 7,
+      name: "Helida Rodrigues",
+      username: "@helidardgs",
+      avatar: "/images/testimonials/helidardgs.jpg",
+      content:
+        "Adoro a loja 🫶🏼 melhores taxas e melhor atendimento, parabéns 👏🏼👏🏼",
+    },
+    {
+      id: 8,
+      name: "Maciel Ceição",
+      username: "@maciellceicao",
+      avatar: "/images/testimonials/maciellceicao.jpg",
+      content:
+        "A melhor da região sem dúvidas! Melhores preços, atendimento, resolução de problemas e melhores taxas.😍😍❤️.",
+    },
+    {
+      id: 9,
+      name: "Rebeca Santos",
+      username: "@rebecasants69_",
+      avatar: "/images/testimonials/rebecasants69_.jpg",
+      content:
+        "Já comprei e recomendo para todos, as melhores taxas é com a herocash, tem um ótimo atendimento, e o melhor suporte de todos👏👏👏!",
+    },
+    {
+      id: 10,
+      name: "Maria Jardenia Torres",
+      username: "@maria_jardenia_torres_",
+      avatar: "/images/testimonials/maria_jardenia_torres_.jpg",
+      content:
+        "Melhores taxas e atendimento vip . Sou cliente há mais de 3 anos e indico a todas as amigas empreendedoras que encontro. Parabéns a equipe @herocashbrasil!",
+    },
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
