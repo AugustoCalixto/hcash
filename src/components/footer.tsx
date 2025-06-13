@@ -55,12 +55,12 @@ export default function Footer() {
             <h3 className="font-semibold text-lg mb-4">Transparência</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#privacidade" className="text-gray-600 hover:text-yellow-500 text-sm">
+                <Link href="https://drive.google.com/file/d/1N4YrrVckEFmxsE-acsTb5pooArEPYy12/view?usp=sharing" className="text-gray-600 hover:text-yellow-500 text-sm" target="_blank">
                   Privacidade
                 </Link>
               </li>
               <li>
-                <Link href="#termos" className="text-gray-600 hover:text-yellow-500 text-sm">
+                <Link href="https://drive.google.com/file/d/1Hqx4PLbqFam9XHO5oBJIjpeZj5MmT3m-/view?usp=sharing" className="text-gray-600 hover:text-yellow-500 text-sm" target="_blank">
                   Termos de Uso
                 </Link>
               </li>
