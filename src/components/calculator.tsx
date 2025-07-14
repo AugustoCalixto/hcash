@@ -42,104 +42,104 @@ const installmentOptions: InstallmentOption[] = [
     {
         value: 4,
         label: 'Parcelado 2x',
-        taxa: { HERO: 5.05, ON: 4.49, ECONOMICO: 3.00 },
+        taxa: { HERO: 5.16, ON: 4.58, ECONOMICO: 3.00 },
         comparativo: { brother: 6.99, infinitepay: 5.39 }
     },
     {
         value: 5,
         label: 'Parcelado 3x',
-        taxa: { HERO: 5.74, ON: 5.22, ECONOMICO: 3.00 },
+        taxa: { HERO: 5.87, ON: 5.35, ECONOMICO: 3.00 },
         comparativo: { brother: 6.99, infinitepay: 6.12 }
     },
     {
         value: 6,
         label: 'Parcelado 4x',
-        taxa: { HERO: 6.42, ON: 5.94, ECONOMICO: 3.00 },
+        taxa: { HERO: 6.59, ON: 6.11, ECONOMICO: 3.00 },
         comparativo: { brother: 7.99, infinitepay: 6.85 }
     },
     {
         value: 7,
         label: 'Parcelado 5x',
-        taxa: { HERO: 7.10, ON: 6.66, ECONOMICO: 3.00 },
+        taxa: { HERO: 7.29, ON: 6.85, ECONOMICO: 3.00 },
         comparativo: { brother: 9.99, infinitepay: 7.57 }
     },
     {
         value: 8,
         label: 'Parcelado 6x',
-        taxa: { HERO: 7.77, ON: 7.36, ECONOMICO: 3.00 },
+        taxa: { HERO: 8.00, ON: 7.59, ECONOMICO: 3.00 },
         comparativo: { brother: 10.99, infinitepay: 8.28 }
     },
     {
         value: 9,
         label: 'Parcelado 7x',
-        taxa: { HERO: 8.98, ON: 8.11, ECONOMICO: 3.25 },
+        taxa: { HERO: 9.24, ON: 8.37, ECONOMICO: 3.25 },
         comparativo: { brother: 11.99, infinitepay: 8.99 }
     },
     {
         value: 10,
         label: 'Parcelado 8x',
-        taxa: { HERO: 9.64, ON: 8.81, ECONOMICO: 3.25 },
+        taxa: { HERO: 9.93, ON: 9.09, ECONOMICO: 3.25 },
         comparativo: { brother: 11.99, infinitepay: 9.69 }
     },
     {
         value: 11,
         label: 'Parcelado 9x',
-        taxa: { HERO: 10.29, ON: 9.49, ECONOMICO: 3.25 },
+        taxa: { HERO: 10.61, ON: 9.81, ECONOMICO: 3.25 },
         comparativo: { brother: 12.99, infinitepay: 10.38 }
     },
     {
         value: 12,
         label: 'Parcelado 10x',
-        taxa: { HERO: 10.93, ON: 10.18, ECONOMICO: 3.25 },
+        taxa: { HERO: 11.27, ON: 10.51, ECONOMICO: 3.25 },
         comparativo: { brother: 13.99, infinitepay: 11.06 }
     },
     {
         value: 13,
         label: 'Parcelado 11x',
-        taxa: { HERO: 11.57, ON: 10.85, ECONOMICO: 3.25 },
+        taxa: { HERO: 11.94, ON: 11.22, ECONOMICO: 3.25 },
         comparativo: { brother: 14.79, infinitepay: 11.74 }
     },
     {
         value: 14,
         label: 'Parcelado 12x',
-        taxa: { HERO: 12.21, ON: 11.51, ECONOMICO: 3.25 },
+        taxa: { HERO: 12.61, ON: 11.91, ECONOMICO: 3.25 },
         comparativo: { brother: 14.79, infinitepay: 12.40 }
     },
     {
         value: 15,
         label: 'Parcelado 13x',
-        taxa: { HERO: 12.83, ON: 12.18, ECONOMICO: 3.25 },
-        comparativo: { brother: 14.79, infinitepay: 12.99 }
+        taxa: { HERO: 13.26, ON: 12.60, ECONOMICO: 3.25 },
+        comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 16,
         label: 'Parcelado 14x',
-        taxa: { HERO: 13.45, ON: 12.83, ECONOMICO: 3.25 },
-        comparativo: { brother: 14.80, infinitepay: null }
+        taxa: { HERO: 13.90, ON: 13.28, ECONOMICO: 3.25 },
+        comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 17,
         label: 'Parcelado 15x',
-        taxa: { HERO: 14.07, ON: 13.48, ECONOMICO: 3.25 },
-        comparativo: { brother: 14.77, infinitepay: 14.88 }
+        taxa: { HERO: 14.55, ON: 13.95, ECONOMICO: 3.25 },
+        comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 18,
         label: 'Parcelado 16x',
-        taxa: { HERO: 14.68, ON: 14.12, ECONOMICO: 3.25 },
+        taxa: { HERO: 15.18, ON: 14.62, ECONOMICO: 3.25 },
         comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 19,
         label: 'Parcelado 17x',
-        taxa: { HERO: 15.29, ON: 14.76, ECONOMICO: 3.25 },
-        comparativo: { brother: 15.33, infinitepay: null }
+        taxa: { HERO: 15.81, ON: 15.28, ECONOMICO: 3.25 },
+        comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 20,
         label: 'Parcelado 18x',
-        taxa: { HERO: 15.88, ON: 15.39, ECONOMICO: 3.25 },
-        comparativo: { brother: 15.99, infinitepay: null }
+        taxa: { HERO: 16.43, ON: 15.93, ECONOMICO: 3.25 },
+        comparativo: { brother: null, infinitepay: null }
     },
 ];
 
