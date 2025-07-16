@@ -112,12 +112,12 @@ export default function PricingPlans() {
     HERO: {
       debito: "1,39%",
       creditoAVista: "3,15%",
-      credito12x: "12,21%",
+      credito12x: "12,61%",
     },
     ON: {
       debito: "1,39%",
       creditoAVista: "2,91%",
-      credito12x: "11,51%",
+      credito12x: "11,91%",
     },
     ECONÔMICO: {
       debito: "1,15%",
