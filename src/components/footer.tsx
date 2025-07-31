@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
 
           <div className="flex space-x-4">
-            <Link href="https://apps.apple.com" target="_blank">
+            <Link href="https://apps.apple.com/br/app/hero-cash-brasil/id6749166029" target="_blank">
               <Image
                 src="/images/download/app-store.png"
                 alt="Download na App Store"
