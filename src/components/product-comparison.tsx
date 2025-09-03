@@ -8,132 +8,12 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Check } from "lucide-react"
 
-type PlanType = "HERO" | "ON" | "ECONOMICO"
-
-interface Product {
-  id: string
-  name: string
-  description: string
-  image: string
-  features: string[]
-  originalPrice: string
-  prices: {
-    [key in PlanType]: {
-      price: string
-      cents: string
-      installments: string
-      discount: string
-    }
-  }
-}
+import { products, PlanType } from "@/data/products";
 
 export default function ProductComparison() {
   const [selectedPlan, setSelectedPlan] = useState<PlanType>("HERO")
 
-  const products: Product[] = [
-    {
-      id: "PLUS",
-      name: "HERO PLUS",
-      description: "Prática e ágil, uma maquininha que impõe respeito!",
-      image: "/images/maquininhas/mini.png?height=150&width=100",
-      features: [
-        "Comprovante por SMS",
-        "Receba por aproximação (NFC)",
-        "Aceite Pix com QR CODE",
-        "Chip 2G Grátis + WiFi",
-      ],
-      originalPrice: "R$ 499,00",
-      prices: {
-        HERO: {
-          price: "235",
-          cents: ",80",
-          installments: "10x de R$ 23,58",
-          discount: "53% OFF",
-        },
-        ON: {
-          price: "299",
-          cents: ",80",
-          installments: "10x de R$ 29,98",
-          discount: "39% OFF",
-        },
-        ECONOMICO: {
-          price: "235",
-          cents: ",80",
-          installments: "10x de R$ 23,58",
-          discount: "53% OFF",
-        },
-      },
-    },
-    {
-      id: "PRO",
-      name: "HERO PRO",
-      description: "A máquina de cartão mais completa, garantindo o máximo de economia e benefícios!",
-      image: "/images/maquininhas/pro.png?height=150&width=100",
-      features: [
-        "Comprovante impresso ou por SMS",
-        "Receba por aproximação (NFC)",
-        "Aceite Pix com QR CODE",
-        "Tela Touchscreen",
-        "Chip 4G Grátis + WiFi",
-      ],
-      originalPrice: "R$ 699,00",
-      prices: {
-        HERO: {
-          price: "335",
-          cents: ",80",
-          installments: "10x de R$ 33,58",
-          discount: "51% OFF",
-        },
-        ON: {
-          price: "399",
-          cents: ",80",
-          installments: "10x de R$ 39,98",
-          discount: "42% OFF",
-        },
-        ECONOMICO: {
-          price: "335",
-          cents: ",80",
-          installments: "10x de R$ 33,58",
-          discount: "51% OFF",
-        },
-      },
-    },
-    {
-      id: "SMART",
-      name: "HERO SMART",
-      description: "A maquininha mais moderna, completa e cheia de estilo do mercado!",
-      image: "/images/maquininhas/smart.png?height=150&width=100",
-      features: [
-        "Comprovante impresso ou por SMS",
-        "Receba por aproximação (NFC)",
-        "Aceite Pix com QR CODE",
-        "Sistema Android + Tela Touchscreen",
-        "Gestão de produtos/estoque (Confira disponibilidade)",
-        "Chip 4G Grátis + WiFi",
-      ],
-      originalPrice: "R$ 799,00",
-      prices: {
-        HERO: {
-          price: "492",
-          cents: ",80",
-          installments: "10x de R$ 49,28",
-          discount: "38% OFF",
-        },
-        ON: {
-          price: "492",
-          cents: ",80",
-          installments: "10x de R$ 49,28",
-          discount: "38% OFF",
-        },
-        ECONOMICO: {
-          price: "492",
-          cents: ",80",
-          installments: "10x de R$ 49,28",
-          discount: "38% OFF",
-        },
-      },
-    },
-  ]
+  
 
   const handlePlanChange = (value: PlanType) => {
     setSelectedPlan(value)
@@ -177,7 +57,16 @@ export default function ProductComparison() {
                 htmlFor="plan-economico"
                 className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
               >
-                ECONÔMICO
+                ECONOMICO
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="PREMIUM" id="plan-premium" className="text-yellow-400" />
+              <Label
+                htmlFor="plan-premium"
+                className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
+              >
+                PREMIUM
               </Label>
             </div>
           </RadioGroup>
