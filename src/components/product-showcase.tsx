@@ -1,13 +1,11 @@
 "use client"
-
 import { productsShowcase } from "@/data/showcase";
+import Image from "next/image";
+import { useState } from "react";
+import { Button } from "./ui/button";
 
 export default function ProductShowcase() {
   const [activeProduct, setActiveProduct] = useState<string>("pro")
-
-  const products = productsShowcase;
-
-  
 
   const handleProductChange = (productId: string) => {
     setActiveProduct(productId)

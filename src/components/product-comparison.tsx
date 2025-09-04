@@ -13,7 +13,7 @@ import { products, PlanType } from "@/data/products";
 export default function ProductComparison() {
   const [selectedPlan, setSelectedPlan] = useState<PlanType>("HERO")
 
-  
+
 
   const handlePlanChange = (value: PlanType) => {
     setSelectedPlan(value)
@@ -79,7 +79,7 @@ export default function ProductComparison() {
           return (
             <Card
               key={product.id}
-              className={`bg-black border border-gray-800`}
+              className={`bg-black border border-gray-800 hover:border-yellow-400 transition-colors flex flex-col justify-between`}
             >
               <CardHeader className="text-center">
                 <h3 className="text-2xl font-bold text-yellow-400">{product.name}</h3>

@@ -87,7 +87,7 @@ export default function SalesCalculator() {
                 </div> */}
 
                 <div className="flex-column md:flex justify-center gap-4">
-                    {(['HERO', 'ECONOMICO', 'ON'] as const).map((plan) => (
+                    {(['HERO', 'ECONOMICO', 'ON', 'PREMIUM'] as const).map((plan) => (
                         <button
                             key={plan}
                             onClick={() => setSelectedPlan(plan)}
