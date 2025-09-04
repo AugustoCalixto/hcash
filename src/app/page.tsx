@@ -8,7 +8,6 @@ import MosaicGrid from "@/components/mosaic-grid";
 import PaymentMethods from "@/components/payment-methods";
 import PricingPlans from "@/components/pricing-plans";
 import ProductComparison from "@/components/product-comparison";
-import ProductShowcase from "@/components/product-showcase-fixed";
 import StatsSection from "@/components/stats-section";
 import TestimonialsSection from "@/components/testimonials-section";
 
