@@ -11,6 +11,8 @@ export default function SalesCalculator() {
     const [selectedTiming, setSelectedTiming] = useState<PaymentTiming>('NO DIA SEGUINTE')
     const [selectedPlan, setSelectedPlan] = useState<PlanId>('HERO')
     const [saleValue, setSaleValue] = useState<string>('1.000,00')
+    const [calculationType, setCalculationType] = useState<'venda' | 'receber'>('venda')
+
     const [selectedInstallment, setSelectedInstallment] = useState<InstallmentOption>(
         installmentOptions[installmentOptions.length - 1]
     )
@@ -45,20 +47,31 @@ export default function SalesCalculator() {
     }
 
     const calculateResults = () => {
-        const value = parseCurrency(saleValue)
+        const inputValue = parseCurrency(saleValue)
         const taxa = selectedInstallment.taxa[selectedPlan]
+        const marketTaxa = selectedInstallment.comparativo.brother ?? selectedInstallment.comparativo.infinitepay ?? (taxa + 0.93)
 
-        // Obter a taxa de mercado com base no comparativo
-        const marketTaxa = selectedInstallment.comparativo.brother ?? selectedInstallment.comparativo.infinitepay ?? (taxa + 0.93) //
+        let grossAmount: number;
+        let netAmount: number;
+        let marketNetAmount: number;
 
-        const cashReceives = value * (1 - taxa / 100)
-        const marketReceives = value * (1 - marketTaxa / 100)
-        const savings = cashReceives - marketReceives
-        const potentialLoss = savings * 10
+        if (calculationType === 'venda') {
+            grossAmount = inputValue;
+            netAmount = grossAmount * (1 - taxa / 100);
+            marketNetAmount = grossAmount * (1 - marketTaxa / 100);
+        } else { // 'receber'
+            netAmount = inputValue;
+            grossAmount = netAmount / (1 - taxa / 100);
+            marketNetAmount = grossAmount * (1 - marketTaxa / 100);
+        }
+
+        const savings = netAmount - marketNetAmount;
+        const potentialLoss = savings * 10;
 
         return {
-            HeroCashReceives: cashReceives,
-            marketReceives,
+            grossAmount,
+            netAmount,
+            marketNetAmount,
             savings,
             potentialLoss,
             taxa,
@@ -87,7 +100,7 @@ export default function SalesCalculator() {
                 </div> */}
 
                 <div className="flex-column md:flex justify-center gap-4">
-                    {(['HERO', 'ECONOMICO', 'ON', 'PREMIUM'] as const).map((plan) => (
+                    {(['HERO', 'ECONOMICO', 'PREMIUM', 'ON'] as const).map((plan) => (
                         <button
                             key={plan}
                             onClick={() => setSelectedPlan(plan)}
@@ -106,9 +119,26 @@ export default function SalesCalculator() {
                 </div>
             </div>
 
+            <div className="flex justify-center gap-4 mb-6">
+                <button
+                    onClick={() => setCalculationType('venda')}
+                    className={`px-8 py-2 rounded-full text-sm font-bold transition-colors ${calculationType === 'venda' ? 'bg-yellow-400 text-black shadow-lg' : 'bg-gray-200 text-gray-700'
+                        }`}
+                >
+                    Calcular Venda
+                </button>
+                <button
+                    onClick={() => setCalculationType('receber')}
+                    className={`px-8 py-2 rounded-full text-sm font-bold transition-colors ${calculationType === 'receber' ? 'bg-yellow-400 text-black shadow-lg' : 'bg-gray-200 text-gray-700'
+                        }`}
+                >
+                    Quanto quer Receber
+                </button>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div>
-                    <label className="block text-black mb-2">Valor da Venda:</label>
+                    <label className="block text-black mb-2">{calculationType === 'venda' ? 'Valor da Venda:' : 'Quanto quer receber?'}</label>
                     <input
                         type="text"
                         value={saleValue}
@@ -143,9 +173,11 @@ export default function SalesCalculator() {
             <div className="bg-white rounded-lg p-6 mb-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="text-center">
-                        <p className="text-gray-600 mb-2">Com a HeroCash você recebe:</p>
+                        <p className="text-gray-600 mb-2">
+                            {calculationType === 'venda' ? 'Com a HeroCash você recebe:' : 'Você precisa vender:'}
+                        </p>
                         <div className="text-4xl font-bold mb-4">
-                            {formatCurrency(results.HeroCashReceives)}
+                            {formatCurrency(calculationType === 'venda' ? results.netAmount : results.grossAmount)}
                         </div>
                         <p className="text-gray-600 mb-2">Aqui você economiza</p>
                         <div className="bg-yellow-400 rounded-lg py-2 px-4 inline-block">
@@ -155,7 +187,7 @@ export default function SalesCalculator() {
                     <div className="text-center">
                         <p className="text-gray-600 mb-2">Com a taxa média do mercado você recebe:</p>
                         <div className="text-4xl font-bold mb-4">
-                            {formatCurrency(results.marketReceives)}
+                            {formatCurrency(results.marketNetAmount)}
                         </div>
                         <p className="text-gray-600 mb-2">10 vendas como essa você perderia:</p>
                         <div className="bg-red-600 text-white rounded-lg py-2 px-4 inline-block">
