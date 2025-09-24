@@ -81,8 +81,33 @@ export default function SalesCalculator() {
 
     return (
         <div className="bg-white p-8 rounded-2xl HERO-w-4xl mx-auto" id='simulador'>
+            <div className="flex justify-center mb-6">
+                <div className="relative flex w-full max-w-md p-1 bg-gray-200 rounded-full">
+                    <span
+                        className={`absolute inset-0 m-1 rounded-full bg-yellow-400 shadow-lg transition-transform duration-300 ease-in-out transform ${
+                            calculationType === 'receber' ? 'translate-x-full' : ''
+                        }`}
+                        style={{ width: 'calc(50% - 0.25rem)' }}
+                    />
+                    <button
+                        onClick={() => setCalculationType('venda')}
+                        className={`relative z-10 w-1/2 py-3 text-sm font-bold text-center transition-colors ${
+                            calculationType === 'venda' ? 'text-black' : 'text-gray-700'
+                        }`}
+                    >
+                        Quanto você quer cobrar?
+                    </button>
+                    <button
+                        onClick={() => setCalculationType('receber')}
+                        className={`relative z-10 w-1/2 py-3 text-sm font-bold text-center transition-colors ${
+                            calculationType === 'receber' ? 'text-black' : 'text-gray-700'
+                        }`}
+                    >
+                        Quanto você quer receber?
+                    </button>
+                </div>
+            </div>
             <div className="mb-8">
-                <p className="text-black text-center mb-4">Selecione seu plano ideal</p>
                 {/* <div className="flex justify-center gap-4 mb-4">
                     {(['NO DIA SEGUINTE', 'NA HORA'] as const).map((timing) => (
                         <button
@@ -119,23 +144,6 @@ export default function SalesCalculator() {
                 </div>
             </div>
 
-            <div className="flex justify-center gap-4 mb-6">
-                <button
-                    onClick={() => setCalculationType('venda')}
-                    className={`px-8 py-2 rounded-full text-sm font-bold transition-colors ${calculationType === 'venda' ? 'bg-yellow-400 text-black shadow-lg' : 'bg-gray-200 text-gray-700'
-                        }`}
-                >
-                    Calcular Venda
-                </button>
-                <button
-                    onClick={() => setCalculationType('receber')}
-                    className={`px-8 py-2 rounded-full text-sm font-bold transition-colors ${calculationType === 'receber' ? 'bg-yellow-400 text-black shadow-lg' : 'bg-gray-200 text-gray-700'
-                        }`}
-                >
-                    Quanto quer Receber
-                </button>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div>
                     <label className="block text-black mb-2">{calculationType === 'venda' ? 'Valor da Venda:' : 'Quanto quer receber?'}</label>
@@ -145,6 +153,11 @@ export default function SalesCalculator() {
                         onChange={handleSaleValueChange}
                         className="w-full px-4 py-2 rounded-lg border-2 bg-white text-black"
                     />
+                    <p className="text-sm text-gray-500 mt-1">
+                        {calculationType === 'venda'
+                            ? 'Você digita o valor que vai aparecer na maquininha.'
+                            : 'Você digita o valor que quer que caia na sua conta.'}
+                    </p>
                 </div>
                 <div>
                     <label className="block text-black mb-2">Tipo de Venda</label>
