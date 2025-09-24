@@ -52,21 +52,21 @@ export default function ProductComparison() {
               </Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="ECONOMICO" id="plan-economico" className="text-yellow-400" />
-              <Label
-                htmlFor="plan-economico"
-                className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
-              >
-                ECONOMICO
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
               <RadioGroupItem value="PREMIUM" id="plan-premium" className="text-yellow-400" />
               <Label
                 htmlFor="plan-premium"
                 className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
               >
                 PREMIUM
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="ECONOMICO" id="plan-economico" className="text-yellow-400" />
+              <Label
+                htmlFor="plan-economico"
+                className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
+              >
+                ECONOMICO
               </Label>
             </div>
           </RadioGroup>

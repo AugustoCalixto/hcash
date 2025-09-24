@@ -77,6 +77,9 @@ export default function Footer() {
             <Link href="https://facebook.com/herocashbrasil" target="_blank" aria-label="Facebook">
               <Facebook className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
             </Link>
+            <Link href="https://www.tiktok.com/@herocashbrasil?_t=ZM-8zznkJvAUJP&_r=1" target="_blank" aria-label="TikTok">
+              <Image src="/images/tiktok.svg" alt="TikTok" width={24} height={24} className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
+            </Link>
             {/* <Link href="https://youtube.com/channel/UCSnCTXQMJGTQ3SobY0kcsxA" target="_blank" aria-label="YouTube">
               <Youtube className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
             </Link> */}

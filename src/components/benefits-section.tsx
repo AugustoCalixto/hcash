@@ -40,7 +40,7 @@ export default function BenefitsSection() {
                 </div>
                 <div className="space-y-1">
                   <h3 className="text-xl font-semibold">
-                    Receba em 1 dia
+                    Recebimento na hora ou em 1 dia
                   </h3>
                   <p className="text-sm text-muted-foreground">(Todos os dias)</p>
                   <p className="text-base">

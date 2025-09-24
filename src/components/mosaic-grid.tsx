@@ -98,7 +98,7 @@ export default function MosaicGrid() {
             size="medium"
             title="Receba seu dinheiro"
             subtitle="RECEBIMENTO ÁGIL"
-            description="em 1 dia (Todos os dias)"
+            description="Recebimento na hora ou em 1 dia (Todos os dias)"
             ctaText="Saiba mais"
             ctaLink="#planos"
             imageSrc="/images/mosaic/table-pro.png"

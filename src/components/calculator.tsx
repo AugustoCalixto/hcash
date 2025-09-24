@@ -84,24 +84,21 @@ export default function SalesCalculator() {
             <div className="flex justify-center mb-6">
                 <div className="relative flex w-full max-w-md p-1 bg-gray-200 rounded-full">
                     <span
-                        className={`absolute inset-0 m-1 rounded-full bg-yellow-400 shadow-lg transition-transform duration-300 ease-in-out transform ${
-                            calculationType === 'receber' ? 'translate-x-full' : ''
-                        }`}
+                        className={`absolute inset-0 m-1 rounded-full bg-yellow-400 shadow-lg transition-transform duration-300 ease-in-out transform ${calculationType === 'receber' ? 'translate-x-full' : ''
+                            }`}
                         style={{ width: 'calc(50% - 0.25rem)' }}
                     />
                     <button
                         onClick={() => setCalculationType('venda')}
-                        className={`relative z-10 w-1/2 py-3 text-sm font-bold text-center transition-colors ${
-                            calculationType === 'venda' ? 'text-black' : 'text-gray-700'
-                        }`}
+                        className={`relative z-10 w-1/2 py-3 text-sm font-bold text-center transition-colors ${calculationType === 'venda' ? 'text-black' : 'text-gray-700'
+                            }`}
                     >
                         Quanto você quer cobrar?
                     </button>
                     <button
                         onClick={() => setCalculationType('receber')}
-                        className={`relative z-10 w-1/2 py-3 text-sm font-bold text-center transition-colors ${
-                            calculationType === 'receber' ? 'text-black' : 'text-gray-700'
-                        }`}
+                        className={`relative z-10 w-1/2 py-3 text-sm font-bold text-center transition-colors ${calculationType === 'receber' ? 'text-black' : 'text-gray-700'
+                            }`}
                     >
                         Quanto você quer receber?
                     </button>
@@ -125,7 +122,7 @@ export default function SalesCalculator() {
                 </div> */}
 
                 <div className="flex-column md:flex justify-center gap-4">
-                    {(['HERO', 'ECONOMICO', 'PREMIUM', 'ON'] as const).map((plan) => (
+                    {(['HERO', 'ON', 'PREMIUM', 'ECONOMICO'] as const).map((plan) => (
                         <button
                             key={plan}
                             onClick={() => setSelectedPlan(plan)}
