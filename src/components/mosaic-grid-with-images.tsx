@@ -36,9 +36,12 @@ const MosaicItem = ({
   highlightColor = "text-yellow-400",
   icon,
 }: MosaicItemProps) => {
-  const CtaComponent = onClick ? "button" : Link
-
-  const ctaProps = onClick ? { onClick } : { href: ctaLink || "#" }
+  const CtaContent = () => (
+    <>
+      <span className={`${highlightColor}`}>{ctaText}</span>
+      {icon || <ArrowRight className={`ml-1 h-4 w-4 ${highlightColor} transition-transform group-hover:translate-x-1`} />}
+    </>
+  )
 
   return (
     <div
@@ -65,10 +68,15 @@ const MosaicItem = ({
           <p className="text-sm md:text-base mb-4">{description}</p>
         </div>
 
-        <CtaComponent {...ctaProps} className="inline-flex items-center text-sm font-medium group">
-          <span className={`${highlightColor}`}>{ctaText}</span>
-          {icon || <ArrowRight className={`ml-1 h-4 w-4 ${highlightColor} transition-transform group-hover:translate-x-1`} />}
-        </CtaComponent>
+        {onClick ? (
+          <button onClick={onClick} className="inline-flex items-center text-sm font-medium group">
+            <CtaContent />
+          </button>
+        ) : (
+          <Link href={ctaLink || "#"} className="inline-flex items-center text-sm font-medium group">
+            <CtaContent />
+          </Link>
+        )}
       </div>
     </div>
   )
