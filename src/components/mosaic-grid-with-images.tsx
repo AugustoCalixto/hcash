@@ -1,3 +1,5 @@
+"use client"
+
 import type React from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -8,7 +10,8 @@ interface MosaicItemProps {
   subtitle: string
   description: string
   ctaText: string
-  ctaLink: string
+  ctaLink?: string
+  onClick?: () => void
   imageSrc: string
   imageAlt: string
   size?: "large" | "medium" | "small"
@@ -24,6 +27,7 @@ const MosaicItem = ({
   description,
   ctaText,
   ctaLink,
+  onClick,
   imageSrc,
   imageAlt,
   size = "medium",
@@ -32,12 +36,17 @@ const MosaicItem = ({
   highlightColor = "text-yellow-400",
   icon,
 }: MosaicItemProps) => {
+  const CtaComponent = onClick ? "button" : Link
+
+  const ctaProps = onClick ? { onClick } : { href: ctaLink || "#" }
+
   return (
     <div
       className={`relative overflow-hidden rounded-lg ${bgColor} ${textColor} p-6 flex flex-col justify-end
-        ${size === "large"
-          ? "col-span-1 md:col-span-2 aspect-[2/1]"
-          : size === "medium"
+        ${
+          size === "large"
+            ? "col-span-1 md:col-span-2 aspect-[2/1]"
+            : size === "medium"
             ? "col-span-1 aspect-square md:aspect-[4/3]"
             : "col-span-1 aspect-square"
         }`}
@@ -56,18 +65,25 @@ const MosaicItem = ({
           <p className="text-sm md:text-base mb-4">{description}</p>
         </div>
 
-        <Link href={ctaLink} className="inline-flex items-center text-sm font-medium group">
+        <CtaComponent {...ctaProps} className="inline-flex items-center text-sm font-medium group">
           <span className={`${highlightColor}`}>{ctaText}</span>
-          {icon || (
-            <ArrowRight className={`ml-1 h-4 w-4 ${highlightColor} transition-transform group-hover:translate-x-1`} />
-          )}
-        </Link>
+          {icon || <ArrowRight className={`ml-1 h-4 w-4 ${highlightColor} transition-transform group-hover:translate-x-1`} />}
+        </CtaComponent>
       </div>
     </div>
   )
 }
 
 export default function MosaicGridWithImages() {
+  function openWhatsapp() {
+    const whatsappNumber = "5585987005263"
+    const message = "Olá, gostaria de falar com um atendente."
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
+    if (typeof window !== "undefined") {
+      window.open(url, "_blank")
+    }
+  }
+
   return (
     <section className="py-16">
       <div className="container px-4 mx-auto">
@@ -118,7 +134,7 @@ export default function MosaicGridWithImages() {
             subtitle="SELO RA1000"
             description="Falar via WhatsApp"
             ctaText="Fale conosco"
-            ctaLink="#whatsapp"
+            onClick={openWhatsapp}
             imageSrc=" "
             imageAlt="Atendente Hero Cash"
             highlightColor="text-yellow-400"

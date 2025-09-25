@@ -19,9 +19,13 @@ export default function ProductComparison() {
     setSelectedPlan(value)
   }
 
-  const handleOrderProduct = (productId: string) => {
-    console.log(`Pedido do produto ${productId} com plano ${selectedPlan}`)
-    window.open(`#comprar-${productId.toLowerCase()}-${selectedPlan.toLowerCase()}`, "_self")
+  const handleOrderProduct = (productName: string) => {
+    const whatsappNumber = "5585987005263"
+    const message = `Olá, gostaria de pedir a maquininha ${productName} com o plano ${selectedPlan}.`
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
+    if (typeof window !== 'undefined') {
+      window.open(url, "_blank")
+    }
   }
 
   return (
@@ -127,7 +131,7 @@ export default function ProductComparison() {
               <CardFooter>
                 <Button
                   className="w-full bg-yellow-400 hover:bg-yellow-500 text-black"
-                  onClick={() => handleOrderProduct(product.id)}
+                  onClick={() => handleOrderProduct(product.name)}
                 >
                   Pedir {product.name.split(" ")[1]} {selectedPlan === "HERO" ? "HERO" : selectedPlan}
                 </Button>

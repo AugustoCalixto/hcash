@@ -11,8 +11,13 @@ export default function ProductShowcase() {
     setActiveProduct(productId)
   }
 
-  const handleOrderProduct = (productLink: string) => {
-    window.open(productLink, "_self")
+  function openWhatsapp(productName: string) {
+    const whatsappNumber = "5585987005263"
+    const message = `Olá, gostaria de saber mais sobre a maquininha ${productName}!`
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
+    if (typeof window !== 'undefined') {
+      window.open(url, "_blank")
+    }
   }
 
   return (
@@ -70,7 +75,7 @@ export default function ProductShowcase() {
 
                   <Button
                     className={`bg-${product.color} hover:bg-opacity-90 text-black font-medium`}
-                    onClick={() => handleOrderProduct(product.buttonLink)}
+                    onClick={() => openWhatsapp(product.name)}
                   >
                     {product.buttonText}
                   </Button>

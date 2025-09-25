@@ -1,3 +1,5 @@
+"use client"
+
 import type React from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -8,7 +10,8 @@ interface MosaicItemProps {
   subtitle: string
   description: string
   ctaText: string
-  ctaLink: string
+  ctaLink?: string
+  onClick?: () => void
   imageSrc: string
   imageAlt: string
   size?: "large" | "medium" | "small"
@@ -24,6 +27,7 @@ const MosaicItem = ({
   description,
   ctaText,
   ctaLink,
+  onClick,
   imageSrc,
   imageAlt,
   size = "medium",
@@ -32,12 +36,17 @@ const MosaicItem = ({
   highlightColor = "text-yellow-400",
   icon,
 }: MosaicItemProps) => {
+  const CtaComponent = onClick ? "button" : Link
+
+  const ctaProps = onClick ? { onClick } : { href: ctaLink || "#" }
+
   return (
     <div
       className={`relative overflow-hidden rounded-lg ${bgColor} ${textColor} 
-        ${size === "large"
-          ? "p-6 md:p-8 xl:p-10 col-span-1 md:col-span-2 xl:col-span-4 aspect-[2/1] md:aspect-[2.5/1] xl:aspect-[3/1]"
-          : size === "medium"
+        ${
+          size === "large"
+            ? "p-6 md:p-8 xl:p-10 col-span-1 md:col-span-2 xl:col-span-4 aspect-[2/1] md:aspect-[2.5/1] xl:aspect-[3/1]"
+            : size === "medium"
             ? "p-6 md:p-8 col-span-1 md:col-span-1 xl:col-span-2 aspect-square md:aspect-[4/3]"
             : "p-5 md:p-6 col-span-1 aspect-square"
         }`}
@@ -62,20 +71,28 @@ const MosaicItem = ({
           <p className="text-sm md:text-base xl:text-lg mb-4 md:mb-6 max-w-xl">{description}</p>
         </div>
 
-        <Link href={ctaLink} className="inline-flex items-center text-sm md:text-base font-medium group">
+        <CtaComponent {...ctaProps} className="inline-flex items-center text-sm md:text-base font-medium group">
           <span className={`${highlightColor}`}>{ctaText}</span>
           {icon || (
             <ArrowRight
               className={`ml-1 h-4 w-4 md:h-5 md:w-5 ${highlightColor} transition-transform group-hover:translate-x-1`}
             />
           )}
-        </Link>
+        </CtaComponent>
       </div>
     </div>
   )
 }
 
 export default function MosaicGrid() {
+  function openWhatsapp(message: string) {
+    const whatsappNumber = "5585987005263"
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
+    if (typeof window !== "undefined") {
+      window.open(url, "_blank")
+    }
+  }
+
   return (
     <section className="py-12 md:py-16 xl:py-24">
       <div className="container px-4 mx-auto">
@@ -87,7 +104,7 @@ export default function MosaicGrid() {
             subtitle="Planos especiais para todos."
             description="Poupe com as taxas mais baixas do mercado!"
             ctaText="Saiba mais"
-            ctaLink="#planos"
+            onClick={() => openWhatsapp("Olá, gostaria de saber mais sobre as taxas.")}
             imageSrc="/images/mosaic/all.png"
             imageAlt="Maquininhas Hero Cash"
             highlightColor="text-yellow-400"
@@ -100,7 +117,7 @@ export default function MosaicGrid() {
             subtitle="RECEBIMENTO ÁGIL"
             description="Recebimento na hora ou em 1 dia (Todos os dias)"
             ctaText="Saiba mais"
-            ctaLink="#planos"
+            onClick={() => openWhatsapp("Olá, gostaria de saber mais sobre o recebimento.")}
             imageSrc="/images/mosaic/table-pro.png"
             imageAlt="Pessoa recebendo pagamento"
             highlightColor="text-yellow-400"
@@ -113,7 +130,7 @@ export default function MosaicGrid() {
             subtitle="DESEMPENHO SUPERIOR"
             description=""
             ctaText="Saiba mais"
-            ctaLink="#smart"
+            onClick={() => openWhatsapp("Olá, gostaria de saber mais sobre a maquininha Smart.")}
             imageSrc="/images/mosaic/table-pro.png"
             imageAlt="Maquininha Hero Smart"
             highlightColor="text-yellow-400"
@@ -126,7 +143,7 @@ export default function MosaicGrid() {
             subtitle="SELO RA1000"
             description="Falar via WhatsApp"
             ctaText="Fale conosco"
-            ctaLink="#testimonials"
+            onClick={() => openWhatsapp("Olá, gostaria de falar com um atendente.")}
             imageSrc="/images/mosaic/model-oficce.png"
             imageAlt="Atendente Hero Cash"
             highlightColor="text-yellow-400"

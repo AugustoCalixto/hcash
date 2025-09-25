@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button"
 
 export default function WhatsAppButton() {
   const handleWhatsAppClick = () => {
-    // Substitua pelo número de WhatsApp real
-    window.open("https://wa.me/5500000000000?text=Olá! Tenho interesse nas maquininhas Hero Cash.", "_blank")
+    const whatsappNumber = "5585987005263";
+    const message = "Olá! Tenho interesse nos produtos da Hero Cash.";
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
   }
 
   return (

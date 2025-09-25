@@ -40,8 +40,12 @@ export default function FeaturesSection() {
   }
 
   const handleAcquire = () => {
-    console.log("Botão de aquisição clicado")
-
+    const whatsappNumber = "5585987005263"
+    const message = "Olá, gostaria de adquirir uma maquininha Hero Cash!"
+    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
+    if (typeof window !== 'undefined') {
+      window.open(url, "_blank")
+    }
   }
 
   return (
