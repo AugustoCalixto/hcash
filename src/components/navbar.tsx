@@ -75,12 +75,11 @@ export function Navbar() {
                                 {item.name}
                             </Link>
                         ))}
-                        <Button
-                            variant="outline"
-                            className="w-full mt-4 text-black border-white hover:bg-yellow-400 hover:text-gray-900"
-                        >
-                            Login
-                        </Button>
+                        <Link href="https://cliente.herocashbrasil.com.br/">
+                            <Button variant="outline" className="text-black border-white bg-yellow-400 hover:bg-yellow-600 hover:text-gray-900">
+                                Area do cliente
+                            </Button>
+                        </Link>
                     </div>
                 )}
             </div>
