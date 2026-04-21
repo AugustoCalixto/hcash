@@ -5,10 +5,7 @@ import Image from 'next/image'
 
 import { installmentOptions, InstallmentOption, PlanId } from '@/data/plans';
 
-type PaymentTiming = 'NO DIA SEGUINTE' | 'NA HORA'
-
 export default function SalesCalculator() {
-    const [selectedTiming, setSelectedTiming] = useState<PaymentTiming>('NO DIA SEGUINTE')
     const [selectedPlan, setSelectedPlan] = useState<PlanId>('HERO')
     const [saleValue, setSaleValue] = useState<string>('1.000,00')
     const [calculationType, setCalculationType] = useState<'venda' | 'receber'>('venda')
@@ -121,12 +118,12 @@ export default function SalesCalculator() {
                     ))}
                 </div> */}
 
-                <div className="flex-column md:flex justify-center gap-4">
-                    {(['HERO', 'ON', 'PREMIUM', 'ECONOMICO'] as const).map((plan) => (
+                <div className="flex flex-col md:flex-row md:flex-wrap justify-center gap-4">
+                    {(['HERO', 'ON', 'PREMIUM', 'BASIC', 'ECONOMICO'] as const).map((plan) => (
                         <button
                             key={plan}
                             onClick={() => setSelectedPlan(plan)}
-                            className={`px-12 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2 mb-2 w-full justify-center md:w-1/3
+                            className={`px-12 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2 mb-2 w-full justify-center md:w-auto
                 ${plan === selectedPlan
                                     ? 'bg-yellow-400 text-black shadow-lg'
                                     : 'bg-yellow-300 text-black hover:bg-yellow-700 opacity-[0.8]'

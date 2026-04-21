@@ -65,6 +65,15 @@ export default function ProductComparison() {
               </Label>
             </div>
             <div className="flex items-center space-x-2">
+              <RadioGroupItem value="BASIC" id="plan-basic" className="text-yellow-400" />
+              <Label
+                htmlFor="plan-basic"
+                className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
+              >
+                BASIC
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
               <RadioGroupItem value="ECONOMICO" id="plan-economico" className="text-yellow-400" />
               <Label
                 htmlFor="plan-economico"
@@ -80,6 +89,7 @@ export default function ProductComparison() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {products.map((product) => {
           const { price, cents, installments, discount } = product.prices[selectedPlan]
+          const originalPrice = product.originalPrices[selectedPlan]
           return (
             <Card
               key={product.id}
@@ -103,7 +113,7 @@ export default function ProductComparison() {
                 <div>
                   <p className="text-sm mb-1">Planos a partir de:</p>
                   <div className="text-center">
-                    <p className="text-sm line-through text-gray-400">de: {product.originalPrice} por</p>
+                    <p className="text-sm line-through text-gray-400">de: {originalPrice} por</p>
                     <div className="flex items-baseline justify-center">
                       <span className="text-sm">R$</span>
                       <span className="text-3xl font-bold text-yellow-400">{price}</span>

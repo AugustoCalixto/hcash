@@ -1,4 +1,4 @@
-export type PlanId = "HERO" | "ON" | "ECONOMICO" | "PREMIUM";
+export type PlanId = "HERO" | "ON" | "PREMIUM" | "BASIC" | "ECONOMICO";
 export type CardId = 'visa' | 'elo' | 'hiper';
 
 // From pricing-plans.tsx
@@ -12,22 +12,27 @@ export const planRates: Record<PlanId, PlanRates> = {
     HERO: {
         debito: "1,39%",
         creditoAVista: "3,15%",
-        credito12x: "12,61%",
+        credito12x: "12,21%",
     },
     ON: {
         debito: "1,39%",
         creditoAVista: "2,91%",
-        credito12x: "12,01%", // Updated from 11,91%
+        credito12x: "11,61%",
     },
-    ECONOMICO: {
-        debito: "1,09%", // Updated from 1,15%
-        creditoAVista: "2,20%", // Updated from 2,40%
-        credito12x: "2,78%", // Updated from 3,25%
-    },
-    PREMIUM: { // New plan
+    PREMIUM: {
         debito: "1,09%",
         creditoAVista: "2,99%",
-        credito12x: "11,70%",
+        credito12x: "11,25%",
+    },
+    BASIC: {
+        debito: "1,49%",
+        creditoAVista: "3,74%",
+        credito12x: "13,82%",
+    },
+    ECONOMICO: {
+        debito: "1,09%",
+        creditoAVista: "2,20%",
+        credito12x: "2,78%",
     },
 };
 
@@ -37,77 +42,78 @@ export interface PaymentRate {
     taxa: {
         hero: number
         on: number
-        economico: number
         premium: number
+        basic: number
+        economico: number
     }
 }
 
 export const paymentRates: Record<CardId, PaymentRate[]> = {
     visa: [
-        { modalidade: 'PIX', taxa: { hero: 0.50, on: 0.50, economico: 0.50, premium: 0.50 } },
-        { modalidade: 'Débito', taxa: { hero: 1.39, on: 1.39, economico: 1.09, premium: 1.09 } },
-        { modalidade: 'Crédito à vista', taxa: { hero: 3.15, on: 2.91, economico: 2.20, premium: 2.99 } },
-        { modalidade: 'Parcelado 2x', taxa: { hero: 5.16, on: 4.68, economico: 2.45, premium: 4.46 } },
-        { modalidade: 'Parcelado 3x', taxa: { hero: 5.87, on: 5.45, economico: 2.45, premium: 5.21 } },
-        { modalidade: 'Parcelado 4x', taxa: { hero: 6.59, on: 6.21, economico: 2.45, premium: 5.96 } },
-        { modalidade: 'Parcelado 5x', taxa: { hero: 7.29, on: 6.95, economico: 2.45, premium: 6.69 } },
-        { modalidade: 'Parcelado 6x', taxa: { hero: 8.00, on: 7.69, economico: 2.45, premium: 7.43 } },
-        { modalidade: 'Parcelado 7x', taxa: { hero: 9.24, on: 8.47, economico: 2.78, premium: 8.20 } },
-        { modalidade: 'Parcelado 8x', taxa: { hero: 9.93, on: 9.19, economico: 2.78, premium: 8.91 } },
-        { modalidade: 'Parcelado 9x', taxa: { hero: 10.61, on: 9.91, economico: 2.78, premium: 9.62 } },
-        { modalidade: 'Parcelado 10x', taxa: { hero: 11.27, on: 10.61, economico: 2.78, premium: 10.32 } },
-        { modalidade: 'Parcelado 11x', taxa: { hero: 11.94, on: 11.32, economico: 2.78, premium: 11.01 } },
-        { modalidade: 'Parcelado 12x', taxa: { hero: 12.61, on: 12.01, economico: 2.78, premium: 11.70 } },
-        { modalidade: 'Parcelado 13x', taxa: { hero: 13.26, on: 12.70, economico: 2.80, premium: 12.38 } },
-        { modalidade: 'Parcelado 14x', taxa: { hero: 13.90, on: 13.38, economico: 2.80, premium: 13.05 } },
-        { modalidade: 'Parcelado 15x', taxa: { hero: 14.55, on: 14.05, economico: 2.80, premium: 13.72 } },
-        { modalidade: 'Parcelado 16x', taxa: { hero: 15.18, on: 14.72, economico: 2.80, premium: 14.37 } },
-        { modalidade: 'Parcelado 17x', taxa: { hero: 15.81, on: 15.38, economico: 2.80, premium: 15.03 } },
-        { modalidade: 'Parcelado 18x', taxa: { hero: 16.43, on: 16.03, economico: 2.80, premium: 15.67 } },
+        { modalidade: 'PIX', taxa: { hero: 0.50, on: 0.50, premium: 0.50, basic: 0.50, economico: 0.50 } },
+        { modalidade: 'Débito', taxa: { hero: 1.39, on: 1.39, premium: 1.09, basic: 1.49, economico: 1.09 } },
+        { modalidade: 'Crédito à vista', taxa: { hero: 3.15, on: 2.91, premium: 2.99, basic: 3.74, economico: 2.20 } },
+        { modalidade: 'Parcelado 2x', taxa: { hero: 5.05, on: 4.59, premium: 4.34, basic: 5.20, economico: 2.45 } },
+        { modalidade: 'Parcelado 3x', taxa: { hero: 5.74, on: 5.32, premium: 5.05, basic: 6.09, economico: 2.45 } },
+        { modalidade: 'Parcelado 4x', taxa: { hero: 6.42, on: 6.04, premium: 5.76, basic: 6.98, economico: 2.45 } },
+        { modalidade: 'Parcelado 5x', taxa: { hero: 7.10, on: 6.76, premium: 6.47, basic: 7.85, economico: 2.45 } },
+        { modalidade: 'Parcelado 6x', taxa: { hero: 7.77, on: 7.46, premium: 7.17, basic: 8.71, economico: 2.45 } },
+        { modalidade: 'Parcelado 7x', taxa: { hero: 8.98, on: 8.21, premium: 7.90, basic: 9.72, economico: 2.78 } },
+        { modalidade: 'Parcelado 8x', taxa: { hero: 9.64, on: 8.91, premium: 8.58, basic: 10.55, economico: 2.78 } },
+        { modalidade: 'Parcelado 9x', taxa: { hero: 10.29, on: 9.59, premium: 9.26, basic: 11.38, economico: 2.78 } },
+        { modalidade: 'Parcelado 10x', taxa: { hero: 10.93, on: 10.28, premium: 9.93, basic: 12.21, economico: 2.78 } },
+        { modalidade: 'Parcelado 11x', taxa: { hero: 11.57, on: 10.95, premium: 10.59, basic: 13.02, economico: 2.78 } },
+        { modalidade: 'Parcelado 12x', taxa: { hero: 12.21, on: 11.61, premium: 11.25, basic: 13.82, economico: 2.78 } },
+        { modalidade: 'Parcelado 13x', taxa: { hero: 12.83, on: 12.28, premium: 11.90, basic: 14.61, economico: 2.80 } },
+        { modalidade: 'Parcelado 14x', taxa: { hero: 13.45, on: 12.93, premium: 12.54, basic: 15.39, economico: 2.80 } },
+        { modalidade: 'Parcelado 15x', taxa: { hero: 14.07, on: 13.58, premium: 13.18, basic: 16.16, economico: 2.80 } },
+        { modalidade: 'Parcelado 16x', taxa: { hero: 14.68, on: 14.22, premium: 13.81, basic: 16.92, economico: 2.80 } },
+        { modalidade: 'Parcelado 17x', taxa: { hero: 15.29, on: 14.86, premium: 14.43, basic: 17.68, economico: 2.80 } },
+        { modalidade: 'Parcelado 18x', taxa: { hero: 15.88, on: 15.49, premium: 15.05, basic: 18.42, economico: 2.80 } },
     ],
-    elo: [ // Assuming "OUTRAS" applies to ELO and HIPER
-        { modalidade: 'PIX', taxa: { hero: 0.50, on: 0.50, economico: 0.50, premium: 0.50 } },
-        { modalidade: 'Débito', taxa: { hero: 1.45, on: 1.45, economico: 1.39, premium: 1.35 } },
-        { modalidade: 'Crédito à vista', taxa: { hero: 3.44, on: 3.24, economico: 2.25, premium: 3.25 } },
-        { modalidade: 'Parcelado 2x', taxa: { hero: 5.31, on: 4.83, economico: 2.64, premium: 4.66 } },
-        { modalidade: 'Parcelado 3x', taxa: { hero: 6.02, on: 5.60, economico: 2.64, premium: 5.41 } },
-        { modalidade: 'Parcelado 4x', taxa: { hero: 6.74, on: 6.36, economico: 2.64, premium: 6.16 } },
-        { modalidade: 'Parcelado 5x', taxa: { hero: 7.44, on: 7.10, economico: 2.64, premium: 6.89 } },
-        { modalidade: 'Parcelado 6x', taxa: { hero: 8.15, on: 7.84, economico: 2.64, premium: 7.63 } },
-        { modalidade: 'Parcelado 7x', taxa: { hero: 9.54, on: 8.67, economico: 2.94, premium: 8.40 } },
-        { modalidade: 'Parcelado 8x', taxa: { hero: 10.23, on: 9.39, economico: 2.94, premium: 9.11 } },
-        { modalidade: 'Parcelado 9x', taxa: { hero: 10.91, on: 10.11, economico: 2.94, premium: 9.82 } },
-        { modalidade: 'Parcelado 10x', taxa: { hero: 11.57, on: 10.81, economico: 2.94, premium: 10.52 } },
-        { modalidade: 'Parcelado 11x', taxa: { hero: 12.24, on: 11.52, economico: 2.94, premium: 11.21 } },
-        { modalidade: 'Parcelado 12x', taxa: { hero: 12.91, on: 12.21, economico: 2.94, premium: 11.90 } },
-        { modalidade: 'Parcelado 13x', taxa: { hero: 13.56, on: 12.90, economico: 3.00, premium: 12.58 } },
-        { modalidade: 'Parcelado 14x', taxa: { hero: 14.20, on: 13.58, economico: 3.00, premium: 13.25 } },
-        { modalidade: 'Parcelado 15x', taxa: { hero: 14.85, on: 14.25, economico: 3.00, premium: 13.92 } },
-        { modalidade: 'Parcelado 16x', taxa: { hero: 15.48, on: 14.92, economico: 3.00, premium: 14.57 } },
-        { modalidade: 'Parcelado 17x', taxa: { hero: 16.11, on: 15.58, economico: 3.00, premium: 15.23 } },
-        { modalidade: 'Parcelado 18x', taxa: { hero: 16.73, on: 16.23, economico: 3.00, premium: 15.87 } }
+    elo: [
+        { modalidade: 'PIX', taxa: { hero: 0.50, on: 0.50, premium: 0.50, basic: 0.50, economico: 0.50 } },
+        { modalidade: 'Débito', taxa: { hero: 1.45, on: 1.45, premium: 1.35, basic: 1.99, economico: 1.39 } },
+        { modalidade: 'Crédito à vista', taxa: { hero: 3.49, on: 3.24, premium: 3.25, basic: 4.74, economico: 2.25 } },
+        { modalidade: 'Parcelado 2x', taxa: { hero: 5.20, on: 4.74, premium: 4.54, basic: 5.75, economico: 2.64 } },
+        { modalidade: 'Parcelado 3x', taxa: { hero: 5.89, on: 5.47, premium: 5.25, basic: 6.64, economico: 2.64 } },
+        { modalidade: 'Parcelado 4x', taxa: { hero: 6.57, on: 6.19, premium: 5.96, basic: 7.53, economico: 2.64 } },
+        { modalidade: 'Parcelado 5x', taxa: { hero: 7.25, on: 6.91, premium: 6.67, basic: 8.40, economico: 2.64 } },
+        { modalidade: 'Parcelado 6x', taxa: { hero: 7.92, on: 7.61, premium: 7.37, basic: 9.26, economico: 2.64 } },
+        { modalidade: 'Parcelado 7x', taxa: { hero: 9.28, on: 8.41, premium: 8.10, basic: 10.57, economico: 2.94 } },
+        { modalidade: 'Parcelado 8x', taxa: { hero: 9.94, on: 9.11, premium: 8.78, basic: 11.40, economico: 2.94 } },
+        { modalidade: 'Parcelado 9x', taxa: { hero: 10.59, on: 9.79, premium: 9.46, basic: 12.23, economico: 2.94 } },
+        { modalidade: 'Parcelado 10x', taxa: { hero: 11.23, on: 10.48, premium: 10.13, basic: 13.06, economico: 2.94 } },
+        { modalidade: 'Parcelado 11x', taxa: { hero: 11.87, on: 11.15, premium: 10.79, basic: 13.87, economico: 2.94 } },
+        { modalidade: 'Parcelado 12x', taxa: { hero: 12.51, on: 11.81, premium: 11.45, basic: 14.67, economico: 2.94 } },
+        { modalidade: 'Parcelado 13x', taxa: { hero: 13.13, on: 12.48, premium: 12.10, basic: 15.46, economico: 3.00 } },
+        { modalidade: 'Parcelado 14x', taxa: { hero: 13.75, on: 13.13, premium: 12.74, basic: 16.24, economico: 3.00 } },
+        { modalidade: 'Parcelado 15x', taxa: { hero: 14.37, on: 13.78, premium: 13.38, basic: 17.01, economico: 3.00 } },
+        { modalidade: 'Parcelado 16x', taxa: { hero: 14.98, on: 14.42, premium: 14.01, basic: 17.77, economico: 3.00 } },
+        { modalidade: 'Parcelado 17x', taxa: { hero: 15.59, on: 15.06, premium: 14.63, basic: 18.53, economico: 3.00 } },
+        { modalidade: 'Parcelado 18x', taxa: { hero: 16.18, on: 15.69, premium: 15.25, basic: 19.27, economico: 3.00 } },
     ],
-    hiper: [ // Same as ELO for now, as "OUTRAS" is generic
-        { modalidade: 'PIX', taxa: { hero: 0.50, on: 0.50, economico: 0.50, premium: 0.50 } },
-        { modalidade: 'Débito', taxa: { hero: 1.45, on: 1.45, economico: 1.39, premium: 1.35 } },
-        { modalidade: 'Crédito à vista', taxa: { hero: 3.44, on: 3.24, economico: 2.25, premium: 3.25 } },
-        { modalidade: 'Parcelado 2x', taxa: { hero: 5.31, on: 4.83, economico: 2.64, premium: 4.66 } },
-        { modalidade: 'Parcelado 3x', taxa: { hero: 6.02, on: 5.60, economico: 2.64, premium: 5.41 } },
-        { modalidade: 'Parcelado 4x', taxa: { hero: 6.74, on: 6.36, economico: 2.64, premium: 6.16 } },
-        { modalidade: 'Parcelado 5x', taxa: { hero: 7.44, on: 7.10, economico: 2.64, premium: 6.89 } },
-        { modalidade: 'Parcelado 6x', taxa: { hero: 8.15, on: 7.84, economico: 2.64, premium: 7.63 } },
-        { modalidade: 'Parcelado 7x', taxa: { hero: 9.54, on: 8.67, economico: 2.94, premium: 8.40 } },
-        { modalidade: 'Parcelado 8x', taxa: { hero: 10.23, on: 9.39, economico: 2.94, premium: 9.11 } },
-        { modalidade: 'Parcelado 9x', taxa: { hero: 10.91, on: 10.11, economico: 2.94, premium: 9.82 } },
-        { modalidade: 'Parcelado 10x', taxa: { hero: 11.57, on: 10.81, economico: 2.94, premium: 10.52 } },
-        { modalidade: 'Parcelado 11x', taxa: { hero: 12.24, on: 11.52, economico: 2.94, premium: 11.21 } },
-        { modalidade: 'Parcelado 12x', taxa: { hero: 12.91, on: 12.21, economico: 2.94, premium: 11.90 } },
-        { modalidade: 'Parcelado 13x', taxa: { hero: 13.56, on: 12.90, economico: 3.00, premium: 12.58 } },
-        { modalidade: 'Parcelado 14x', taxa: { hero: 14.20, on: 13.58, economico: 3.00, premium: 13.25 } },
-        { modalidade: 'Parcelado 15x', taxa: { hero: 14.85, on: 14.25, economico: 3.00, premium: 13.92 } },
-        { modalidade: 'Parcelado 16x', taxa: { hero: 15.48, on: 14.92, economico: 3.00, premium: 14.57 } },
-        { modalidade: 'Parcelado 17x', taxa: { hero: 16.11, on: 15.58, economico: 3.00, premium: 15.23 } },
-        { modalidade: 'Parcelado 18x', taxa: { hero: 16.73, on: 16.23, economico: 3.00, premium: 15.87 } }
+    hiper: [
+        { modalidade: 'PIX', taxa: { hero: 0.50, on: 0.50, premium: 0.50, basic: 0.50, economico: 0.50 } },
+        { modalidade: 'Débito', taxa: { hero: 1.45, on: 1.45, premium: 1.35, basic: 1.99, economico: 1.39 } },
+        { modalidade: 'Crédito à vista', taxa: { hero: 3.49, on: 3.24, premium: 3.25, basic: 4.74, economico: 2.25 } },
+        { modalidade: 'Parcelado 2x', taxa: { hero: 5.20, on: 4.74, premium: 4.54, basic: 5.75, economico: 2.64 } },
+        { modalidade: 'Parcelado 3x', taxa: { hero: 5.89, on: 5.47, premium: 5.25, basic: 6.64, economico: 2.64 } },
+        { modalidade: 'Parcelado 4x', taxa: { hero: 6.57, on: 6.19, premium: 5.96, basic: 7.53, economico: 2.64 } },
+        { modalidade: 'Parcelado 5x', taxa: { hero: 7.25, on: 6.91, premium: 6.67, basic: 8.40, economico: 2.64 } },
+        { modalidade: 'Parcelado 6x', taxa: { hero: 7.92, on: 7.61, premium: 7.37, basic: 9.26, economico: 2.64 } },
+        { modalidade: 'Parcelado 7x', taxa: { hero: 9.28, on: 8.41, premium: 8.10, basic: 10.57, economico: 2.94 } },
+        { modalidade: 'Parcelado 8x', taxa: { hero: 9.94, on: 9.11, premium: 8.78, basic: 11.40, economico: 2.94 } },
+        { modalidade: 'Parcelado 9x', taxa: { hero: 10.59, on: 9.79, premium: 9.46, basic: 12.23, economico: 2.94 } },
+        { modalidade: 'Parcelado 10x', taxa: { hero: 11.23, on: 10.48, premium: 10.13, basic: 13.06, economico: 2.94 } },
+        { modalidade: 'Parcelado 11x', taxa: { hero: 11.87, on: 11.15, premium: 10.79, basic: 13.87, economico: 2.94 } },
+        { modalidade: 'Parcelado 12x', taxa: { hero: 12.51, on: 11.81, premium: 11.45, basic: 14.67, economico: 2.94 } },
+        { modalidade: 'Parcelado 13x', taxa: { hero: 13.13, on: 12.48, premium: 12.10, basic: 15.46, economico: 3.00 } },
+        { modalidade: 'Parcelado 14x', taxa: { hero: 13.75, on: 13.13, premium: 12.74, basic: 16.24, economico: 3.00 } },
+        { modalidade: 'Parcelado 15x', taxa: { hero: 14.37, on: 13.78, premium: 13.38, basic: 17.01, economico: 3.00 } },
+        { modalidade: 'Parcelado 16x', taxa: { hero: 14.98, on: 14.42, premium: 14.01, basic: 17.77, economico: 3.00 } },
+        { modalidade: 'Parcelado 17x', taxa: { hero: 15.59, on: 15.06, premium: 14.63, basic: 18.53, economico: 3.00 } },
+        { modalidade: 'Parcelado 18x', taxa: { hero: 16.18, on: 15.69, premium: 15.25, basic: 19.27, economico: 3.00 } },
     ],
 };
 
@@ -118,8 +124,9 @@ export interface InstallmentOption {
     taxa: {
         HERO: number
         ON: number
-        ECONOMICO: number
         PREMIUM: number
+        BASIC: number
+        ECONOMICO: number
     }
     comparativo: {
         brother: number | null
@@ -131,121 +138,121 @@ export const installmentOptions: InstallmentOption[] = [
     {
         value: 1,
         label: 'PIX',
-        taxa: { HERO: 0.50, ON: 0.50, ECONOMICO: 0.50, PREMIUM: 0.50 },
+        taxa: { HERO: 0.50, ON: 0.50, PREMIUM: 0.50, BASIC: 0.50, ECONOMICO: 0.50 },
         comparativo: { brother: 0.99, infinitepay: 0.00 }
     },
     {
         value: 2,
         label: 'Débito',
-        taxa: { HERO: 1.39, ON: 1.39, ECONOMICO: 1.09, PREMIUM: 1.09 },
+        taxa: { HERO: 1.39, ON: 1.39, PREMIUM: 1.09, BASIC: 1.49, ECONOMICO: 1.09 },
         comparativo: { brother: 1.45, infinitepay: 1.37 }
     },
     {
         value: 3,
         label: 'Crédito à vista',
-        taxa: { HERO: 3.15, ON: 2.91, ECONOMICO: 2.20, PREMIUM: 2.99 },
+        taxa: { HERO: 3.15, ON: 2.91, PREMIUM: 2.99, BASIC: 3.74, ECONOMICO: 2.20 },
         comparativo: { brother: 3.51, infinitepay: 3.15 }
     },
     {
         value: 4,
         label: 'Parcelado 2x',
-        taxa: { HERO: 5.16, ON: 4.68, ECONOMICO: 2.45, PREMIUM: 4.46 },
+        taxa: { HERO: 5.05, ON: 4.59, PREMIUM: 4.34, BASIC: 5.20, ECONOMICO: 2.45 },
         comparativo: { brother: 6.99, infinitepay: 5.39 }
     },
     {
         value: 5,
         label: 'Parcelado 3x',
-        taxa: { HERO: 5.87, ON: 5.45, ECONOMICO: 2.45, PREMIUM: 5.21 },
+        taxa: { HERO: 5.74, ON: 5.32, PREMIUM: 5.05, BASIC: 6.09, ECONOMICO: 2.45 },
         comparativo: { brother: 6.99, infinitepay: 6.12 }
     },
     {
         value: 6,
         label: 'Parcelado 4x',
-        taxa: { HERO: 6.59, ON: 6.21, ECONOMICO: 2.45, PREMIUM: 5.96 },
+        taxa: { HERO: 6.42, ON: 6.04, PREMIUM: 5.76, BASIC: 6.98, ECONOMICO: 2.45 },
         comparativo: { brother: 7.99, infinitepay: 6.85 }
     },
     {
         value: 7,
         label: 'Parcelado 5x',
-        taxa: { HERO: 7.29, ON: 6.95, ECONOMICO: 2.45, PREMIUM: 6.69 },
+        taxa: { HERO: 7.10, ON: 6.76, PREMIUM: 6.47, BASIC: 7.85, ECONOMICO: 2.45 },
         comparativo: { brother: 9.99, infinitepay: 7.57 }
     },
     {
         value: 8,
         label: 'Parcelado 6x',
-        taxa: { HERO: 8.00, ON: 7.69, ECONOMICO: 2.45, PREMIUM: 7.43 },
+        taxa: { HERO: 7.77, ON: 7.46, PREMIUM: 7.17, BASIC: 8.71, ECONOMICO: 2.45 },
         comparativo: { brother: 10.99, infinitepay: 8.28 }
     },
     {
         value: 9,
         label: 'Parcelado 7x',
-        taxa: { HERO: 9.24, ON: 8.47, ECONOMICO: 2.78, PREMIUM: 8.20 },
+        taxa: { HERO: 8.98, ON: 8.21, PREMIUM: 7.90, BASIC: 9.72, ECONOMICO: 2.78 },
         comparativo: { brother: 11.99, infinitepay: 8.99 }
     },
     {
         value: 10,
         label: 'Parcelado 8x',
-        taxa: { HERO: 9.93, ON: 9.19, ECONOMICO: 2.78, PREMIUM: 8.91 },
+        taxa: { HERO: 9.64, ON: 8.91, PREMIUM: 8.58, BASIC: 10.55, ECONOMICO: 2.78 },
         comparativo: { brother: 11.99, infinitepay: 9.69 }
     },
     {
         value: 11,
         label: 'Parcelado 9x',
-        taxa: { HERO: 10.61, ON: 9.91, ECONOMICO: 2.78, PREMIUM: 9.62 },
+        taxa: { HERO: 10.29, ON: 9.59, PREMIUM: 9.26, BASIC: 11.38, ECONOMICO: 2.78 },
         comparativo: { brother: 12.99, infinitepay: 10.38 }
     },
     {
         value: 12,
         label: 'Parcelado 10x',
-        taxa: { HERO: 11.27, ON: 10.61, ECONOMICO: 2.78, PREMIUM: 10.32 },
+        taxa: { HERO: 10.93, ON: 10.28, PREMIUM: 9.93, BASIC: 12.21, ECONOMICO: 2.78 },
         comparativo: { brother: 13.99, infinitepay: 11.06 }
     },
     {
         value: 13,
         label: 'Parcelado 11x',
-        taxa: { HERO: 11.94, ON: 11.32, ECONOMICO: 2.78, PREMIUM: 11.01 },
+        taxa: { HERO: 11.57, ON: 10.95, PREMIUM: 10.59, BASIC: 13.02, ECONOMICO: 2.78 },
         comparativo: { brother: 14.79, infinitepay: 11.74 }
     },
     {
         value: 14,
         label: 'Parcelado 12x',
-        taxa: { HERO: 12.61, ON: 12.01, ECONOMICO: 2.78, PREMIUM: 11.70 },
+        taxa: { HERO: 12.21, ON: 11.61, PREMIUM: 11.25, BASIC: 13.82, ECONOMICO: 2.78 },
         comparativo: { brother: 14.79, infinitepay: 12.40 }
     },
     {
         value: 15,
         label: 'Parcelado 13x',
-        taxa: { HERO: 13.26, ON: 12.70, ECONOMICO: 2.80, PREMIUM: 12.38 },
+        taxa: { HERO: 12.83, ON: 12.28, PREMIUM: 11.90, BASIC: 14.61, ECONOMICO: 2.80 },
         comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 16,
         label: 'Parcelado 14x',
-        taxa: { HERO: 13.90, ON: 13.38, ECONOMICO: 2.80, PREMIUM: 13.05 },
+        taxa: { HERO: 13.45, ON: 12.93, PREMIUM: 12.54, BASIC: 15.39, ECONOMICO: 2.80 },
         comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 17,
         label: 'Parcelado 15x',
-        taxa: { HERO: 14.55, ON: 14.05, ECONOMICO: 2.80, PREMIUM: 13.72 },
+        taxa: { HERO: 14.07, ON: 13.58, PREMIUM: 13.18, BASIC: 16.16, ECONOMICO: 2.80 },
         comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 18,
         label: 'Parcelado 16x',
-        taxa: { HERO: 15.18, ON: 14.72, ECONOMICO: 2.80, PREMIUM: 14.37 },
+        taxa: { HERO: 14.68, ON: 14.22, PREMIUM: 13.81, BASIC: 16.92, ECONOMICO: 2.80 },
         comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 19,
         label: 'Parcelado 17x',
-        taxa: { HERO: 15.81, ON: 15.38, ECONOMICO: 2.80, PREMIUM: 15.03 },
+        taxa: { HERO: 15.29, ON: 14.86, PREMIUM: 14.43, BASIC: 17.68, ECONOMICO: 2.80 },
         comparativo: { brother: null, infinitepay: null }
     },
     {
         value: 20,
         label: 'Parcelado 18x',
-        taxa: { HERO: 16.43, ON: 16.03, ECONOMICO: 2.80, PREMIUM: 15.67 },
+        taxa: { HERO: 15.88, ON: 15.49, PREMIUM: 15.05, BASIC: 18.42, ECONOMICO: 2.80 },
         comparativo: { brother: null, infinitepay: null }
     },
 ];

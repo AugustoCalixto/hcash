@@ -18,7 +18,7 @@ export default function PricingPlans() {
     }
   }
 
-  const renderPaymentRatesByPlan = (plan: CardId, rateType: 'hero' | 'on' | 'economico' | 'premium') => {
+  const renderPaymentRatesByPlan = (plan: CardId, rateType: 'hero' | 'on' | 'premium' | 'basic' | 'economico') => {
     return (
       seeMore && (
         <Card className={`border-2 transition-all w-full`} key={plan}>
@@ -52,7 +52,7 @@ export default function PricingPlans() {
         <p className="text-lg">Você deseja receber:</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Coluna Recebimento na hora */}
         <div className="flex flex-col gap-6">
           <div className="bg-gray-800 p-2 rounded-lg text-center">
@@ -87,11 +87,11 @@ export default function PricingPlans() {
         </div>
 
         {/* Coluna Recebimento no dia seguinte */}
-        <div className="flex flex-col gap-6 md:col-span-2">
+        <div className="flex flex-col gap-6 lg:col-span-3">
           <div className="bg-gray-800 p-2 rounded-lg text-center">
             <h3 className="text-lg font-bold text-white">Recebimento no dia seguinte</h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="border-2 hover:border-yellow-400 transition-all flex-1">
               <CardHeader className="text-center">
                 <CardTitle className="inline-block bg-green-400 px-6 py-1 rounded-full text-xl">ON</CardTitle>
@@ -142,6 +142,32 @@ export default function PricingPlans() {
               <CardFooter className="flex flex-col gap-4">
                 <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("PREMIUM")}>Quero o plano PREMIUM</Button>
                 {renderPaymentRatesByPlan('visa', 'premium')}
+              </CardFooter>
+            </Card>
+            <Card className="border-2 hover:border-yellow-400 transition-all flex-1">
+              <CardHeader className="text-center">
+                <CardTitle className="inline-block bg-slate-400 px-6 py-1 rounded-full text-xl">BASIC</CardTitle>
+                <p className="text-sm mt-2">O plano mais acessível para começar!</p>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-3 gap-2 text-center">
+                  <div>
+                    <p className="text-xs uppercase">DÉBITO</p>
+                    <p className="text-2xl font-bold">{planRates.BASIC.debito}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase">CRÉDITO À VISTA</p>
+                    <p className="text-2xl font-bold">{planRates.BASIC.creditoAVista}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase">CRÉDITO 12x</p>
+                    <p className="text-2xl font-bold">{planRates.BASIC.credito12x}</p>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="flex flex-col gap-4">
+                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("BASIC")}>Quero o plano BASIC</Button>
+                {renderPaymentRatesByPlan('visa', 'basic')}
               </CardFooter>
             </Card>
           </div>
