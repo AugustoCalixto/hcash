@@ -22,7 +22,7 @@ export const products: Product[] = [
       id: "PLUS",
       name: "HERO PLUS",
       description: "Prática e ágil, uma maquininha que impõe respeito!",
-      image: "/images/maquininhas/mini.png?height=150&width=100",
+      image: "/images/maquininhas/mini.png",
       features: [
         "Comprovante por SMS",
         "Receba por aproximação (NFC)",
@@ -48,7 +48,7 @@ export const products: Product[] = [
       id: "PRO",
       name: "HERO PRO",
       description: "A máquina de cartão mais completa, garantindo o máximo de economia e benefícios!",
-      image: "/images/maquininhas/pro.png?height=150&width=100",
+      image: "/images/maquininhas/pro.png",
       features: [
         "Comprovante impresso ou por SMS",
         "Receba por aproximação (NFC)",
@@ -75,7 +75,7 @@ export const products: Product[] = [
       id: "SMART",
       name: "HERO SMART",
       description: "A maquininha mais moderna, completa e cheia de estilo do mercado!",
-      image: "/images/maquininhas/smart.png?height=150&width=100",
+      image: "/images/maquininhas/smart.png",
       features: [
         "Comprovante impresso ou por SMS",
         "Receba por aproximação (NFC)",

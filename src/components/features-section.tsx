@@ -56,7 +56,7 @@ export default function FeaturesSection() {
 
             <div className="relative w-full max-w-md h-[400px] rounded-lg overflow-hidden shadow-lg">
               <Image
-                src="/images/payment.png?height=400&width=400"
+                src="/images/payment.png"
                 alt="Maquininha Hero Cash"
                 fill
                 className="mx-auto object-cover h-full w-full"

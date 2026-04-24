@@ -26,7 +26,7 @@ export const productsShowcase: ProductInfo[] = [
       title: "Maquininha prática e portátil",
       description:
         "Ideal para quem está começando! Compacta e fácil de usar, esta maquininha oferece todas as funcionalidades essenciais para o seu negócio com o melhor custo-benefício do mercado.",
-      image: "/placeholder.svg?height=400&width=300",
+      image: "/placeholder.svg",
       features: [
         {
           icon: <Printer className="h-8 w-8 text-yellow-400" />,
@@ -92,7 +92,7 @@ export const productsShowcase: ProductInfo[] = [
       title: "A maquininha mais avançada do mercado",
       description:
         "Tecnologia de ponta para seu negócio! Com sistema Android integrado, tela touchscreen e recursos exclusivos, a SMART Hero é a solução completa para quem busca modernidade, eficiência e controle total das vendas.",
-      image: "/placeholder.svg?height=400&width=300",
+      image: "/placeholder.svg",
       features: [
         {
           icon: <Printer className="h-8 w-8 text-yellow-400" />,
