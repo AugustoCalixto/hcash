@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-
-import { installmentOptions, InstallmentOption, PlanId } from '@/data/plans';
+import { Button } from '@/components/ui/button'
+import { installmentOptions, InstallmentOption, PlanId } from '@/data/plans'
+import { cn } from '@/lib/utils'
+import { ArrowRight, Calculator } from 'lucide-react'
 
 export default function SalesCalculator() {
     const [selectedPlan, setSelectedPlan] = useState<PlanId>('HERO')
@@ -15,7 +17,7 @@ export default function SalesCalculator() {
     )
 
     function openWhatsapp() {
-        const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
+        const whatsappNumber = "5585987005263"
         const message = "Olá, gostaria de saber mais sobre as taxas e planos da HeroCash para vendas parceladas. Poderia me ajudar?"
         const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
         if (typeof window !== 'undefined') {
@@ -56,7 +58,7 @@ export default function SalesCalculator() {
             grossAmount = inputValue;
             netAmount = grossAmount * (1 - taxa / 100);
             marketNetAmount = grossAmount * (1 - marketTaxa / 100);
-        } else { // 'receber'
+        } else {
             netAmount = inputValue;
             grossAmount = netAmount / (1 - taxa / 100);
             marketNetAmount = grossAmount * (1 - marketTaxa / 100);
@@ -77,159 +79,187 @@ export default function SalesCalculator() {
     const results = calculateResults()
 
     return (
-        <div className="bg-white p-8 rounded-2xl HERO-w-4xl mx-auto" id='simulador'>
-            <div className="flex justify-center mb-6">
-                <div className="relative flex w-full max-w-md p-1 bg-gray-200 rounded-full">
-                    <span
-                        className={`absolute inset-0 m-1 rounded-full bg-yellow-400 shadow-lg transition-transform duration-300 ease-in-out transform ${calculationType === 'receber' ? 'translate-x-full' : ''
-                            }`}
-                        style={{ width: 'calc(50% - 0.25rem)' }}
-                    />
-                    <button
-                        onClick={() => setCalculationType('venda')}
-                        className={`relative z-10 w-1/2 py-3 text-sm font-bold text-center transition-colors ${calculationType === 'venda' ? 'text-black' : 'text-gray-700'
-                            }`}
-                    >
-                        Quanto você quer cobrar?
-                    </button>
-                    <button
-                        onClick={() => setCalculationType('receber')}
-                        className={`relative z-10 w-1/2 py-3 text-sm font-bold text-center transition-colors ${calculationType === 'receber' ? 'text-black' : 'text-gray-700'
-                            }`}
-                    >
-                        Quanto você quer receber?
-                    </button>
-                </div>
-            </div>
-            <div className="mb-8">
-                {/* <div className="flex justify-center gap-4 mb-4">
-                    {(['NO DIA SEGUINTE', 'NA HORA'] as const).map((timing) => (
-                        <button
-                            key={timing}
-                            onClick={() => setSelectedTiming(timing)}
-                            className={`px-8 py-2 rounded-full text-sm font-bold transition-colors
-                ${timing === selectedTiming
-                                    ? 'bg-white text-black'
-                                    : 'bg-zinc-800 text-white hover:bg-zinc-700'
-                                }`}
-                        >
-                            {timing}
-                        </button>
-                    ))}
-                </div> */}
+        <section className="editorial-spacing relative" id="simulador">
+            <div className="container mx-auto px-6 max-w-5xl">
+                <div className="glass-card rounded-[3rem] p-1 shadow-2xl relative overflow-hidden">
+                    <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+                    
+                    <div className="p-8 md:p-12 space-y-12 relative z-10">
+                        {/* Header & Toggle */}
+                        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                            <div className="space-y-4 text-center md:text-left">
+                                <div className="flex items-center justify-center md:justify-start gap-3">
+                                    <div className="p-2 glass rounded-lg border-primary/20">
+                                        <Calculator className="w-5 h-5 text-primary" />
+                                    </div>
+                                    <h2 className="text-3xl font-black uppercase tracking-tighter">Simulador de Taxas</h2>
+                                </div>
+                                <p className="text-sm text-foreground/50 font-medium max-w-xs">
+                                    Compare agora e descubra quanto você economiza com a Hero Cash.
+                                </p>
+                            </div>
 
-                <div className="flex flex-col md:flex-row md:flex-wrap justify-center gap-4">
-                    {(['HERO', 'ON', 'PREMIUM', 'BASIC', 'ECONOMICO'] as const).map((plan) => (
-                        <button
-                            key={plan}
-                            onClick={() => setSelectedPlan(plan)}
-                            className={`px-12 py-2 rounded-full text-sm font-bold transition-colors flex items-center gap-2 mb-2 w-full justify-center md:w-auto
-                ${plan === selectedPlan
-                                    ? 'bg-yellow-400 text-black shadow-lg'
-                                    : 'bg-yellow-300 text-black hover:bg-yellow-700 opacity-[0.8]'
-                                }`}
-                        >
-                            {plan === selectedPlan && (
-                                <div className="w-2 h-2 rounded-full bg-green-600" />
-                            )}
-                            {plan}
-                        </button>
-                    ))}
-                </div>
-            </div>
+                            <div className="relative flex w-full max-w-md p-1.5 glass rounded-full border-white/5">
+                                <div
+                                    className={cn(
+                                        "absolute inset-y-1.5 left-1.5 w-[calc(50%-0.375rem)] bg-primary rounded-full transition-transform duration-500 ease-out",
+                                        calculationType === 'receber' ? "translate-x-full" : ""
+                                    )}
+                                />
+                                <button
+                                    onClick={() => setCalculationType('venda')}
+                                    className={cn(
+                                        "relative z-10 w-1/2 py-3.5 text-[10px] font-black uppercase tracking-widest text-center transition-colors duration-500",
+                                        calculationType === 'venda' ? "text-black" : "text-foreground/40 hover:text-foreground/60"
+                                    )}
+                                >
+                                    Quanto quer cobrar?
+                                </button>
+                                <button
+                                    onClick={() => setCalculationType('receber')}
+                                    className={cn(
+                                        "relative z-10 w-1/2 py-3.5 text-[10px] font-black uppercase tracking-widest text-center transition-colors duration-500",
+                                        calculationType === 'receber' ? "text-black" : "text-foreground/40 hover:text-foreground/60"
+                                    )}
+                                >
+                                    Quanto quer receber?
+                                </button>
+                            </div>
+                        </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div>
-                    <label className="block text-black mb-2">{calculationType === 'venda' ? 'Valor da Venda:' : 'Quanto quer receber?'}</label>
-                    <input
-                        type="text"
-                        value={saleValue}
-                        onChange={handleSaleValueChange}
-                        className="w-full px-4 py-2 rounded-lg border-2 bg-white text-black"
-                    />
-                    <p className="text-sm text-gray-500 mt-1">
-                        {calculationType === 'venda'
-                            ? 'Você digita o valor que vai aparecer na maquininha.'
-                            : 'Você digita o valor que quer que caia na sua conta.'}
-                    </p>
-                </div>
-                <div>
-                    <label className="block text-black mb-2">Tipo de Venda</label>
-                    <select
-                        value={selectedInstallment.value}
-                        onChange={(e) => setSelectedInstallment(
-                            installmentOptions.find(opt => opt.value === Number(e.target.value))!
-                        )}
-                        className="w-full px-4 py-2 rounded-lg bg-white text-black border-2"
-                    >
-                        {installmentOptions.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div>
-                    <label className="block text-black mb-2">Taxa HeroCash:</label>
-                    <div className="text-3xl font-bold text-gray-700 ">
-                        {results.taxa.toFixed(2)}%
+                        {/* Plan Selection */}
+                        <div className="flex flex-wrap justify-center items-center gap-3">
+                            {(['HERO', 'ON', 'PREMIUM', 'BASIC', 'ECONOMICO'] as const).map((plan) => (
+                                <button
+                                    key={plan}
+                                    onClick={() => setSelectedPlan(plan)}
+                                    className={cn(
+                                        "px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all duration-300",
+                                        plan === selectedPlan
+                                            ? "bg-primary text-black shadow-lg shadow-primary/20 scale-105"
+                                            : "glass border-white/5 text-foreground/40 hover:text-foreground/70 hover:bg-white/5"
+                                    )}
+                                >
+                                    {plan}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Inputs Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+                            <div className="md:col-span-5 space-y-3">
+                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/40 px-2 leading-none">
+                                    {calculationType === 'venda' ? 'VALOR DA VENDA' : 'VALOR A RECEBER'}
+                                </label>
+                                <div className="relative group">
+                                    <span className="absolute left-6 top-1/2 -translate-y-1/2 text-2xl font-black text-primary italic">R$</span>
+                                    <input
+                                        type="text"
+                                        value={saleValue}
+                                        onChange={handleSaleValueChange}
+                                        className="w-full bg-white/[0.03] glass-card border-none rounded-[1.5rem] py-6 pl-16 pr-8 text-4xl font-black tracking-tighter outline-none focus:bg-white/[0.07] transition-all"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="md:col-span-4 space-y-3">
+                                <label className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/40 px-2 leading-none">MODALIDADE</label>
+                                <select
+                                    value={selectedInstallment.value}
+                                    onChange={(e) => setSelectedInstallment(
+                                        installmentOptions.find(opt => opt.value === Number(e.target.value))!
+                                    )}
+                                    className="w-full bg-white/[0.03] glass rounded-[1.5rem] border-white/5 py-4 px-6 text-sm font-bold appearance-none outline-none focus:bg-white/10 transition-all cursor-pointer"
+                                >
+                                    {installmentOptions.map((option) => (
+                                        <option key={option.value} value={option.value} className="bg-[#0f1930] text-foreground">
+                                            {option.label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="md:col-span-3 pb-2 text-center md:text-right">
+                                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/40 mb-1">TAXA HEROCASH</p>
+                                <p className="text-5xl font-black italic tracking-tighter text-primary text-glow">
+                                    {results.taxa.toFixed(2)}<span className="text-2xl not-italic">%</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Comparison Results Card */}
+                        <div className="glass rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+                             <div className="absolute inset-0 bg-primary/[0.02] pointer-events-none" />
+                             
+                             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+                                <div className="space-y-6 text-center md:text-left">
+                                    <div className="space-y-1">
+                                        <p className="text-xs font-bold text-foreground/40 uppercase tracking-widest">
+                                            {calculationType === 'venda' ? 'COM A HEROCASH VOCÊ RECEBE:' : 'VOCÊ PRECISA VENDER:'}
+                                        </p>
+                                        <p className="text-6xl font-black tracking-tighter text-white">
+                                            {formatCurrency(calculationType === 'venda' ? results.netAmount : results.grossAmount)}
+                                        </p>
+                                    </div>
+                                    <div className="inline-flex items-center gap-4 bg-primary text-black px-6 py-3 rounded-2xl font-black text-sm uppercase tracking-tight shadow-xl shadow-primary/20">
+                                        VOCÊ ECONOMIZA {formatCurrency(results.savings)}
+                                    </div>
+                                </div>
+
+                                <div className="space-y-8 md:border-l md:border-white/10 md:pl-12 text-center md:text-left">
+                                    <div className="space-y-1">
+                                        <p className="text-[10px] font-black uppercase tracking-widest opacity-30">MÉDIA DO MERCADO</p>
+                                        <p className="text-3xl font-black text-foreground/40 tracking-tight">
+                                            {formatCurrency(results.marketNetAmount)}
+                                        </p>
+                                    </div>
+                                    <div className="glass bg-destructive/10 border-destructive/20 p-6 rounded-2xl space-y-2">
+                                        <p className="text-[9px] font-black uppercase tracking-[0.2em] text-destructive italic">ALERTA DE PERDA</p>
+                                        <p className="text-xs font-bold text-foreground/60 leading-tight">
+                                            Em 10 vendas iguais a esta, você estaria deixando de ganhar:
+                                        </p>
+                                        <p className="text-2xl font-black text-destructive tracking-tighter uppercase">
+                                            {formatCurrency(results.potentialLoss)}
+                                        </p>
+                                    </div>
+                                </div>
+                             </div>
+                        </div>
+
+                        {/* Footer Info & Footer button */}
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+                            <div className="flex items-center gap-6 glass px-6 py-3 rounded-full border-white/5">
+                                <p className="text-[10px] font-black uppercase tracking-widest opacity-30">Bandeiras Simuadas:</p>
+                                <div className="flex items-center gap-6">
+                                    <Image
+                                        src="/images/credit-cards/MASTERCARD.webp"
+                                        alt="Mastercard"
+                                        width={32}
+                                        height={20}
+                                        className="object-contain opacity-40 hover:opacity-100 transition-opacity"
+                                    />
+                                    <Image
+                                        src="/images/credit-cards/VISA.png"
+                                        alt="Visa"
+                                        width={32}
+                                        height={20}
+                                        className="object-contain opacity-40 hover:opacity-100 transition-opacity"
+                                    />
+                                </div>
+                            </div>
+                            
+                            <Button 
+                                className="bg-hero-gradient text-black font-black px-12 h-16 rounded-[1.5rem] shadow-xl hover:shadow-primary/40 hover:scale-105 active:scale-95 transition-all w-full md:w-auto"
+                                onClick={openWhatsapp}
+                            >
+                                PEDIR AGORA
+                                <ArrowRight className="ml-3 h-5 w-5" />
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div className="bg-white rounded-lg p-6 mb-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="text-center">
-                        <p className="text-gray-600 mb-2">
-                            {calculationType === 'venda' ? 'Com a HeroCash você recebe:' : 'Você precisa vender:'}
-                        </p>
-                        <div className="text-4xl font-bold mb-4">
-                            {formatCurrency(calculationType === 'venda' ? results.netAmount : results.grossAmount)}
-                        </div>
-                        <p className="text-gray-600 mb-2">Aqui você economiza</p>
-                        <div className="bg-yellow-400 rounded-lg py-2 px-4 inline-block">
-                            {formatCurrency(results.savings)}
-                        </div>
-                    </div>
-                    <div className="text-center">
-                        <p className="text-gray-600 mb-2">Com a taxa média do mercado você recebe:</p>
-                        <div className="text-4xl font-bold mb-4">
-                            {formatCurrency(results.marketNetAmount)}
-                        </div>
-                        <p className="text-gray-600 mb-2">10 vendas como essa você perderia:</p>
-                        <div className="bg-red-600 text-white rounded-lg py-2 px-4 inline-block">
-                            {formatCurrency(results.potentialLoss)}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="text-center mb-8">
-                <div className="flex items-center align-center justify-center gap-4">
-                    <p className="text-black">Simulação aplicada para seguintes bandeiras:</p>
-
-                    <Image
-                        src="/images/credit-cards/MASTERCARD.webp"
-                        alt="Mastercard"
-                        width={50}
-                        height={30}
-                        className="object-contain bg-white rounded px-2"
-                    />
-                    <Image
-                        src="/images/credit-cards/VISA.png"
-                        alt="Visa"
-                        width={50}
-                        height={30}
-                        className="object-contain bg-white rounded px-2"
-                    />
-                </div>
-            </div>
-
-            <div className="flex justify-center gap-4">
-                <button className="px-8 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-bold rounded-full" onClick={openWhatsapp}>
-                    Pedir Agora
-                </button>
-            </div>
-        </div>
+        </section>
     )
 }
+

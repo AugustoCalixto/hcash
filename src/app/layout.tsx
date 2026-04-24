@@ -25,10 +25,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  if (typeof window !== 'undefined') {
-    return <>loading</>
-  }
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body

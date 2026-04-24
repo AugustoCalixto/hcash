@@ -7,27 +7,27 @@ import HeroSection from "@/components/hero-section";
 import MosaicGrid from "@/components/mosaic-grid";
 import PaymentMethods from "@/components/payment-methods";
 import PricingPlans from "@/components/pricing-plans";
+import PricingTable from "@/components/pricing-table";
 import ProductComparison from "@/components/product-comparison";
 import StatsSection from "@/components/stats-section";
 import TestimonialsSection from "@/components/testimonials-section";
 
 export default function Home() {
     return (
-        <>
-            <div className="container mx-auto max-w-[1350px]">
-                <HeroSection />
-                <PaymentMethods />
-                <BenefitsSection />
-                <StatsSection />
-                <PricingPlans />
-                <SalesCalculator />
-                <ProductComparison />
-                <TestimonialsSection />
-                <MosaicGrid />
-                <FeaturesSection />
-                <AboutSection />
-                <Footer />
-            </div>
-        </>
+        <main className="min-h-screen">
+            <HeroSection />
+            <StatsSection />
+            <PaymentMethods />
+            <ProductComparison />
+            <SalesCalculator />
+            <PricingPlans />
+            <PricingTable />
+            <BenefitsSection />
+            <FeaturesSection />
+            <AboutSection />
+            <TestimonialsSection />
+            <MosaicGrid />
+            <Footer />
+        </main>
     );
 }

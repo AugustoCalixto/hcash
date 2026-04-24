@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 interface Testimonial {
   id: number
@@ -14,7 +14,6 @@ interface Testimonial {
 }
 
 export default function TestimonialsSection() {
-
   const testimonials: Testimonial[] = [
     {
       id: 1,
@@ -22,7 +21,7 @@ export default function TestimonialsSection() {
       username: "@marislimamakeup",
       avatar: "/images/testimonials/marislimamakeup.jpg",
       content:
-        "Atendimento simplesmente IMPECÁVEL! 😍 Humanizado de verdade, resolvem meus problemas em tempo recorde! Além disso, os planos são top demais e astaxas de pagamento no cartão? As MELHORES que já vi! 👏👏 Mas o que mais me ganhou foi o atendimento mesmo… que experiência maravilhosa! 🧡 Recomendo de olhos fechados!",
+        "Atendimento simplesmente IMPECÁVEL! 😍 Humanizado de verdade, resolvem meus problemas em tempo recorde! Além disso, os planos são top demais e as taxas de pagamento no cartão? As MELHORES que já vi! 👏👏",
     },
     {
       id: 2,
@@ -46,7 +45,7 @@ export default function TestimonialsSection() {
       username: "@felipemoreira.ce",
       avatar: "/images/testimonials/felipemoreira.jpg",
       content:
-        "⭐⭐⭐⭐⭐ Empresa referência em maquininhas! Atendimento humanizado, suporte nota 10 e soluções inovadoras como a conversão de limite do cartão em Pix. Confiança, agilidade e parceria de verdade para o seu negócio vender mais!",
+        "⭐⭐⭐⭐⭐ Empresa referência em maquininhas! Atendimento humanizado, suporte nota 10 e soluções inovadoras como a conversão de limite do cartão em Pix.",
     },
     {
       id: 5,
@@ -54,7 +53,7 @@ export default function TestimonialsSection() {
       username: "@arteverdeartesanato",
       avatar: "/images/testimonials/arteverdeartesanato.jpg",
       content:
-        "Tem muita gente vendendo maquineta no mercado... mas fazer o que vocês fazem, dando segurança para o cliente, esclarecendo tudo, tirando dúvidas e PRINCIPALMENTE fazendo o acompanhamento pós venda... NÃO CONHEÇO QUEM FAÇA COMO VOCÊS! Me sinto segura pq sei que o que precisar, posso contar com a equipe de vocês! Obrigada e parabéns! 👏👏👏👏👏👏",
+        "Me sinto segura pq sei que o que precisar, posso contar com a equipe de vocês! Obrigada e parabéns! 👏👏👏👏👏👏",
     },
     {
       id: 7,
@@ -64,115 +63,94 @@ export default function TestimonialsSection() {
       content:
         "Adoro a loja 🫶🏼 melhores taxas e melhor atendimento, parabéns 👏🏼👏🏼",
     },
-    {
-      id: 8,
-      name: "Maciel Ceição",
-      username: "@maciellceicao",
-      avatar: "/images/testimonials/maciellceicao.jpg",
-      content:
-        "A melhor da região sem dúvidas! Melhores preços, atendimento, resolução de problemas e melhores taxas.😍😍❤️.",
-    },
-    {
-      id: 9,
-      name: "Rebeca Santos",
-      username: "@rebecasants69_",
-      avatar: "/images/testimonials/rebecasants69_.jpg",
-      content:
-        "Já comprei e recomendo para todos, as melhores taxas é com a herocash, tem um ótimo atendimento, e o melhor suporte de todos👏👏👏!",
-    },
-    {
-      id: 10,
-      name: "Maria Jardenia Torres",
-      username: "@maria_jardenia_torres_",
-      avatar: "/images/testimonials/maria_jardenia_torres_.jpg",
-      content:
-        "Melhores taxas e atendimento vip . Sou cliente há mais de 3 anos e indico a todas as amigas empreendedoras que encontro. Parabéns a equipe @herocashbrasil!",
-    },
   ]
 
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const itemsPerPage = 3
-
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? Math.max(0, testimonials.length - itemsPerPage) : Math.max(0, prev - 1)))
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
   }
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev >= testimonials.length - itemsPerPage ? 0 : prev + 1))
+    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))
   }
 
-  const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + itemsPerPage)
-
   return (
-    <section className="py-16 bg-gray-50" id="testimonials">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 space-y-2">
-          <h2 className="text-3xl font-bold">Opinião e recomendação dos clientes</h2>
-          <p className="text-lg text-muted-foreground">
-            Veja como os clientes da Hero Cash Brasil tornam nossas soluções financeiras ainda mais ágeis e eficientesClientes
+    <section className="editorial-spacing relative overflow-hidden bg-secondary/20" id="depoimentos">
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6 mb-20">
+          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">RECONHECIMENTO</p>
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] uppercase text-foreground">
+            A VOZ DE <br/>
+            <span className="text-glow italic">QUEM USA</span>
+          </h2>
+          <p className="text-xl text-foreground/40 font-medium">
+            Confira a experiência de quem já transformou seu negócio com a Hero Cash Brasil.
           </p>
         </div>
 
-        <div className="relative">
-          <button
-            onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-yellow-400 rounded-full p-2 shadow-md"
-            aria-label="Depoimentos anteriores"
-          >
-            <ChevronLeft className="h-5 w-5 text-black" />
-          </button>
+        <div className="relative group/nav">
+          <div className="flex gap-8 overflow-hidden py-10 px-4">
+            {testimonials.map((testimonial, idx) => {
+                return (
+                    <div 
+                        key={testimonial.id} 
+                        className={cn(
+                            "flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.33rem)] transition-all duration-700 ease-in-out",
+                            idx < currentIndex && "opacity-0 invisible -translate-x-full absolute",
+                            idx >= currentIndex && idx < currentIndex + 3 && "opacity-100 visible translate-x-0 relative",
+                            idx >= currentIndex + 3 && "opacity-0 invisible translate-x-full absolute"
+                        )}
+                    >
+                        <div className="glass-card p-10 rounded-[3rem] h-full flex flex-col justify-between border-black/5 relative group/item hover:bg-white transition-all duration-500 hover:shadow-2xl shadow-primary/5">
+                            <Quote className="absolute top-8 right-8 w-12 h-12 text-primary opacity-10 group-hover/item:opacity-20 transition-opacity" />
+                            
+                            <p className="text-lg text-foreground/70 font-medium leading-relaxed mb-10 italic">
+                                "{testimonial.content}"
+                            </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-10">
-            {visibleTestimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="border-none shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex flex-col items-center text-center space-y-4">
-                    <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-gray-200">
-                      <Image
-                        src={testimonial.avatar || "/placeholder.svg"}
-                        alt={testimonial.name}
-                        fill
-                        className="object-cover"
-                      />
+                            <div className="flex items-center gap-4">
+                                <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-secondary p-0.5 border border-primary/20 shadow-inner">
+                                    <Image
+                                        src={testimonial.avatar || "/placeholder.svg"}
+                                        alt={testimonial.name}
+                                        fill
+                                        className="object-cover rounded-[1.1rem]"
+                                    />
+                                </div>
+                                <div className="space-y-0.5">
+                                    <h3 className="font-black uppercase tracking-tight text-foreground">{testimonial.name}</h3>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">{testimonial.username}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div>
-                      <h3 className="font-bold text-lg">{testimonial.name}</h3>
-                      <p className="text-sm text-muted-foreground">{testimonial.username}</p>
-                    </div>
-
-                    <p className="text-sm">{testimonial.content}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                )
+            })}
           </div>
 
-          <button
-            onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-yellow-400 rounded-full p-2 shadow-md"
-            aria-label="Próximos depoimentos"
-          >
-            <ChevronRight className="h-5 w-5 text-black" />
-          </button>
-        </div>
-
-        <div className="flex justify-center mt-8">
-          <div className="flex space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full ${index >= currentIndex && index < currentIndex + itemsPerPage ? "bg-yellow-400" : "bg-gray-300"
-                  }`}
-                onClick={() => setCurrentIndex(index)}
-                aria-label={`Ir para depoimento ${index + 1}`}
-              />
-            ))}
+          <div className="absolute top-1/2 -translate-y-1/2 -left-4 -right-4 flex justify-between pointer-events-none group-hover/nav:opacity-100 transition-opacity">
+            <button
+              onClick={handlePrev}
+              className="p-5 bg-white shadow-xl rounded-full border border-black/5 pointer-events-auto hover:bg-primary hover:text-black transition-all hover:scale-110 active:scale-95 group/btn"
+            >
+              <ChevronLeft className="h-6 w-6 text-foreground group-hover/btn:text-black" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="p-5 bg-white shadow-xl rounded-full border border-black/5 pointer-events-auto hover:bg-primary hover:text-black transition-all hover:scale-110 active:scale-95 group/btn"
+            >
+              <ChevronRight className="h-6 w-6 text-foreground group-hover/btn:text-black" />
+            </button>
           </div>
         </div>
       </div>
+      
+      {/* Decorative Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
     </section>
   )
 }
+
+
 

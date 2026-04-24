@@ -2,15 +2,34 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { planRates, paymentRates } from "@/data/plans"
+import { cn } from "@/lib/utils"
+import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react"
 
-import { planRates, paymentRates, CardId } from "@/data/plans";
+type RateType = 'hero' | 'on' | 'premium' | 'basic' | 'economico'
+
+interface PlanConfig {
+  id: RateType
+  label: string
+  color: string
+  accent: string
+  description: string
+}
+
+const planConfigs: PlanConfig[] = [
+  { id: 'hero', label: 'HERO', color: 'text-primary-foreground', accent: 'bg-primary', description: 'Venda mais com as menores taxas!' },
+  { id: 'on', label: 'ON', color: 'text-emerald-700', accent: 'bg-emerald-100', description: 'Venda mais com as menores taxas!' },
+  { id: 'premium', label: 'PREMIUM', color: 'text-blue-700', accent: 'bg-blue-100', description: 'Venda mais com as menores taxas!' },
+  { id: 'basic', label: 'BASIC', color: 'text-slate-700', accent: 'bg-slate-100', description: 'O plano mais acessível para começar!' },
+  { id: 'economico', label: 'ECONÔMICO', color: 'text-purple-700', accent: 'bg-purple-100', description: 'Venda mais com as menores taxas!' },
+]
 
 export default function PricingPlans() {
-  const [seeMore, setSeeMore] = useState(false)
+  const [detailsOpen, setDetailsOpen] = useState<RateType | null>(null)
 
   function openWhatsapp(plan: string) {
-    const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
+    const whatsappNumber = "5585987005263"
     const message = `Olá, gostaria de saber mais sobre o plano ${plan}!`
     const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
     if (typeof window !== 'undefined') {
@@ -18,200 +37,124 @@ export default function PricingPlans() {
     }
   }
 
-  const renderPaymentRatesByPlan = (plan: CardId, rateType: 'hero' | 'on' | 'premium' | 'basic' | 'economico') => {
+  const toggleDetails = (plan: RateType) => {
+    setDetailsOpen(detailsOpen === plan ? null : plan)
+  }
+
+  const PlanCard = ({ config }: { config: PlanConfig }) => {
+    const rates = planRates[config.label.replace('Ô', 'O') as keyof typeof planRates]
+    const isHero = config.id === 'hero'
+
     return (
-      seeMore && (
-        <Card className={`border-2 transition-all w-full`} key={plan}>
-          <CardHeader className="text-center">
+      <div className={cn(
+        "group relative flex flex-col glass-card rounded-[2rem] p-1 transition-all duration-500 hover:scale-[1.02]",
+        isHero && "lg:scale-105 lg:hover:scale-[1.07] z-10 ring-2 ring-primary/20"
+      )}>
+        <Card className="bg-white/80 border-none shadow-none flex flex-col h-full rounded-[1.9rem]">
+          <CardHeader className="text-center pt-8 pb-4">
+            <div className={cn("inline-block px-6 py-1.5 rounded-full text-sm font-black tracking-[0.2em] uppercase mb-4", 
+              isHero ? "bg-hero-gradient text-black" : config.accent, 
+              isHero ? "" : config.color
+            )}>
+              {config.label}
+            </div>
+            <p className="text-sm text-foreground/60 min-h-[40px] px-4 font-medium">
+              {config.description}
+            </p>
           </CardHeader>
-          <CardContent className="space-y-4 ">
-            <div className="grid grid-cols-2 gap-2 text-center">
-              {paymentRates[plan].map((rate) => (
-                <div key={rate.modalidade}>
-                  <p className="text-xs uppercase">{rate.modalidade}</p>
-                  <p className="text-2xl font-bold">{rate.taxa[rateType]}%</p>
+
+          <CardContent className="flex-1 px-6">
+            <div className="grid grid-cols-1 gap-6 text-center py-4">
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest">DÉBITO</p>
+                <p className={cn("text-4xl font-black tracking-tighter", isHero ? "text-foreground" : config.color)}>{rates.debito}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest">CRÉDITO À VISTA</p>
+                <p className={cn("text-4xl font-black tracking-tighter", isHero ? "text-foreground" : config.color)}>{rates.creditoAVista}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest">CRÉDITO 12x</p>
+                <p className={cn("text-4xl font-black tracking-tighter", isHero ? "text-foreground" : config.color)}>{rates.credito12x}</p>
+              </div>
+            </div>
+
+            <div className="mt-8 space-y-2">
+              <button 
+                onClick={() => toggleDetails(config.id)}
+                className="flex items-center justify-center w-full py-2 text-xs font-bold text-foreground/40 hover:text-foreground/80 transition-colors"
+              >
+                {detailsOpen === config.id ? <ChevronUp className="w-4 h-4 mr-1" /> : <ChevronDown className="w-4 h-4 mr-1" />}
+                TAXAS COMPLETAS
+              </button>
+              
+              <div className={cn(
+                "overflow-hidden transition-all duration-500",
+                detailsOpen === config.id ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
+              )}>
+                <div className="space-y-1 rounded-xl overflow-hidden bg-secondary/50">
+                  {paymentRates['visa'].slice(0, 14).map((rate, idx) => (
+                    <div key={rate.modalidade} className={cn(
+                      "flex justify-between items-center px-4 py-2 text-[11px]",
+                      idx % 2 === 0 ? "bg-black/[0.02]" : "bg-transparent"
+                    )}>
+                      <span className="font-bold opacity-40 uppercase">{rate.modalidade}</span>
+                      <span className={cn("font-black text-sm", isHero ? "text-foreground" : config.color)}>{rate.taxa[config.id]}%</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </CardContent>
-          <CardFooter>
+
+          <CardFooter className="p-6 pt-2">
+            <Button 
+              className={cn(
+                "w-full h-14 rounded-2xl font-black text-xs tracking-widest gap-2 border-none transition-all shadow-lg hover:shadow-xl uppercase",
+                isHero ? "bg-hero-gradient text-black" : "bg-foreground/5 hover:bg-foreground/10 text-foreground"
+              )}
+              onClick={() => openWhatsapp(config.label)}
+            >
+              VEM PRA HERO
+              <ArrowRight className="w-4 h-4" />
+            </Button>
           </CardFooter>
         </Card>
-      )
+      </div>
     )
   }
 
-  const handleViewAllRates = () => {
-    setSeeMore(!seeMore)
-  }
-
   return (
-    <section className="py-16 " id="planos">
-      <div className="text-center mb-10 space-y-4">
-        <h2 className="text-3xl font-bold">ANALISAR OS PLANOS!</h2>
-        <p className="text-lg">Você deseja receber:</p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        {/* Coluna Recebimento na hora */}
-        <div className="flex flex-col gap-6">
-          <div className="bg-gray-800 p-2 rounded-lg text-center">
-            <h3 className="text-lg font-bold text-white">Recebimento na hora</h3>
-          </div>
-          <Card className="border-2 hover:border-yellow-400 transition-all flex-1">
-            <CardHeader className="text-center">
-              <CardTitle className="inline-block bg-yellow-400 px-6 py-1 rounded-full text-xl">HERO</CardTitle>
-              <p className="text-sm mt-2">Venda mais com as <span className="font-bold">menores taxas!</span></p>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-3 gap-2 text-center">
-                <div>
-                  <p className="text-xs uppercase">DÉBITO</p>
-                  <p className="text-2xl font-bold">{planRates.HERO.debito}</p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase">CRÉDITO À VISTA</p>
-                  <p className="text-2xl font-bold">{planRates.HERO.creditoAVista}</p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase">CRÉDITO 12x</p>
-                  <p className="text-2xl font-bold">{planRates.HERO.credito12x}</p>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col gap-4">
-              <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("HERO")}>Quero o plano HERO</Button>
-              {renderPaymentRatesByPlan('visa', 'hero')}
-            </CardFooter>
-          </Card>
-        </div>
-
-        {/* Coluna Recebimento no dia seguinte */}
-        <div className="flex flex-col gap-6 lg:col-span-3">
-          <div className="bg-gray-800 p-2 rounded-lg text-center">
-            <h3 className="text-lg font-bold text-white">Recebimento no dia seguinte</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="border-2 hover:border-yellow-400 transition-all flex-1">
-              <CardHeader className="text-center">
-                <CardTitle className="inline-block bg-green-400 px-6 py-1 rounded-full text-xl">ON</CardTitle>
-                <p className="text-sm mt-2">Venda mais com as <span className="font-bold">menores taxas!</span></p>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div>
-                    <p className="text-xs uppercase">DÉBITO</p>
-                    <p className="text-2xl font-bold">{planRates.ON.debito}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase">CRÉDITO À VISTA</p>
-                    <p className="text-2xl font-bold">{planRates.ON.creditoAVista}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase">CRÉDITO 12x</p>
-                    <p className="text-2xl font-bold">{planRates.ON.credito12x}</p>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex flex-col gap-4">
-                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("ON")}>Quero o plano ON</Button>
-                {renderPaymentRatesByPlan('visa', 'on')}
-              </CardFooter>
-            </Card>
-            <Card className="border-2 hover:border-yellow-400 transition-all flex-1">
-              <CardHeader className="text-center">
-                <CardTitle className="inline-block bg-blue-400 px-6 py-1 rounded-full text-xl">PREMIUM</CardTitle>
-                <p className="text-sm mt-2">Venda mais com as <span className="font-bold">menores taxas!</span></p>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div>
-                    <p className="text-xs uppercase">DÉBITO</p>
-                    <p className="text-2xl font-bold">{planRates.PREMIUM.debito}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase">CRÉDITO À VISTA</p>
-                    <p className="text-2xl font-bold">{planRates.PREMIUM.creditoAVista}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase">CRÉDITO 12x</p>
-                    <p className="text-2xl font-bold">{planRates.PREMIUM.credito12x}</p>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex flex-col gap-4">
-                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("PREMIUM")}>Quero o plano PREMIUM</Button>
-                {renderPaymentRatesByPlan('visa', 'premium')}
-              </CardFooter>
-            </Card>
-            <Card className="border-2 hover:border-yellow-400 transition-all flex-1">
-              <CardHeader className="text-center">
-                <CardTitle className="inline-block bg-slate-400 px-6 py-1 rounded-full text-xl">BASIC</CardTitle>
-                <p className="text-sm mt-2">O plano mais acessível para começar!</p>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-3 gap-2 text-center">
-                  <div>
-                    <p className="text-xs uppercase">DÉBITO</p>
-                    <p className="text-2xl font-bold">{planRates.BASIC.debito}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase">CRÉDITO À VISTA</p>
-                    <p className="text-2xl font-bold">{planRates.BASIC.creditoAVista}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase">CRÉDITO 12x</p>
-                    <p className="text-2xl font-bold">{planRates.BASIC.credito12x}</p>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex flex-col gap-4">
-                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("BASIC")}>Quero o plano BASIC</Button>
-                {renderPaymentRatesByPlan('visa', 'basic')}
-              </CardFooter>
-            </Card>
+    <section className="editorial-spacing relative overflow-hidden bg-white" id="planos">
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(251,205,22,0.05),transparent)] pointer-events-none" />
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="text-center mb-20 space-y-6 max-w-4xl mx-auto">
+          <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">OPÇÕES DE RECEBIMENTO</p>
+          <h2 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.9] uppercase text-foreground">
+            ESCOLHA SEU <br/>
+            <span className="text-glow italic">DESTINO</span>
+          </h2>
+          <p className="text-xl text-foreground/60 font-medium">
+            Temos o plano perfeito para o momento atual da sua jornada empreendedora.
+          </p>
+          
+          <div className="flex flex-col items-center gap-4 pt-4">
+            <div className="flex glass p-1.5 rounded-full bg-secondary/80">
+              <div className="px-8 py-2 bg-primary text-black rounded-full text-[10px] font-black tracking-widest uppercase shadow-sm">NA HORA</div>
+              <div className="px-8 py-2 text-foreground/40 text-[10px] font-black tracking-widest uppercase">DIA SEGUINTE</div>
+            </div>
           </div>
         </div>
 
-        {/* Coluna Recebimento conforme parcelas */}
-        <div className="flex flex-col gap-6">
-          <div className="bg-gray-800 p-2 rounded-lg text-center">
-            <h3 className="text-lg font-bold text-white">Recebimento conforme parcelas</h3>
-          </div>
-          <Card className="border-2 hover:border-yellow-400 transition-all flex-1">
-            <CardHeader className="text-center">
-              <CardTitle className="inline-block bg-purple-400 px-6 py-1 rounded-full text-xl">ECONOMICO</CardTitle>
-              <p className="text-sm mt-2">Venda mais com as <span className="font-bold">menores taxas!</span></p>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-3 gap-2 text-center">
-                <div>
-                  <p className="text-xs uppercase">DÉBITO</p>
-                  <p className="text-2xl font-bold">{planRates.ECONOMICO.debito}</p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase">CRÉDITO À VISTA</p>
-                  <p className="text-2xl font-bold">{planRates.ECONOMICO.creditoAVista}</p>
-                </div>
-                <div>
-                  <p className="text-xs uppercase">CRÉDITO 12x</p>
-                  <p className="text-2xl font-bold">{planRates.ECONOMICO.credito12x}</p>
-                </div>
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col gap-4">
-              <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("econômico")}>Quero o plano ECONÔMICO</Button>
-              {renderPaymentRatesByPlan('visa', 'economico')}
-            </CardFooter>
-          </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
+          {planConfigs.map((config) => (
+            <PlanCard key={config.id} config={config} />
+          ))}
         </div>
-      </div>
-
-      <div className="flex justify-center mt-8">
-        <Button variant="outline" className="rounded-full" onClick={handleViewAllRates}>
-          Ver taxas completas
-        </Button>
       </div>
     </section>
   )
 }
+
+
