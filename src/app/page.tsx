@@ -7,6 +7,7 @@ import HeroSection from "@/components/hero-section";
 import MosaicGrid from "@/components/mosaic-grid";
 import PaymentMethods from "@/components/payment-methods";
 import PricingPlans from "@/components/pricing-plans";
+import PricingTable from "@/components/pricing-table";
 import ProductComparison from "@/components/product-comparison";
 import StatsSection from "@/components/stats-section";
 import TestimonialsSection from "@/components/testimonials-section";
@@ -19,7 +20,7 @@ export default function Home() {
                 <PaymentMethods />
                 <BenefitsSection />
                 <StatsSection />
-                <PricingPlans />
+                <PricingTable />
                 <SalesCalculator />
                 <ProductComparison />
                 <TestimonialsSection />
