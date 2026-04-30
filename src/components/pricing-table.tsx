@@ -5,10 +5,10 @@ import { cn } from "@/lib/utils"
 
 export default function PricingTable() {
     const plans = [
-        { id: "HERO", name: "Hero", color: "bg-primary" },
-        { id: "PREMIUM", name: "Premium", color: "bg-blue-500" },
-        { id: "ON", name: "On", color: "bg-emerald-500" },
         { id: "BASIC", name: "Basic", color: "bg-slate-400" },
+        { id: "HERO", name: "Hero", color: "bg-primary" },
+        { id: "ON", name: "On", color: "bg-emerald-500" },
+        { id: "PREMIUM", name: "Prime", color: "bg-blue-500" },
         { id: "ECONOMICO", name: "Econômico", color: "bg-purple-500" },
     ]
 

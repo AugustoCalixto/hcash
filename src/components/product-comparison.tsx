@@ -41,6 +41,15 @@ export default function ProductComparison() {
             onValueChange={(value) => handlePlanChange(value as PlanType)}
           >
             <div className="flex items-center space-x-2">
+              <RadioGroupItem value="BASIC" id="plan-basic" className="text-yellow-400" />
+              <Label
+                htmlFor="plan-basic"
+                className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
+              >
+                BASIC
+              </Label>
+            </div>
+            <div className="flex items-center space-x-2">
               <RadioGroupItem value="HERO" id="plan-hero" className="text-yellow-400" />
               <Label
                 htmlFor="plan-hero"
@@ -61,16 +70,7 @@ export default function ProductComparison() {
                 htmlFor="plan-premium"
                 className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
               >
-                PREMIUM
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="BASIC" id="plan-basic" className="text-yellow-400" />
-              <Label
-                htmlFor="plan-basic"
-                className="bg-black border border-white rounded-full px-6 py-1 cursor-pointer"
-              >
-                BASIC
+                PRIME
               </Label>
             </div>
             <div className="flex items-center space-x-2">
