@@ -71,6 +71,9 @@ export default function Footer() {
         {/* Redes Sociais e App Stores */}
         <div className="flex flex-col md:flex-row justify-between items-center border-t border-b py-6 mb-6">
           <div className="flex space-x-4 mb-4 md:mb-0">
+            <Link href="https://wa.me/5585987005263" target="_blank" aria-label="WhatsApp">
+              <Image src="/whatsapp.svg" alt="WhatsApp" width={24} height={24} className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
+            </Link>
             <Link href="https://instagram.com/herocashbrasil" target="_blank" aria-label="Instagram">
               <Instagram className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
             </Link>
@@ -80,9 +83,6 @@ export default function Footer() {
             <Link href="https://www.tiktok.com/@herocashbrasil?_t=ZM-8zznkJvAUJP&_r=1" target="_blank" aria-label="TikTok">
               <Image src="/images/tiktok.svg" alt="TikTok" width={24} height={24} className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
             </Link>
-            {/* <Link href="https://youtube.com/channel/UCSnCTXQMJGTQ3SobY0kcsxA" target="_blank" aria-label="YouTube">
-              <Youtube className="h-6 w-6 text-gray-600 hover:text-yellow-500" />
-            </Link> */}
           </div>
 
           <div className="flex space-x-4">
