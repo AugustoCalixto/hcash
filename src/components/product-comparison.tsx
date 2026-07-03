@@ -93,11 +93,11 @@ export default function ProductComparison() {
           return (
             <Card
               key={product.id}
-              className={`bg-black border border-gray-800 hover:border-yellow-400 transition-colors flex flex-col justify-between`}
+              className={`bg-black text-white border border-gray-800 hover:border-yellow-400 transition-colors flex flex-col justify-between`}
             >
               <CardHeader className="text-center">
                 <h3 className="text-2xl font-bold text-yellow-400">{product.name}</h3>
-                <p className="text-sm">{product.description}</p>
+                <p className="text-sm text-gray-300">{product.description}</p>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="relative w-full h-[250px]">
@@ -113,7 +113,9 @@ export default function ProductComparison() {
                 <div>
                   <p className="text-sm mb-1">Planos a partir de:</p>
                   <div className="text-center">
-                    <p className="text-sm line-through text-gray-400">de: {originalPrice} por</p>
+                    {originalPrice && (
+                      <p className="text-sm line-through text-gray-400">de: {originalPrice} por</p>
+                    )}
                     <div className="flex items-baseline justify-center">
                       <span className="text-sm">R$</span>
                       <span className="text-3xl font-bold text-yellow-400">{price}</span>
@@ -125,7 +127,7 @@ export default function ProductComparison() {
                       <span> de </span>
                       <span className="text-yellow-400 font-bold">R$ {installments.split("R$ ")[1]}</span>
                     </p>
-                    <p className="text-sm text-yellow-400">{discount}</p>
+                    {discount && <p className="text-sm text-yellow-400">{discount}</p>}
                   </div>
                 </div>
 
