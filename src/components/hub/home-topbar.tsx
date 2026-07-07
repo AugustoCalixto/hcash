@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
@@ -8,19 +8,47 @@ import { ClientAreaButton } from "@/components/nav/client-area-button"
 import { ProductsDropdown } from "@/components/nav/products-dropdown"
 import { hubProducts } from "@/data/hub-products"
 import { SITES } from "@/lib/sites"
+import { cn } from "@/lib/utils"
 
 const navLinks = [
   { name: "Sobre", href: "/sobre" },
   { name: "Contato", href: "/contato" },
 ]
 
-export function HomeTopbar() {
+interface HomeTopbarProps {
+  glass?: boolean
+}
+
+export function HomeTopbar({ glass = false }: HomeTopbarProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    if (!glass) return
+
+    function onScroll() {
+      setScrolled(window.scrollY > 40)
+    }
+
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [glass])
 
   const closeMenu = () => setIsOpen(false)
+  const useGlassStyle = glass && scrolled
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
+    <header
+      className={cn(
+        "sticky top-0 z-50 transition-all duration-300",
+        useGlassStyle
+          ? "bg-white/75 backdrop-blur-xl border-b border-white/30 shadow-sm"
+          : glass
+            ? "bg-transparent border-b border-transparent"
+            : "bg-white border-b shadow-sm"
+      )}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-4 h-16 max-w-7xl mx-auto">
           <Link href={SITES.hub.publicUrl} className="shrink-0" onClick={closeMenu}>
@@ -63,7 +91,7 @@ export function HomeTopbar() {
       </div>
 
       {isOpen && (
-        <div className="md:hidden border-t bg-white px-4 py-4 space-y-4">
+        <div className="md:hidden border-t bg-white/95 backdrop-blur-xl px-4 py-4 space-y-4">
           <div className="space-y-1">
             <p className="px-1 text-xs font-semibold uppercase tracking-wider text-gray-400">
               Produtos

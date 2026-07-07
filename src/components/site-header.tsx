@@ -13,12 +13,16 @@ function isInstitutionalPath(pathname: string): boolean {
   )
 }
 
+function isHubHomePath(pathname: string): boolean {
+  return pathname === "/" || pathname === "/hub"
+}
+
 export function SiteHeader() {
   const site = useSite()
   const pathname = usePathname()
 
   if (site.slug === "hub" || isInstitutionalPath(pathname)) {
-    return <HomeTopbar />
+    return <HomeTopbar glass={isHubHomePath(pathname)} />
   }
 
   return <ProductNavbar />

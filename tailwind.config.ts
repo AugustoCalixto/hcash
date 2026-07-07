@@ -67,10 +67,23 @@ const config = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: "0" },
                 },
+                "splash-logo": {
+                    "0%": { opacity: "0", transform: "scale(0.92)" },
+                    "40%": { opacity: "1", transform: "scale(1)" },
+                    "80%": { opacity: "1", transform: "scale(1)" },
+                    "100%": { opacity: "0", transform: "scale(1.02)" },
+                },
+                "splash-fade-out": {
+                    "0%": { opacity: "1" },
+                    "85%": { opacity: "1" },
+                    "100%": { opacity: "0", visibility: "hidden" },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+                "splash-logo": "splash-logo 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+                "splash-fade-out": "splash-fade-out 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards",
             },
         },
     },

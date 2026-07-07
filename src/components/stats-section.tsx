@@ -1,38 +1,43 @@
-import { Coins, User } from "lucide-react"
+"use client"
+
+import { Coins, Users } from "lucide-react"
+import { InView } from "@/components/hub/in-view"
+
+const stats = [
+  {
+    icon: Coins,
+    value: "+ de 2,5 BILHÕES",
+    label: "movimentados no ano de 2024",
+    iconClass: "bg-yellow-400 text-yellow-900",
+  },
+  {
+    icon: Users,
+    value: "+ de 4.050",
+    label: "clientes em todo o Brasil",
+    iconClass: "bg-black text-white",
+  },
+] as const
 
 export default function StatsSection() {
   return (
-    <section className="py-16">
-      <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
-        <div className="flex items-center gap-4">
-          <div className="flex">
-            <div className="bg-yellow-400 rounded-full w-12 h-12 flex items-center justify-center -mr-2">
-              <Coins className="h-6 w-6 text-yellow-800" />
-            </div>
-            <div className="bg-yellow-400 rounded-full w-12 h-12 flex items-center justify-center -mr-2">
-              <Coins className="h-6 w-6 text-yellow-800" />
-            </div>
-            <div className="bg-yellow-400 rounded-full w-12 h-12 flex items-center justify-center">
-              <Coins className="h-6 w-6 text-yellow-800" />
-            </div>
-          </div>
-          <div>
-            <h3 className="text-2xl md:text-3xl font-bold">+ de 2,5 BILHÕES</h3>
-            <p className="text-sm text-muted-foreground">movimentados no ano de 2024</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="border-2 border-black rounded-full w-12 h-12 flex items-center justify-center">
-            <User className="h-6 w-6 text-black" />
-          </div>
-          <div>
-            <h3 className="text-2xl md:text-3xl font-bold">+ de 4.050</h3>
-            <p className="text-sm">clientes</p>
-          </div>
+    <section className="py-12 md:py-16">
+      <div className="rounded-3xl border bg-white/70 backdrop-blur-sm shadow-sm px-6 py-8 md:px-10 md:py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {stats.map((stat, index) => (
+            <InView key={stat.label} delay={index * 100}>
+              <div className="flex items-center gap-5 justify-center md:justify-start">
+                <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${stat.iconClass}`}>
+                  <stat.icon className="h-7 w-7" />
+                </div>
+                <div className="text-center md:text-left">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight">{stat.value}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground mt-1">{stat.label}</p>
+                </div>
+              </div>
+            </InView>
+          ))}
         </div>
       </div>
     </section>
   )
 }
-

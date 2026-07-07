@@ -1,7 +1,10 @@
 import type { Metadata } from "next"
 import StatsSection from "@/components/stats-section"
-import { HubAboutSection } from "@/components/hub/contact-section"
-import { HubHero } from "@/components/hub/hub-sections"
+import { HubAboutSection, HubContactSection } from "@/components/hub/contact-section"
+import { HubProductHighlights } from "@/components/hub/hub-product-highlights"
+import { HubSplash } from "@/components/hub/hub-splash"
+import { HubHero, ProductCards } from "@/components/hub/hub-sections"
+import { HubValueProps } from "@/components/hub/hub-value-props"
 
 export const metadata: Metadata = {
   title: "Herocash Brasil | Soluções para o seu negócio",
@@ -11,10 +14,17 @@ export const metadata: Metadata = {
 
 export default function HubPage() {
   return (
-    <div className="container mx-auto max-w-[1350px] px-4">
-      <HubHero />
-      <StatsSection />
-      <HubAboutSection />
-    </div>
+    <>
+      <HubSplash />
+      <div className="container mx-auto max-w-[1350px] px-4">
+        <HubHero />
+        <StatsSection />
+        <ProductCards />
+        <HubProductHighlights />
+        <HubValueProps />
+        <HubAboutSection />
+        <HubContactSection />
+      </div>
+    </>
   )
 }
