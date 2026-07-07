@@ -5,6 +5,8 @@ import Image from 'next/image'
 
 import { installmentOptions, InstallmentOption, PlanId } from '@/data/plans';
 
+import { openWhatsApp } from "@/lib/whatsapp"
+
 export default function SalesCalculator() {
     const [selectedPlan, setSelectedPlan] = useState<PlanId>('HERO')
     const [saleValue, setSaleValue] = useState<string>('1.000,00')
@@ -14,13 +16,8 @@ export default function SalesCalculator() {
         installmentOptions[installmentOptions.length - 1]
     )
 
-    function openWhatsapp() {
-        const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
-        const message = "Olá, gostaria de saber mais sobre as taxas e planos da HeroCash para vendas parceladas. Poderia me ajudar?"
-        const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-        if (typeof window !== 'undefined') {
-            window.open(url, "_blank")
-        }
+    function handleWhatsapp() {
+        openWhatsApp("simulador")
     }
 
     const formatCurrency = (value: number) => {
@@ -226,7 +223,7 @@ export default function SalesCalculator() {
             </div>
 
             <div className="flex justify-center gap-4">
-                <button className="px-8 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-bold rounded-full" onClick={openWhatsapp}>
+                <button className="px-8 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-bold rounded-full" onClick={handleWhatsapp}>
                     Pedir Agora
                 </button>
             </div>

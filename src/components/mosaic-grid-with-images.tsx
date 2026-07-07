@@ -82,16 +82,9 @@ const MosaicItem = ({
   )
 }
 
-export default function MosaicGridWithImages() {
-  function openWhatsapp() {
-    const whatsappNumber = "5585987005263"
-    const message = "Olá, gostaria de falar com um atendente."
-    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    if (typeof window !== "undefined") {
-      window.open(url, "_blank")
-    }
-  }
+import { openWhatsApp } from "@/lib/whatsapp"
 
+export default function MosaicGridWithImages() {
   return (
     <section className="py-16">
       <div className="container px-4 mx-auto">
@@ -142,7 +135,7 @@ export default function MosaicGridWithImages() {
             subtitle="SELO RA1000"
             description="Falar via WhatsApp"
             ctaText="Fale conosco"
-            onClick={openWhatsapp}
+            onClick={() => openWhatsApp("Olá, gostaria de falar com um atendente.")}
             imageSrc=" "
             imageAlt="Atendente Hero Cash"
             highlightColor="text-yellow-400"

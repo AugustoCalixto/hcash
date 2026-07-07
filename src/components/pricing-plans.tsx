@@ -6,16 +6,13 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 
 import { planRates, paymentRates, CardId } from "@/data/plans";
 
+import { openWhatsApp } from "@/lib/whatsapp";
+
 export default function PricingPlans() {
   const [seeMore, setSeeMore] = useState(false)
 
-  function openWhatsapp(plan: string) {
-    const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
-    const message = `Olá, gostaria de saber mais sobre o plano ${plan}!`
-    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    if (typeof window !== 'undefined') {
-      window.open(url, "_blank")
-    }
+  function handlePlanWhatsapp(plan: string) {
+    openWhatsApp("plano", { planName: plan })
   }
 
   const renderPaymentRatesByPlan = (plan: CardId, rateType: 'hero' | 'on' | 'premium' | 'basic' | 'economico') => {
@@ -80,7 +77,7 @@ export default function PricingPlans() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("HERO")}>Quero o plano HERO</Button>
+              <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => handlePlanWhatsapp("HERO")}>Quero o plano HERO</Button>
               {renderPaymentRatesByPlan('visa', 'hero')}
             </CardFooter>
           </Card>
@@ -114,7 +111,7 @@ export default function PricingPlans() {
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col gap-4">
-                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("BASIC")}>Quero o plano BASIC</Button>
+                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => handlePlanWhatsapp("BASIC")}>Quero o plano BASIC</Button>
                 {renderPaymentRatesByPlan('visa', 'basic')}
               </CardFooter>
             </Card>
@@ -140,7 +137,7 @@ export default function PricingPlans() {
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col gap-4">
-                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("ON")}>Quero o plano ON</Button>
+                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => handlePlanWhatsapp("ON")}>Quero o plano ON</Button>
                 {renderPaymentRatesByPlan('visa', 'on')}
               </CardFooter>
             </Card>
@@ -166,7 +163,7 @@ export default function PricingPlans() {
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col gap-4">
-                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("PRIME")}>Quero o plano PRIME</Button>
+                <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => handlePlanWhatsapp("PRIME")}>Quero o plano PRIME</Button>
                 {renderPaymentRatesByPlan('visa', 'premium')}
               </CardFooter>
             </Card>
@@ -200,7 +197,7 @@ export default function PricingPlans() {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-              <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => openWhatsapp("econômico")}>Quero o plano ECONÔMICO</Button>
+              <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black" onClick={() => handlePlanWhatsapp("econômico")}>Quero o plano ECONÔMICO</Button>
               {renderPaymentRatesByPlan('visa', 'economico')}
             </CardFooter>
           </Card>

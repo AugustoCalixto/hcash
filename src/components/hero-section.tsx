@@ -2,16 +2,9 @@
 
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { openWhatsApp } from "@/lib/whatsapp"
 
 export default function HeroSection() {
-  function openWhatsapp() {
-    const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
-    const message = "Olá, gostaria de saber mais sobre a maquininha Hero Cash!"
-    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    if (typeof window !== 'undefined') {
-      window.open(url, "_blank")
-    }
-  }
   return (
     <section className="py-12 md:py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -27,7 +20,7 @@ export default function HeroSection() {
           <Button
             size="lg"
             className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-8 py-6 h-auto text-lg"
-            onClick={() => openWhatsapp()}
+            onClick={() => openWhatsApp("heroMaquininha")}
           >
             Adquira já a sua
           </Button>

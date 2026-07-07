@@ -3,12 +3,11 @@
 import { MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+import { openWhatsApp } from "@/lib/whatsapp";
+
 export default function WhatsAppButton() {
   const handleWhatsAppClick = () => {
-    const whatsappNumber = "5585987005263";
-    const message = "Olá! Tenho interesse nos produtos da Hero Cash.";
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    openWhatsApp("default");
   }
 
   return (

@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
+import { openWhatsApp } from "@/lib/whatsapp"
+
 export default function ProductShowcase() {
   const [activeProduct, setActiveProduct] = useState<string>("pro")
 
@@ -11,13 +13,8 @@ export default function ProductShowcase() {
     setActiveProduct(productId)
   }
 
-  function openWhatsapp(productName: string) {
-    const whatsappNumber = "5585987005263"
-    const message = `Olá, gostaria de saber mais sobre a maquininha ${productName}!`
-    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    if (typeof window !== 'undefined') {
-      window.open(url, "_blank")
-    }
+  function handleProductWhatsapp(productName: string) {
+    openWhatsApp(`Olá, gostaria de saber mais sobre a maquininha ${productName}!`)
   }
 
   return (
@@ -75,7 +72,7 @@ export default function ProductShowcase() {
 
                   <Button
                     className={`bg-${product.color} hover:bg-opacity-90 text-black font-medium`}
-                    onClick={() => openWhatsapp(product.name)}
+                    onClick={() => handleProductWhatsapp(product.name)}
                   >
                     {product.buttonText}
                   </Button>

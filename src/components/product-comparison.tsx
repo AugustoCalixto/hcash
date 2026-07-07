@@ -10,6 +10,8 @@ import { Check } from "lucide-react"
 
 import { products, PlanType } from "@/data/products";
 
+import { openWhatsApp } from "@/lib/whatsapp"
+
 export default function ProductComparison() {
   const [selectedPlan, setSelectedPlan] = useState<PlanType>("HERO")
 
@@ -20,12 +22,7 @@ export default function ProductComparison() {
   }
 
   const handleOrderProduct = (productName: string) => {
-    const whatsappNumber = "5585987005263"
-    const message = `Olá, gostaria de pedir a maquininha ${productName} com o plano ${selectedPlan}.`
-    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    if (typeof window !== 'undefined') {
-      window.open(url, "_blank")
-    }
+    openWhatsApp(`Olá, gostaria de pedir a maquininha ${productName} com o plano ${selectedPlan}.`)
   }
 
   return (

@@ -7,6 +7,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { ChevronLeft, ChevronRight, CircleDashedIcon, Coins, Flame } from "lucide-react"
 
+import { openWhatsApp } from "@/lib/whatsapp"
+
 export default function FeaturesSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -40,12 +42,7 @@ export default function FeaturesSection() {
   }
 
   const handleAcquire = () => {
-    const whatsappNumber = "5585987005263"
-    const message = "Olá, gostaria de adquirir uma maquininha Hero Cash!"
-    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    if (typeof window !== 'undefined') {
-      window.open(url, "_blank")
-    }
+    openWhatsApp("maquininhas")
   }
 
   return (

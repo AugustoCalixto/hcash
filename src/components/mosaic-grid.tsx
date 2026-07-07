@@ -4,6 +4,7 @@ import type React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Instagram } from "lucide-react"
+import { openWhatsApp } from "@/lib/whatsapp"
 
 interface MosaicItemProps {
   title: string
@@ -93,14 +94,6 @@ const MosaicItem = ({
 }
 
 export default function MosaicGrid() {
-  function openWhatsapp(message: string) {
-    const whatsappNumber = "5585987005263"
-    const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-    if (typeof window !== "undefined") {
-      window.open(url, "_blank")
-    }
-  }
-
   return (
     <section className="py-12 md:py-16 xl:py-24">
       <div className="container px-4 mx-auto">
@@ -112,7 +105,7 @@ export default function MosaicGrid() {
             subtitle="Planos especiais para todos."
             description="Poupe com as taxas mais baixas do mercado!"
             ctaText="Saiba mais"
-            onClick={() => openWhatsapp("Olá, gostaria de saber mais sobre as taxas.")}
+            onClick={() => openWhatsApp("Olá, gostaria de saber mais sobre as taxas.")}
             imageSrc="/images/mosaic/all.png"
             imageAlt="Maquininhas Hero Cash"
             highlightColor="text-yellow-400"
@@ -125,7 +118,7 @@ export default function MosaicGrid() {
             subtitle="RECEBIMENTO ÁGIL"
             description="Recebimento na hora ou em 1 dia (Todos os dias)"
             ctaText="Saiba mais"
-            onClick={() => openWhatsapp("Olá, gostaria de saber mais sobre o recebimento.")}
+            onClick={() => openWhatsApp("Olá, gostaria de saber mais sobre o recebimento.")}
             imageSrc="/images/mosaic/table-pro.png"
             imageAlt="Pessoa recebendo pagamento"
             highlightColor="text-yellow-400"
@@ -138,7 +131,7 @@ export default function MosaicGrid() {
             subtitle="DESEMPENHO SUPERIOR"
             description=""
             ctaText="Saiba mais"
-            onClick={() => openWhatsapp("Olá, gostaria de saber mais sobre a maquininha Smart.")}
+            onClick={() => openWhatsApp("Olá, gostaria de saber mais sobre a maquininha Smart.")}
             imageSrc="/images/mosaic/table-pro.png"
             imageAlt="Maquininha Hero Smart"
             highlightColor="text-yellow-400"
@@ -151,7 +144,7 @@ export default function MosaicGrid() {
             subtitle="SELO RA1000"
             description="Falar via WhatsApp"
             ctaText="Fale conosco"
-            onClick={() => openWhatsapp("Olá, gostaria de falar com um atendente.")}
+            onClick={() => openWhatsApp("Olá, gostaria de falar com um atendente.")}
             imageSrc="/images/mosaic/model-oficce.png"
             imageAlt="Atendente Hero Cash"
             highlightColor="text-yellow-400"

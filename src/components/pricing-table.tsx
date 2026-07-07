@@ -1,16 +1,10 @@
 "use client"
 
-import { installmentOptions } from "@/data/plans"
+import { installmentOptions, PLAN_DEFINITIONS } from "@/data/plans"
 import { cn } from "@/lib/utils"
 
 export default function PricingTable() {
-    const plans = [
-        { id: "BASIC", name: "Basic", color: "bg-slate-400" },
-        { id: "HERO", name: "Hero", color: "bg-primary" },
-        { id: "ON", name: "On", color: "bg-emerald-500" },
-        { id: "PREMIUM", name: "Prime", color: "bg-blue-500" },
-        { id: "ECONOMICO", name: "Econômico", color: "bg-purple-500" },
-    ]
+    const plans = PLAN_DEFINITIONS
 
     return (
         <section className="editorial-spacing relative overflow-hidden bg-secondary/30" id="tabela-planos">
@@ -39,7 +33,7 @@ export default function PricingTable() {
                                             <div className="space-y-2">
                                                 <div className={cn("h-1 w-8 rounded-full mb-4 opacity-40 group-hover:opacity-100 transition-opacity", plan.color)} />
                                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/80">Plano</div>
-                                                <div className="text-2xl font-black tracking-tighter uppercase">{plan.name}</div>
+                                                <div className="text-2xl font-black tracking-tighter uppercase">{plan.displayName}</div>
                                             </div>
                                         </th>
                                     ))}

@@ -3,16 +3,9 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
-export default function AboutContentSection() {
-    function openWhatsapp() {
-        const whatsappNumber = "5585987005263" // Substitua pelo número de WhatsApp desejado
-        const message = "Olá, gostaria de retirar uma dúvida sobre os planos da Hero Cash!"
-        const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`
-        if (typeof window !== 'undefined') {
-            window.open(url, "_blank")
-        }
+import { openWhatsApp } from "@/lib/whatsapp"
 
-    }
+export default function AboutContentSection() {
     return (
         <section className="w-full py-12 md:py-16 lg:py-20 bg-amber-300 rounded-lg">
             <div className="container px-4 md:px-6">
@@ -66,7 +59,7 @@ export default function AboutContentSection() {
                         </div>
 
                         <Button className="bg-green-500 hover:bg-green-600 text-white rounded-full w-fit px-6 py-2 h-auto"
-                            onClick={() => openWhatsapp()}
+                            onClick={() => openWhatsApp("simulador")}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
                                 <path
