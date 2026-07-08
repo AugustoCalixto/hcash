@@ -23,6 +23,7 @@ const maquininhasNavItems: NavItem[] = [
 
 const crmNavItems: NavItem[] = [
   { name: "Recursos", href: "#recursos" },
+  { name: "Planos", href: "#planos" },
   { name: "Benefícios", href: "#beneficios" },
 ]
 
