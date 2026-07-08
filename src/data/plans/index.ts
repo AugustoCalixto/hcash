@@ -1,5 +1,12 @@
 export type { CardId, InstallmentOption, PaymentRate, PlanId, PlanRates } from "./types"
-export { PLAN_DEFINITIONS } from "./definitions"
+export {
+  PLAN_DEFINITIONS,
+  RECEIPT_GROUPS,
+  getPlanDefinition,
+  getPlansForReceiptGroup,
+  type ReceiptGroupId,
+  type PlanDefinition,
+} from "./definitions"
 
 export {
   getInstallmentOptions,

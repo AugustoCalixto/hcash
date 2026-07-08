@@ -10,7 +10,7 @@ export function HubProductHighlights() {
   const { highlightsSection } = hubHomeContent
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-4 md:py-6">
       <InView className="text-center max-w-2xl mx-auto mb-10 md:mb-14 space-y-4">
         <p className="text-sm uppercase tracking-wider font-bold text-yellow-600">
           {highlightsSection.eyebrow}

@@ -8,11 +8,11 @@ export function HubValueProps() {
   const { valuePropsSection, valueProps } = hubHomeContent
 
   return (
-    <section className="py-16 md:py-20">
-      <div className="rounded-3xl bg-gradient-to-br from-yellow-400 via-amber-400 to-orange-400 p-1 shadow-xl shadow-yellow-500/20">
-        <div className="rounded-[1.35rem] bg-gradient-to-br from-yellow-50 to-amber-50 px-6 py-10 md:px-10 md:py-14">
+    <section className="py-4 md:py-6">
+      <div className="rounded-3xl bg-white/95 p-1 shadow-2xl shadow-orange-500/20 ring-1 ring-black/5">
+        <div className="rounded-[1.35rem] bg-gradient-to-br from-white via-yellow-50/50 to-amber-50 px-6 py-10 md:px-10 md:py-14">
           <InView className="text-center max-w-2xl mx-auto mb-10 md:mb-12 space-y-4">
-            <p className="text-sm uppercase tracking-wider font-bold text-yellow-700">
+            <p className="text-sm uppercase tracking-wider font-bold text-amber-800">
               {valuePropsSection.eyebrow}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">

@@ -1,7 +1,5 @@
 "use client"
 
-"use client"
-
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
@@ -15,10 +13,7 @@ export function HubHero() {
   const { hero } = hubHomeContent
 
   return (
-    <section className="relative overflow-hidden py-16 md:py-24 lg:py-28">
-      <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-yellow-400/30 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-amber-300/25 blur-3xl" />
-
+    <section className="relative overflow-hidden py-4 md:py-8 lg:py-10">
       <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
         <InView className="space-y-6 md:space-y-8">
           <p className="inline-flex items-center rounded-full bg-yellow-400/20 px-4 py-1.5 text-xs md:text-sm font-bold uppercase tracking-wider text-yellow-800 border border-yellow-400/30">
@@ -27,7 +22,7 @@ export function HubHero() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance leading-[1.05]">
             {hero.title}
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
+          <p className="text-lg md:text-xl text-zinc-800/90 max-w-xl leading-relaxed">
             {hero.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -50,18 +45,17 @@ export function HubHero() {
         </InView>
 
         <InView delay={150} className="relative">
-          <div className="relative aspect-[4/5] md:aspect-[5/6] lg:aspect-auto lg:h-[520px] rounded-3xl overflow-hidden shadow-2xl shadow-yellow-500/10 ring-1 ring-black/5">
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl bg-zinc-950 shadow-2xl shadow-yellow-500/15 ring-1 ring-black/10 lg:aspect-[16/11]">
             <Image
-              src="/images/model-01.png"
-              alt="Empreendedor usando soluções Herocash Brasil"
+              src={hero.image}
+              alt={hero.imageAlt}
               fill
-              className="object-cover"
+              className="object-contain object-center"
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
           </div>
-          <div className="absolute -bottom-4 -left-4 md:bottom-6 md:-left-6 glass-panel rounded-2xl px-5 py-4 shadow-xl max-w-[220px]">
+          <div className="absolute -bottom-4 -left-4 max-w-[220px] rounded-2xl glass-panel px-5 py-4 shadow-xl md:bottom-6 md:-left-6">
             <p className="text-xs font-semibold uppercase tracking-wider text-yellow-700">Ecossistema</p>
             <p className="text-2xl font-bold mt-1">2 soluções</p>
             <p className="text-sm text-muted-foreground">Pagamentos + CRM WhatsApp</p>
@@ -76,15 +70,15 @@ export function ProductCards() {
   const { productsSection } = hubHomeContent
 
   return (
-    <section id="produtos" className="py-16 md:py-20 scroll-mt-24">
+    <section className="scroll-mt-24 py-4 md:py-6">
       <InView className="text-center max-w-2xl mx-auto mb-10 md:mb-14 space-y-4">
-        <p className="text-sm uppercase tracking-wider font-bold text-yellow-600">
+        <p className="text-sm uppercase tracking-wider font-bold text-zinc-900/80">
           {productsSection.eyebrow}
         </p>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance text-zinc-950">
           {productsSection.title}
         </h2>
-        <p className="text-lg text-muted-foreground">{productsSection.description}</p>
+        <p className="text-lg text-zinc-900/75">{productsSection.description}</p>
       </InView>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

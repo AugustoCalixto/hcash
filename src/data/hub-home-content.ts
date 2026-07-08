@@ -8,6 +8,8 @@ export const hubHomeContent = {
       "Maquininhas com taxas que cabem no bolso e CRM no WhatsApp para transformar conversa em venda. Tudo num só ecossistema feito para quem empreende.",
     primaryCta: "Conhecer soluções",
     secondaryCta: "Falar no WhatsApp",
+    image: "/images/hub/hero-hub.png",
+    imageAlt: "Ecossistema Herocash Brasil — cidade conectada com soluções de pagamento e gestão",
   },
   productsSection: {
     eyebrow: "Nossas soluções",

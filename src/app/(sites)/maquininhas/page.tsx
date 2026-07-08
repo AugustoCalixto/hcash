@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import BenefitsSection from "@/components/benefits-section"
 import SalesCalculator from "@/components/calculator"
 import FeaturesSection from "@/components/features-section"
-import HeroSection from "@/components/hero-section"
+import { MaquininhasHero } from "@/components/maquininhas/maquininhas-hero"
 import MosaicGrid from "@/components/mosaic-grid"
 import PaymentMethods from "@/components/payment-methods"
 import PricingPlans from "@/components/pricing-plans"
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
 export default function MaquininhasPage() {
   return (
     <div className="container mx-auto max-w-[1350px] px-4">
-      <HeroSection />
+      <MaquininhasHero />
       <PaymentMethods />
       <BenefitsSection />
       <StatsSection />
-      <PricingTable />
-      <SalesCalculator />
       <PricingPlans />
+      <SalesCalculator />
+      <PricingTable />
       <ProductComparison />
       <TestimonialsSection />
       <MosaicGrid />

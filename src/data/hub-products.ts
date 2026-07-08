@@ -52,7 +52,7 @@ export const hubProducts: HubProduct[] = [
     href: getProductPublicUrl("crm"),
     description: "Atendimento, vendas e automação no WhatsApp com inteligência artificial.",
     cta: "Conhecer CRM Herocash",
-    backgroundImage: "/images/payment.png",
+    backgroundImage: "/images/mosaic/table-pro.png",
     whatsappMessage: company.whatsappMessages.crm,
     icon: MessageSquare,
     highlights: [

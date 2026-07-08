@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 
 export function HubAboutSection() {
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-4 md:py-6">
       <InView>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14 items-center rounded-3xl border bg-white p-6 md:p-10 shadow-sm">
           <div className="space-y-6">
@@ -40,9 +40,9 @@ export function HubAboutSection() {
 
 export function HubContactSection() {
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-4 md:py-6">
       <InView>
-        <div className="rounded-3xl bg-gradient-to-br from-gray-900 to-black px-6 py-12 md:px-12 md:py-14 text-white text-center">
+        <div className="rounded-3xl bg-gradient-to-br from-zinc-900 to-black px-6 py-12 md:px-12 md:py-14 text-white text-center ring-1 ring-yellow-400/20 shadow-2xl shadow-yellow-500/10">
           <div className="max-w-2xl mx-auto space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Fale com a Herocash Brasil</h2>
             <p className="text-white/75 text-lg">

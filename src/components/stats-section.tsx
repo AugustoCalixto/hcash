@@ -2,6 +2,7 @@
 
 import { Coins, Users } from "lucide-react"
 import { InView } from "@/components/hub/in-view"
+import { cn } from "@/lib/utils"
 
 const stats = [
   {
@@ -18,10 +19,23 @@ const stats = [
   },
 ] as const
 
-export default function StatsSection() {
+interface StatsSectionProps {
+  tone?: "light" | "dark"
+}
+
+export default function StatsSection({ tone = "light" }: StatsSectionProps) {
+  const isDark = tone === "dark"
+
   return (
-    <section className="py-12 md:py-16">
-      <div className="rounded-3xl border bg-white/70 backdrop-blur-sm shadow-sm px-6 py-8 md:px-10 md:py-10">
+    <section className="py-4 md:py-6">
+      <div
+        className={cn(
+          "rounded-3xl px-6 py-8 md:px-10 md:py-10 shadow-xl",
+          isDark
+            ? "bg-white/10 ring-1 ring-white/15 backdrop-blur-sm"
+            : "border bg-white/70 backdrop-blur-sm shadow-sm"
+        )}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {stats.map((stat, index) => (
             <InView key={stat.label} delay={index * 100}>
@@ -30,8 +44,12 @@ export default function StatsSection() {
                   <stat.icon className="h-7 w-7" />
                 </div>
                 <div className="text-center md:text-left">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight">{stat.value}</h3>
-                  <p className="text-sm md:text-base text-muted-foreground mt-1">{stat.label}</p>
+                  <h3 className={cn("text-2xl md:text-3xl font-bold tracking-tight", isDark && "text-white")}>
+                    {stat.value}
+                  </h3>
+                  <p className={cn("text-sm md:text-base mt-1", isDark ? "text-white/70" : "text-muted-foreground")}>
+                    {stat.label}
+                  </p>
                 </div>
               </div>
             </InView>

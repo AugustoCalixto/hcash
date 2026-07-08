@@ -31,7 +31,7 @@ export default function PricingTable() {
                                     {plans.map((plan) => (
                                         <th key={plan.id} className="p-8 group min-w-[140px]">
                                             <div className="space-y-2">
-                                                <div className={cn("h-1 w-8 rounded-full mb-4 opacity-40 group-hover:opacity-100 transition-opacity", plan.color)} />
+                                                <div className={cn("h-1 w-8 rounded-full mb-4 opacity-40 group-hover:opacity-100 transition-opacity", plan.badgeClass)} />
                                                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground/80">Plano</div>
                                                 <div className="text-2xl font-black tracking-tighter uppercase">{plan.displayName}</div>
                                             </div>
