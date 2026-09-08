@@ -39,9 +39,9 @@ export const products: Product[] = [
       prices: {
         HERO: { price: "233", cents: ",88", installments: "10x de R$ 23,38", discount: "53% OFF" },
         ON: { price: "233", cents: ",88", installments: "10x de R$ 23,38", discount: "53% OFF" },
-        PREMIUM: { price: "467", cents: ",76", installments: "10x de R$ 46,78", discount: "6% OFF" },
+        PREMIUM: { price: "233", cents: ",88", installments: "10x de R$ 23,38", discount: "53% OFF" },
         BASIC: { price: "99", cents: ",90", installments: "10x de R$ 9,99", discount: "75% OFF" },
-        ECONOMICO: { price: "235", cents: ",80", installments: "10x de R$ 23,58", discount: "53% OFF" },
+        ECONOMICO: { price: "233", cents: ",88", installments: "10x de R$ 23,38", discount: "53% OFF" },
       },
     },
     {
@@ -64,11 +64,11 @@ export const products: Product[] = [
         ECONOMICO: "R$ 699,00",
       },
       prices: {
-        HERO: { price: "288", cents: ",88", installments: "10x de R$ 28,88", discount: "59% OFF" },
-        ON: { price: "288", cents: ",88", installments: "10x de R$ 28,88", discount: "59% OFF" },
-        PREMIUM: { price: "577", cents: ",76", installments: "10x de R$ 57,78", discount: "17% OFF" },
+        HERO: { price: "294", cents: ",88", installments: "10x de R$ 29,48", discount: "59% OFF" },
+        ON: { price: "294", cents: ",88", installments: "10x de R$ 29,48", discount: "59% OFF" },
+        PREMIUM: { price: "294", cents: ",88", installments: "10x de R$ 29,48", discount: "59% OFF" },
         BASIC: { price: "199", cents: ",80", installments: "10x de R$ 19,98", discount: "60% OFF" },
-        ECONOMICO: { price: "335", cents: ",80", installments: "10x de R$ 33,58", discount: "51% OFF" },
+        ECONOMICO: { price: "294", cents: ",88", installments: "10x de R$ 29,48", discount: "59% OFF" },
       },
     },
     {
@@ -87,16 +87,16 @@ export const products: Product[] = [
       originalPrices: {
         HERO: "R$ 799,00",
         ON: "R$ 799,00",
-        PREMIUM: "",
+        PREMIUM: "R$ 799,00",
         BASIC: "R$ 599,00",
         ECONOMICO: "R$ 799,00",
       },
       prices: {
-        HERO: { price: "385", cents: ",08", installments: "10x de R$ 38,50", discount: "52% OFF" },
-        ON: { price: "385", cents: ",08", installments: "10x de R$ 38,50", discount: "52% OFF" },
-        PREMIUM: { price: "984", cents: ",16", installments: "10x de R$ 98,42", discount: "" },
+        HERO: { price: "391", cents: ",08", installments: "10x de R$ 39,11", discount: "52% OFF" },
+        ON: { price: "391", cents: ",08", installments: "10x de R$ 39,11", discount: "52% OFF" },
+        PREMIUM: { price: "391", cents: ",08", installments: "10x de R$ 39,11", discount: "52% OFF" },
         BASIC: { price: "297", cents: ",40", installments: "10x de R$ 29,74", discount: "50% OFF" },
-        ECONOMICO: { price: "492", cents: ",80", installments: "10x de R$ 49,28", discount: "38% OFF" },
+        ECONOMICO: { price: "391", cents: ",08", installments: "10x de R$ 39,11", discount: "52% OFF" },
       },
     },
 ];
